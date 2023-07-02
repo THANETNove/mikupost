@@ -105,10 +105,17 @@ body {
     font-weight: 500;
 }
 
-.site-nav .site-navigation .site-menu .has-children .dropdown>li>a::before .nav-link {
+.site-nav.dark a:hover {
     color: var(--white) !important;
 }
 
+.site-nav .site-navigation .site-menu>li>a.active {
+    color: var(--white) !important;
+}
+
+/* .site-nav .site-navigation .site-menu .has-children .dropdown>li>a::before .nav-link {
+    color: var(--white) !important;
+} */
 
 
 
@@ -11599,6 +11606,10 @@ a.text-dark:hover {
     margin-right: 16px;
     border: solid 3px darkcyan;
     margin-bottom: 16px;
+}
+
+.untree_co-section:hover {
+    color: var(--white);
 }
 
 @media (max-width:576px) {
