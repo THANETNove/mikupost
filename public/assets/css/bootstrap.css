@@ -121,6 +121,9 @@ body {
     color: var(--white) !important;
 }
 
+.site-mobile-menu .site-nav-wrap .arrow-collapse {
+    color: var(--white) !important;
+}
 
 
 [tabindex="-1"]:focus:not(:focus-visible) {
