@@ -39,7 +39,7 @@
     @include('layouts.navbarWelcome')
 
 
-    <main>
+    <main class="body-dark">
         @yield('content')
     </main>
 

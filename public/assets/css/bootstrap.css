@@ -26,6 +26,7 @@
     --danger: #dc3545;
     --light: #f8f9fa;
     --dark: #343a40;
+    --dark2: #495057;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -69,8 +70,42 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #fff
 }
+
+.body-dark {
+    background-color: var(--gray-dark) !important;
+}
+
+.site-nav {
+
+    background: var(--dark2) !important;
+}
+
+.site-nav.scrolled .site-navigation .site-menu li a.active {
+    color: var(--white) !important;
+}
+
+.site-nav .site-navigation .site-menu .has-children .dropdown {
+    background-color: var(--dark2) !important;
+}
+
+.site-nav .site-navigation .site-menu .has-children .dropdown a:hover {
+    font-size: 16px;
+    text-transform: none;
+    letter-spacing: normal;
+    -webkit-transition: 0s all;
+    -o-transition: 0s all;
+    transition: 0s all;
+    color: var(--white) !important;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
 
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important
