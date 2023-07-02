@@ -645,8 +645,8 @@ pre code {
 
 .containerNav-body {
     width: 100%;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: 3%;
+    padding-left: 3%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -5913,6 +5913,18 @@ a.badge-dark:focus {
 .alert-heading {
     color: inherit
 }
+
+.heading {
+    font-size: 24px !important;
+}
+
+.caption2 {
+    margin-top: -5px;
+    color: rgb(195, 203, 228);
+    font-size: 13px;
+
+}
+
 
 .alert-link {
     font-weight: 700
@@ -11551,7 +11563,7 @@ a.text-dark:hover {
 .body-color-right {
     background-color: #49505773 !important;
     padding-top: 16px;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .service-comment {
@@ -11615,9 +11627,18 @@ a.text-dark:hover {
     margin-bottom: 16px;
 }
 
+.cover-page {
+    width: 100%;
+    height: 260px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
 .untree_co-section:hover {
     color: var(--white);
 }
+
+
 
 .site-mobile-menu {
     width: 300px;
@@ -11633,6 +11654,49 @@ a.text-dark:hover {
     -webkit-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
     -o-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
     transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.service-body-cover {
+    width: 180px;
+    border-color: var(--dark2) !important;
+    border-style: double;
+    margin-right: 8px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+}
+
+.container-manga-body {
+    margin-left: 1%;
+}
+
+.manga-title {
+    margin-left: 4px;
+    margin-right: 3px;
+    margin-top: 4px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+.manga-ch {
+    margin-top: -18px;
+    font-size: 14px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: var(--secondary);
+}
+
+.translators-name {
+    margin-top: -18px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+
+
+.service-contents {
+    margin-bottom: -10px;
 }
 
 @media (max-width:576px) {
