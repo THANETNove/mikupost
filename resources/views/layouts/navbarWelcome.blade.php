@@ -1,5 +1,5 @@
 <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
-    <div class="container">
+    <div class="containerNav-body">
         <div class="site-navigation">
             <a href="index.html" class="logo m-0 float-left">Landing<span class="text-primary">.</span></a>
 

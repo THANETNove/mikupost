@@ -22,8 +22,12 @@
     <link rel="stylesheet" href="{{URL::asset('assets/fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{URL::asset('assets/css/aos.css')}}">
     <link rel="stylesheet" href="{{URL::asset('assets/css/style.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Landing Free HTML Template by Untree.co</title>
+    <title>mikupost</title>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="100">
