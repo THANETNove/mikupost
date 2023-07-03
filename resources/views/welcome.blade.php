@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" row container-manga-body scroll-overflow">
+                <div class=" row container-manga-body">
                     <div class="keyClass-service service-body-cover">
                         <div class="cover-image-page">
                             <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"

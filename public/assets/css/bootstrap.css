@@ -11774,11 +11774,7 @@ a.text-dark:hover {
     color: var(--white);
 }
 
-.scroll-overflow {
 
-    display: flex;
-    overflow-x: scroll;
-}
 
 @media (max-width:576px) {
     .body-color-right {
