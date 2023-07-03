@@ -11638,7 +11638,7 @@ a.text-dark:hover {
     height: 90px;
     margin-right: 10px;
     border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
 .untree_co-section:hover {
@@ -11679,7 +11679,7 @@ a.text-dark:hover {
     margin-right: 16px;
     margin-bottom: 16px;
     border-radius: 6px;
-    height: 100px;
+    height: 93px;
 }
 
 .container-manga-body {
@@ -11779,5 +11779,9 @@ a.text-dark:hover {
 @media (max-width:576px) {
     .body-color-right {
         display: none;
+    }
+
+    .service-body-cover-list {
+        margin-left: 2% !important;
     }
 }
