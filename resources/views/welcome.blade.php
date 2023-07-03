@@ -94,6 +94,66 @@
                             <p class="translators-name">Update- 15 hours</p>
                         </div>
                     </div>
+                    <div class="keyClass-service service-body-cover">
+                        <div class="cover-image-page">
+                            <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"
+                                alt="">
+                        </div>
+                        <div class="service-contents">
+                            <p class="manga-title"> Mechanical Buddy</p>
+                            <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                            <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                            <p class="translators-name">Update- 15 hours</p>
+                        </div>
+                    </div>
+                    <div class="keyClass-service service-body-cover">
+                        <div class="cover-image-page">
+                            <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"
+                                alt="">
+                        </div>
+                        <div class="service-contents">
+                            <p class="manga-title"> Mechanical Buddy</p>
+                            <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                            <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                            <p class="translators-name">Update- 15 hours</p>
+                        </div>
+                    </div>
+                    <div class="keyClass-service service-body-cover">
+                        <div class="cover-image-page">
+                            <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"
+                                alt="">
+                        </div>
+                        <div class="service-contents">
+                            <p class="manga-title"> Mechanical Buddy</p>
+                            <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                            <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                            <p class="translators-name">Update- 15 hours</p>
+                        </div>
+                    </div>
+                    <div class="keyClass-service service-body-cover">
+                        <div class="cover-image-page">
+                            <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"
+                                alt="">
+                        </div>
+                        <div class="service-contents">
+                            <p class="manga-title"> Mechanical Buddy</p>
+                            <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                            <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                            <p class="translators-name">Update- 15 hours</p>
+                        </div>
+                    </div>
+                    <div class="keyClass-service service-body-cover">
+                        <div class="cover-image-page">
+                            <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}" class="keyClass-cover cover-page"
+                                alt="">
+                        </div>
+                        <div class="service-contents">
+                            <p class="manga-title"> Mechanical Buddy</p>
+                            <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                            <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                            <p class="translators-name">Update- 15 hours</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

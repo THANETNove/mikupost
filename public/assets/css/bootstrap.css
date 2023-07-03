@@ -11677,9 +11677,10 @@ a.text-dark:hover {
     border-color: var(--dark2) !important;
     border-style: double;
     margin-right: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     border-radius: 6px;
     height: 93px;
+    margin-left: 2%;
 }
 
 .container-manga-body {
@@ -11781,7 +11782,4 @@ a.text-dark:hover {
         display: none;
     }
 
-    .service-body-cover-list {
-        margin-left: 2% !important;
-    }
 }
