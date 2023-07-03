@@ -26,7 +26,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
 
@@ -68,6 +68,7 @@
     <script src="{{URL::asset('assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/jquery.fancybox.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/aos.js')}}"></script>
+
 
     <script src="{{URL::asset('assets/js/custom.js')}}"></script>
 </body>

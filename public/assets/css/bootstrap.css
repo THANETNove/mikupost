@@ -11562,7 +11562,7 @@ a.text-dark:hover {
 
 .body-color-right {
     background-color: #49505773 !important;
-    padding-top: 16px;
+    padding: 8px;
     border-radius: 6px;
 }
 
@@ -11676,7 +11676,7 @@ a.text-dark:hover {
     width: 260px;
     border-color: var(--dark2) !important;
     border-style: double;
-    margin-right: 8px;
+    margin-right: 16px;
     margin-bottom: 16px;
     border-radius: 6px;
     height: 100px;
@@ -11690,13 +11690,13 @@ a.text-dark:hover {
     margin-left: 4px;
     margin-right: 3px;
     margin-top: 4px;
-    font-size: 16px;
+    font-size: 14px;
     color: var(--white);
 }
 
 .manga-ch {
     margin-top: -18px;
-    font-size: 14px;
+    font-size: 12px;
     margin-left: 4px;
     margin-right: 4px;
     color: var(--secondary);
@@ -11706,7 +11706,7 @@ a.text-dark:hover {
     margin-top: -18px;
     margin-left: 4px;
     margin-right: 4px;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--secondary);
 }
 
@@ -11737,6 +11737,7 @@ a.text-dark:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+
 .change-git-body-tow {
     padding-top: 12px;
     text-align: center;
@@ -11748,17 +11749,35 @@ a.text-dark:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-.icon-size {
-
-    font-size: 25px;
-    color: var(--white);
+.change-git-body:hover {
+    cursor: pointer;
 }
 
-.fa-solid,
+.change-git-body-tow:hover {
+    cursor: pointer;
+}
+
+
+.active2 {
+    background-color: var(--dark);
+    border-color: var(--dark2);
+}
+
+
+
+
+
+.changeGitHead div .fa-solid,
 .fas {
     font-weight: 900;
     font-size: 25px;
     color: var(--white);
+}
+
+.scroll-overflow {
+
+    display: flex;
+    overflow-x: scroll;
 }
 
 @media (max-width:576px) {
