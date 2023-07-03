@@ -11621,15 +11621,22 @@ a.text-dark:hover {
 
 .page-cover {
     width: 80px;
-    height: 100px;
     margin-right: 16px;
     border: solid 3px darkcyan;
     margin-bottom: 16px;
 }
 
 .cover-page {
-    width: 100%;
-    height: 260px;
+    width: 175px;
+    height: 240px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.cover-page-list {
+    width: 80px;
+    height: 90px;
+    margin-right: 10px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
@@ -11665,6 +11672,16 @@ a.text-dark:hover {
     border-radius: 6px;
 }
 
+.service-body-cover-list {
+    width: 260px;
+    border-color: var(--dark2) !important;
+    border-style: double;
+    margin-right: 8px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    height: 100px;
+}
+
 .container-manga-body {
     margin-left: 1%;
 }
@@ -11697,6 +11714,51 @@ a.text-dark:hover {
 
 .service-contents {
     margin-bottom: -10px;
+}
+
+.iconProviderLink {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.changeGitHead {
+    justify-content: space-between;
+    margin-right: 25px;
+}
+
+.change-git-body {
+    padding-top: 12px;
+    text-align: center;
+    width: 60px;
+    height: 50px;
+    background-color: var(--dark2);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.change-git-body-tow {
+    padding-top: 12px;
+    text-align: center;
+    width: 60px;
+    height: 50px;
+    background-color: var(--dark2);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.icon-size {
+
+    font-size: 25px;
+    color: var(--white);
+}
+
+.fa-solid,
+.fas {
+    font-weight: 900;
+    font-size: 25px;
+    color: var(--white);
 }
 
 @media (max-width:576px) {
