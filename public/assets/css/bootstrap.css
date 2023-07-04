@@ -11775,6 +11775,46 @@ a.text-dark:hover {
     color: var(--white);
 }
 
+.more-increase {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 40px;
+    padding-top: 8px;
+    text-align: center;
+    background-color: var(--dark2);
+    color: var(--white);
+    border-radius: 6px;
+}
+
+.reload-comment {
+    text-align: center;
+    padding-top: 8px;
+    margin-top: 10px;
+    border-radius: 3px;
+    width: 100%;
+    color: var(--white);
+    height: 40px;
+    background-color: #007bff;
+}
+
+
+.reload-comment:active {
+    background-color: #305d8d;
+    /* เปลี่ยนสีพื้นหลังเป็นสีแดงเมื่อคลิก */
+    color: white;
+    /* เปลี่ยนสีตัวอักษรเป็นสีขาวเมื่อคลิก */
+}
+
+
+.untree_co-section {
+    padding: 0px !important;
+}
+
+.box-top {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
 
 
 @media (max-width:576px) {
