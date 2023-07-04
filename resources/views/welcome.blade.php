@@ -473,7 +473,7 @@
                                         <p class="comment">Far far away, behind the word mountains, far from the
                                             countries
                                             Vokalia and
-                                            Consonantia.
+                                            Consonantia
                                         </p>
                                     </div>
                                 </a>
@@ -490,5 +490,6 @@
     </div>
 </div>
 
-@include('javascript.apiClass')
+
+
 @endsection

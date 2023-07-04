@@ -33,7 +33,7 @@
     <title>mikupost</title>
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" class="wrapper">
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close">
@@ -46,9 +46,10 @@
     @include('layouts.navbarWelcome')
 
 
-    <main class="body-dark">
+    <div class="body-dark">
         @yield('content')
-    </main>
+
+    </div>
 
 
     <div id="overlayer"></div>
@@ -57,7 +58,7 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-
+    @include('layouts.footer')
     <script src="{{URL::asset('assets/js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/jquery-migrate-3.0.1.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/popper.min.js')}}"></script>

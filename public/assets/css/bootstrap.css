@@ -72,13 +72,22 @@ body {
     color: #212529;
     text-align: left;
     background-color: var(--gray-dark) !important;
+    height: 100% !important;
+    padding: 0;
+
 }
 
 .body-dark {
     background-color: var(--gray-dark) !important;
-    height: 100vh;
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
 }
 
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
 
 
 .site-nav {
@@ -11626,6 +11635,19 @@ a.text-dark:hover {
     margin-bottom: 16px;
 }
 
+.show-cover-page {
+    width: 100%;
+
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.show-cover-image {
+    width: 175px;
+    height: 240px;
+    border-radius: 4px;
+}
+
 .cover-page {
     width: 175px;
     height: 240px;
@@ -11948,9 +11970,28 @@ a.text-dark:hover {
     border: 0;
 }
 
+.footer-mikupost {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* ระบุค่าความสูงของ footer ที่คุณต้องการ */
+    background-color: var(--secondary);
+    /* ระบุสีพื้นหลังของ footer */
+}
+
 @media (max-width:576px) {
     .body-color-right {
         display: none;
+    }
+
+}
+
+@media (max-width:767px) {
+    .show-cover-page {
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
 }
