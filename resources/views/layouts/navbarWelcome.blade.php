@@ -28,6 +28,7 @@
             </ul>
 
             <ul class="js-clone-nav d-none mt-1 d-lg-inline-block site-menu float-right">
+                <li> <i class="fa-solid fa-magnifying-glass fa-solid-glass"></i></li>
                 <li class="cta-button-outline"><a href="signin.html">Sign in</a></li>
                 <li class="cta-primary"><a href="register.html">Register</a></li>
             </ul>
