@@ -1,7 +1,7 @@
 <nav class="site-nav dark js-site-navbar mb-5 site-navbar-target">
     <div class="containerNav-body">
         <div class="site-navigation">
-            <a href="index.html" class="logo m-0 float-left">Landing<span class="text-primary">.</span></a>
+            <a href="{{url('/') }}" class="logo m-0 float-left">Landing<span class="text-primary">.</span></a>
 
             <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
                 <li class="active"><a href="#home-section" class="nav-link">Home</a></li>
@@ -30,7 +30,7 @@
             <ul class="js-clone-nav d-none mt-1 d-lg-inline-block site-menu float-right">
                 <li> <i class="fa-solid fa-magnifying-glass fa-solid-glass"></i></li>
                 <li class="cta-button-outline"><a href="signin.html">Sign in</a></li>
-                <li class="cta-primary"><a href="register.html">Register</a></li>
+                <li class="cta-button-outline"><a href="register.html">Register</a></li>
             </ul>
 
 

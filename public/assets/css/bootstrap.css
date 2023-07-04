@@ -11905,6 +11905,17 @@ a.text-dark:hover {
     opacity: 1;
 }
 
+.site-nav .site-navigation .site-menu>li.cta-button-outline a {
+    padding: 5px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #000000;
+    border-radius: 30px;
+}
+
+.site-nav .site-navigation .site-menu>li.cta-button-outline a:hover {
+    background-color: var(--secondary) !important;
+}
+
 @media (max-width:576px) {
     .body-color-right {
         display: none;
