@@ -46,9 +46,9 @@
     @include('layouts.navbarWelcome')
 
 
-    <div class="body-dark">
+    <div class="body-dark wrapper">
         @yield('content')
-
+        @include('layouts.footer')
     </div>
 
 
@@ -58,7 +58,7 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    @include('layouts.footer')
+
     <script src="{{URL::asset('assets/js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/jquery-migrate-3.0.1.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/popper.min.js')}}"></script>
