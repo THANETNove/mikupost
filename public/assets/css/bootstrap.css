@@ -11916,6 +11916,38 @@ a.text-dark:hover {
     background-color: var(--secondary) !important;
 }
 
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: var(--white);
+    text-align: left;
+    list-style: none;
+    background-color: var(--secondary);
+    background-clip: padding-box;
+    border: 1px solid var(--dark2);
+}
+
+.dropdown-item:hover {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: var(--white);
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: var(--secondary);
+    border: 0;
+}
+
 @media (max-width:576px) {
     .body-color-right {
         display: none;

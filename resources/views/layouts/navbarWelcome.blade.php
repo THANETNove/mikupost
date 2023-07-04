@@ -29,8 +29,40 @@
 
             <ul class="js-clone-nav d-none mt-1 d-lg-inline-block site-menu float-right">
                 <li> <i class="fa-solid fa-magnifying-glass fa-solid-glass"></i></li>
-                <li class="cta-button-outline"><a href="signin.html">Sign in</a></li>
-                <li class="cta-button-outline"><a href="register.html">Register</a></li>
+                <!--  <li class="cta-button-outline"><a href="signin.html">Sign in</a></li>
+                <li class="cta-button-outline"><a href="register.html">Register</a></li> -->
+
+                @guest
+                @if (Route::has('login'))
+                <li class="cta-button-outline">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Sign in') }}</a>
+                </li>
+                @endif
+
+                @if (Route::has('register'))
+                <li class="cta-button-outline">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+                @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->username }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                @endguest
             </ul>
 
 

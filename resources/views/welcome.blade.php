@@ -1,8 +1,5 @@
 @extends('layouts.appWelcome')
-
 @section('content')
-
-
 <div class="box-top">
     <div class="untree_co-section" id="home-section">
         <div class="containerNav-body">
@@ -24,18 +21,20 @@
                         </div>
                     </div>
                     <div class=" row container-manga-body">
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
+                        <a href="{{url('manga-cover-show/120')}}">
+                            <div class="keyClass-service service-body-cover">
+                                <div class="cover-image-page">
+                                    <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
+                                        class="keyClass-cover cover-page" alt="">
+                                </div>
+                                <div class="service-contents">
+                                    <p class="manga-title"> Mechanical Buddy</p>
+                                    <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                                    <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                                    <p class="translators-name">Update- 15 hours</p>
+                                </div>
                             </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
+                        </a>
                         <div class="keyClass-service service-body-cover">
                             <div class="cover-image-page">
                                 <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
@@ -266,18 +265,20 @@
                         </div>
                     </div>
                     <div class=" row container-manga-body">
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
+                        <a href="{{url('manga-cover-show/120')}}">
+                            <div class="keyClass-service service-body-cover">
+                                <div class="cover-image-page">
+                                    <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
+                                        class="keyClass-cover cover-page" alt="">
+                                </div>
+                                <div class="service-contents">
+                                    <p class="manga-title"> Mechanical Buddy</p>
+                                    <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
+                                    <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
+                                    <p class="translators-name">Update- 15 hours</p>
+                                </div>
                             </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
+                        </a>
                         <div class="keyClass-service service-body-cover">
                             <div class="cover-image-page">
                                 <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
@@ -487,8 +488,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 @include('javascript.apiClass')

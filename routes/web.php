@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServeApiClassController;
+use App\Http\Controllers\MangaCoverController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
+Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
