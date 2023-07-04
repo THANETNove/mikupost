@@ -492,4 +492,5 @@
 
 
 
+@include('javascript.apiClass')
 @endsection
