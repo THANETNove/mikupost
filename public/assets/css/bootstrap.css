@@ -21,6 +21,8 @@
     --gray-dark: #343a40;
     --primary: #007bff;
     --secondary: #6c757d;
+    --secondary2: #49505773;
+    --secondary3: #495058;
     --success: #28a745;
     --info: #17a2b8;
     --warning: #ffc107;
@@ -11636,9 +11638,19 @@ a.text-dark:hover {
 }
 
 .show-cover-page {
-    width: 100%;
-
+    width: auto;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 4px;
+}
+
+.show-cover-tables {
+    background-color: var(--secondary2);
+    padding: 10px;
+    border-radius: 3px;
+    color: var(--white);
     margin-bottom: 40px;
 }
 
@@ -11646,6 +11658,8 @@ a.text-dark:hover {
     width: 175px;
     height: 240px;
     border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
 }
 
 .cover-page {
@@ -11698,15 +11712,14 @@ a.text-dark:hover {
     width: 260px;
     border-color: var(--dark2) !important;
     border-style: double;
-    margin-right: 16px;
+    margin-right: 20px;
     margin-bottom: 6px;
     border-radius: 6px;
     height: 93px;
-    margin-left: 2%;
 }
 
 .container-manga-body {
-    margin-left: 1%;
+    margin-left: 2%;
 }
 
 .manga-title {
@@ -11778,6 +11791,23 @@ a.text-dark:hover {
 
 .change-git-body-tow:hover {
     cursor: pointer;
+}
+
+
+
+.change-git-cover {
+    padding-top: 8px;
+    text-align: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark2);
+    border-radius: 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.change-git-cover:hover {
+    background-color: var(--dark);
 }
 
 
@@ -11981,11 +12011,223 @@ a.text-dark:hover {
     /* ระบุสีพื้นหลังของ footer */
 }
 
+.detail-box {
+    width: 100%;
+    padding-left: 20px;
+    justify-content: space-between;
+}
+
+.title-detail {
+    margin-bottom: 30px;
+}
+
+.title-cover-p {
+    font-size: 14px;
+    color: #8e9092;
+}
+
+.caption-cover-p {
+    font-size: 16px;
+    color: var(--white);
+}
+
+.caption-cover-a {
+    font-size: 16px;
+    color: var(--white);
+}
+
+.caption-cover-a:hover {
+    font-size: 16px;
+    color: var(--secondary);
+}
+
+hr {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    background-color: var(--secondary);
+}
+
+.description-box {
+    background-color: var(--secondary3);
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 3px;
+    color: var(--white);
+}
+
+.manga-category-cover {
+    width: auto;
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    cursor: pointer;
+    padding-right: 15px;
+    margin-right: 10px;
+    color: var(--white);
+    border-radius: 50px;
+    margin-bottom: 10px;
+    background-color: var(--secondary3);
+    margin-left: 10px;
+}
+
+.manga-category-cover:hover {
+    background-color: var(--secondary2);
+}
+
+.chapter-manga {
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+}
+
+.change-box {
+    background-color: var(--secondary3);
+    width: 200px;
+    padding: 5px;
+    height: 60px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.chapter-change {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.chapter-p {
+    font-size: 14px;
+    color: #1abc9c;
+}
+
+.chapter-by {
+    font-size: 14px;
+    color: #1abc9c;
+}
+
+.chapter-p-by {
+    margin-top: -15px;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-left: 0px;
+    width: 100%;
+    color: var(--white);
+}
+
+.chapter-span {
+    font-size: 13px;
+    color: var(--white);
+}
+
+.contributor-p {
+    font-size: 20px;
+    color: var(--white);
+
+}
+
+.contributor-name {
+    margin-top: 10px;
+    font-size: 20px;
+    color: var(--white);
+
+}
+
+.box-contributor {
+    width: 100%;
+    background-color: var(--secondary2);
+    padding: 10px;
+    margin-right: 0px !important;
+    border-radius: 6px;
+}
+
+.box-contributor-rules {
+    width: 100%;
+    background-color: var(--secondary);
+    padding: 10px;
+    margin-right: 0px !important;
+    border-radius: 6px;
+}
+
+.comment-rules {
+    color: var(--white);
+    font-size: 16px;
+}
+
+.comment-rules2 {
+    color: var(--white);
+    font-size: 14px;
+}
+
+.form-control-com {
+    background-color: var(--white) !important;
+}
+
+.sing-comment {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    background-color: #138496;
+    border-radius: 6px;
+    color: var(--white);
+}
+
+.sing-comment:hover {
+    background-color: #10606d;
+}
+
+.icon-comment {
+    width: 30px;
+    height: 30px;
+    border: solid 2px darkcyan;
+    border-radius: 10px;
+}
+
+.comment-user {
+    font-size: 14px;
+    color: var(--white);
+    margin-top: -18px;
+}
+
+.comment-user-name {
+    font-size: 16px;
+    color: var(--white);
+}
+
+.comment-time {
+    font-size: 10px;
+    color: #c3c3c3;
+}
+
+.comments-all {
+    margin-top: 0px;
+}
+
+.reply-comment {
+    margin-top: -10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1abc9c;
+}
+
+.reply-comment:hover {
+    margin-top: -10px;
+    font-size: 14px;
+    color: darkcyan;
+}
+
 @media (max-width:576px) {
     .body-color-right {
         display: none;
     }
 
+    .service-body-cover-list {
+        margin-left: 2% !important;
+    }
 }
 
 @media (max-width:767px) {
