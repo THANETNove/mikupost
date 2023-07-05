@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="row chapter-change mt-4">
-                            <a href="">
+                            <a href="{{url('manga-chapter/122')}}">
                                 <div class="change-box">
                                     <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
                                         ได้รับโกลด์การ์ดค่ะ!③
@@ -202,92 +202,94 @@
                             </span>
                         </p>
                     </div>
-                    <div class="mt-3 box-contributor-rules">
-                        <p class="comment-rules">Comment</p>
-                        <div class="mb-3">
-                            <textarea class="form-control form-control-com" id="exampleFormControlTextarea1"
-                                placeholder="Your Comment  here..." rows="4"></textarea>
+                    <div class="box-contributor-ch">
+                        <div class="mt-3 box-contributor-rules">
+                            <p class="comment-rules">Comment</p>
+                            <div class="mb-3">
+                                <textarea class="form-control form-control-com" id="exampleFormControlTextarea1"
+                                    placeholder="Your Comment  here..." rows="4"></textarea>
+                            </div>
+                            @guest
+                            <a href="{{ route('login') }}">
+                                <div class="sing-comment">
+                                    Sing in
+                                </div>
+                            </a>
+                            @else
+                            <a href="">
+                                <div class="sing-comment">
+                                    Comment
+                                </div>
+                            </a>
+                            @endguest
+
+                            <div class="ml-3 mt-4">
+                                <div>
+                                    <div class="row">
+                                        <div class="service-image-icon">
+                                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}"
+                                                class="icon-comment" alt="">
+                                        </div>
+                                        <p class="comment-user-name">P-][ne Hua Fu</p>
+                                    </div>
+                                    <div class="comments-all">
+                                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
+                                        <p class="comment-user ">
+                                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
+                                        </p>
+                                        <p class="reply-comment">Reply</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="service-image-icon">
+                                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}"
+                                                class="icon-comment" alt="">
+                                        </div>
+                                        <p class="comment-user-name">P-][ne Hua Fu</p>
+                                    </div>
+                                    <div class="comments-all">
+                                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
+                                        <p class="comment-user ">
+                                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="service-image-icon">
+                                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}"
+                                                class="icon-comment" alt="">
+                                        </div>
+                                        <p class="comment-user-name">P-][ne Hua Fu</p>
+                                    </div>
+                                    <div class="comments-all">
+                                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
+                                        <p class="comment-user ">
+                                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="service-image-icon">
+                                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}"
+                                                class="icon-comment" alt="">
+                                        </div>
+                                        <p class="comment-user-name">P-][ne Hua Fu</p>
+                                    </div>
+                                    <div class="comments-all">
+                                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
+                                        <p class="comment-user ">
+                                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
                         </div>
-                        @guest
-                        <a href="">
-                            <div class="sing-comment">
-                                Sing in
-                            </div>
-                        </a>
-                        @else
-                        <a href="">
-                            <div class="sing-comment">
-                                Comment
-                            </div>
-                        </a>
-                        @endguest
-
-                        <div class="ml-3 mt-4">
-                            <div>
-                                <div class="row">
-                                    <div class="service-image-icon">
-                                        <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment"
-                                            alt="">
-                                    </div>
-                                    <p class="comment-user-name">P-][ne Hua Fu</p>
-                                </div>
-                                <div class="comments-all">
-                                    <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                                    <p class="comment-user ">
-                                        เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                                    </p>
-                                    <p class="reply-comment">Reply</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="service-image-icon">
-                                        <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment"
-                                            alt="">
-                                    </div>
-                                    <p class="comment-user-name">P-][ne Hua Fu</p>
-                                </div>
-                                <div class="comments-all">
-                                    <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                                    <p class="comment-user ">
-                                        เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="service-image-icon">
-                                        <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment"
-                                            alt="">
-                                    </div>
-                                    <p class="comment-user-name">P-][ne Hua Fu</p>
-                                </div>
-                                <div class="comments-all">
-                                    <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                                    <p class="comment-user ">
-                                        เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="service-image-icon">
-                                        <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment"
-                                            alt="">
-                                    </div>
-                                    <p class="comment-user-name">P-][ne Hua Fu</p>
-                                </div>
-                                <div class="comments-all">
-                                    <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                                    <p class="comment-user ">
-                                        เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                                    </p>
-                                </div>
-                            </div>
-
-
-                        </div>
-
                     </div>
                 </div>
             </div>

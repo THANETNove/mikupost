@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
+Route::get('/manga-chapter/{id}', [MangaCoverController::class, 'showMangaChapter']);

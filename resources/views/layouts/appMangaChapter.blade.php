@@ -7,19 +7,11 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" class="wrapper">
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icofont-close js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
 
-    @include('layouts.navbarWelcome')
+    @include('layouts.navbarMangaChapter')
 
 
-    <div class="body-dark wrapper">
+    <div class="body-dark" id="body-dark">
         @yield('content')
         @include('layouts.footer')
     </div>
