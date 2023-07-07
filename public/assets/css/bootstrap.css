@@ -104,8 +104,15 @@ body {
 .site-nav {
 
     background: var(--dark2) !important;
+    /*   position: relative !important; */
+}
+
+.site-nav2 {
+
+    background: var(--dark2) !important;
     position: relative !important;
 }
+
 
 .site-nav.scrolled {
     position: fixed !important;
@@ -12441,7 +12448,7 @@ hr {
     }
 
     .chapter-width {
-        width: 100%;
+        width: 100% !important;
     }
 
 

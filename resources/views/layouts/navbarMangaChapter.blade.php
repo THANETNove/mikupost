@@ -1,5 +1,4 @@
 <nav class="site-nav site-nav2 dark js-site-navbar mb-5 site-navbar-target">
-            site-nav dark js-site-navbar mb-5 site-navbar-target
     <div class="containerNav-body">
         <div class="row container-manga-body">
             <div class="row col-lg-5 mb-3">
