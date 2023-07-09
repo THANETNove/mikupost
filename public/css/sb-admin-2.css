@@ -12610,3 +12610,16 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.message-all {
+  color: #17a673 !important;
+  font-size: 16px;
+}
+
+.copy-btn {
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  color: var(--primary);
+}

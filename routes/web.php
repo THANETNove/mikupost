@@ -6,6 +6,7 @@ use App\Http\Controllers\ServeApiClassController;
 use App\Http\Controllers\MangaCoverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\CreateAdminController;
 
 
 /*
@@ -32,5 +33,12 @@ Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
 Route::get('/manga-chapter/{id}', [MangaCoverController::class, 'showMangaChapter']);
 
 
-
+// admin
 Route::get('admin-home', [HomeAdminController::class, 'index']);
+
+Route::group(['middleware' => ['is_admin']], function () {
+    Route::get('admin', [CreateAdminController::class, 'index']);
+    Route::get('register-admin', [CreateAdminController::class, 'create']);
+    Route::post('create-admin', [CreateAdminController::class, 'store']);
+    Route::get('delete-admin/{id}', [CreateAdminController::class, 'destroy']);
+ });
