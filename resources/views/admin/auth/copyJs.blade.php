@@ -10,7 +10,7 @@ copyBtns.forEach(copyBtn => {
         document.execCommand('copy');
         document.body.removeChild(tempInput);
         /*   alert('คัดลอกข้อความสำเร็จ'); */
-        var paragraph = document.getElementById("add-copy");
+        var paragraph = document.getElementById("copy-message");
         var text = document.createTextNode("คัดลอกข้อความสำเร็จ");
         paragraph.appendChild(text);
 
