@@ -13,7 +13,7 @@
         <!-- Circle Buttons -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="" class="text-decoration-none">
+                <a href="{{url('/create-manga')}}" class="text-decoration-none">
                     <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; อัพโหลด มังงะ
                     </h6>
                 </a>
@@ -56,12 +56,4 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
 @endsection

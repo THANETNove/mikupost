@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-
-class HomeAdminController extends Controller
+class MangaAdminController extends Controller
 {
-
-       /**
+      /**
      * Create a new controller instance.
      *
      * @return void
@@ -29,17 +27,16 @@ class HomeAdminController extends Controller
         if(Auth::user()->status == 0) {
             return redirect('home');
         }else {
-            return view('homeAdmin');
+            return view('admin.mange.homeAdmin');
         }
        
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.mange.create');
     }
 
     /**
