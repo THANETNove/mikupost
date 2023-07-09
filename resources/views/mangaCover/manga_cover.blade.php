@@ -1,4 +1,4 @@
-@extends('layouts.appWelcome')
+@extends('layouts.user.appWelcome')
 @section('content')
 <div class="box-top">
     <div class="untree_co-section" id="home-section">

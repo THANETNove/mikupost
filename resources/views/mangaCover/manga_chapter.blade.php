@@ -1,4 +1,4 @@
-@extends('layouts.appMangaChapter')
+@extends('layouts.user.appMangaChapter')
 @section('content')
 <div class="box-top2" id="scroll-top-ch">
     <div class="ch-image">

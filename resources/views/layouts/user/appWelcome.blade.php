@@ -3,7 +3,7 @@
 
 <head>
 
-    @include('layouts.headWeb')
+    @include('layouts.user.headWeb')
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" class="wrapper">
@@ -16,12 +16,12 @@
         <div class="site-mobile-menu-body"></div>
     </div>
 
-    @include('layouts.navbarWelcome')
+    @include('layouts.user.navbarWelcome')
 
 
     <div class="body-dark wrapper">
         @yield('content')
-        @include('layouts.footer')
+        @include('layouts.user.footer')
     </div>
 
 

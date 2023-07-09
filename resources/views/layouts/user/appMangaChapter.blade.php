@@ -3,17 +3,17 @@
 
 <head>
 
-    @include('layouts.headWeb')
+    @include('layouts.user.headWeb')
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="100" class="wrapper">
 
-    @include('layouts.navbarMangaChapter')
+    @include('layouts.user.navbarMangaChapter')
 
 
     <div class="body-dark" id="body-dark">
         @yield('content')
-        @include('layouts.footer')
+        @include('layouts.user.footer')
     </div>
 
 
