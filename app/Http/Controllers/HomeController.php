@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+      
+       
     }
 
     /**
@@ -23,6 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+ 
+      
+        if(Auth::user()->status == 1) {
+            return redirect('admin-home');
+        }else {
+            return view('home');
+        }
+  
+       
     }
 }

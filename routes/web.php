@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServeApiClassController;
 use App\Http\Controllers\MangaCoverController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeAdminController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +25,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
 Route::get('/manga-chapter/{id}', [MangaCoverController::class, 'showMangaChapter']);
+
+
+
+Route::get('admin-home', [HomeAdminController::class, 'index']);
