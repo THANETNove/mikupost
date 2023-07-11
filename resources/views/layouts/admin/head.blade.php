@@ -3,6 +3,7 @@
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="shortcut icon" href="{{URL::asset('/img/kichiku_eyuu.jpeg')}}">
 
 <title>mikupost</title>
 

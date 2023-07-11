@@ -12623,3 +12623,7 @@ body.sidebar-toggled footer.sticky-footer {
 .copy-btn:hover {
   color: var(--primary);
 }
+
+.text-red {
+  color: red !important;
+}

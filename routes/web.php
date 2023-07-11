@@ -43,4 +43,5 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('delete-admin/{id}', [CreateAdminController::class, 'destroy']);
     Route::get('admin-home', [MangaAdminController::class, 'index']);
     Route::get('create-manga', [MangaAdminController::class, 'create']);
+    Route::post('add-manga', [MangaAdminController::class, 'store']);
  });
