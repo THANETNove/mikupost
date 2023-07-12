@@ -73,13 +73,9 @@ class MangaAdminController extends Controller
       $image = $request->file('image');
       $originalFilename = $image->getClientOriginalName();
       $filename = time() . '_' . $originalFilename;
-      
-     // Storage::disk('images')->putFileAs('public/images', $image, $filename);
-      //Storage::putFileAs('images')->putFileAs('public/images', $image, $filename);
-      //$path = Storage::putFileAs('public/images', new File('public/images'));
-
-      Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);
-      // Manually specify a filename...
+    
+      Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);  // ถูกเเล้ว
+     
       
 
        
