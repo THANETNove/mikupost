@@ -12,8 +12,7 @@ use App\Models\Manga_episode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use ZipArchive;
-/* use Illuminate\Support\Facades\File; */
-use Illuminate\Http\File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Ftp as Adapter;
@@ -64,18 +63,34 @@ class MangaAdminController extends Controller
         return view('admin.mange.create');
     }
 
+
+    private function isImageFile($file)
+    {
+        $allowedTypes = [
+            IMAGETYPE_JPEG,
+            IMAGETYPE_PNG,
+            IMAGETYPE_GIF,
+            18, // WebP
+        ];
+
+        $fileType = exif_imagetype($file);
+
+        return in_array($fileType, $allowedTypes);
+    }
+
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {   
       // Retrieve the uploaded file
-/*       $image = $request->file('image');
+    /*  $image = $request->file('image');
       $originalFilename = $image->getClientOriginalName();
       $filename = time() . '_' . $originalFilename;
     
-     // Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);  // ถูกเเล้ว
-     /** 
+      Storage::disk('images')->putFileAs(path:'/', file:$image ,name: $filename);  // ถูกเเล้ว */
+   /*    /** 
      * !  ส่วนของการอัพปกภาพ
     */
        /*  Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ผ่านเเล้ว
@@ -91,170 +106,69 @@ class MangaAdminController extends Controller
     /** 
      * !  ส่วนของการอัพตอนงังงะ
     */
+
+
+
+    /* $image = $request->file('zip_file');
+    $zip = new ZipArchive;
+    $zip->open($zipFile->getPathname());
+  
+    //dd("filename",$filename);
+    Storage::disk('ftp')->putFile('/imageManga/episode', $image ,  $filename);
+    //$path = Storage::putFileAs('photos', new File('/path/to/photo'), 'photo.jpg');
+
+    return redirect('admin-home')->with('message', "เพิ่ม สำเร็จ"); 
+    */
+ 
     $zipFile = $request->file('zip_file');
     $zip = new ZipArchive;
-    $tempLocation = storage_path('/imageManga/episode');
     $zip->open($zipFile->getPathname());
-    $zip->extractTo($tempLocation);
-    $zip->close();
-    $extractedFiles = File::allFiles($tempLocation);
-    foreach ($extractedFiles as $file) {
-        $filenameEp = time().$file->getFilename();
-        $fileParts = explode('_', $filenameEp);
-        $filenameWithoutExtension = $fileParts[0];
-        $fileExtension = $fileParts[1];
-        $fileInfo = [
-            'filename' => $filenameWithoutExtension,
-            'extension' => $fileExtension
-        ];
 
-     /*    Manga_episode::create([
-            'episodeId' => $fileInfo['extension'],
-            'episode_name' => NULL,
-            'episode_name_image' => $filenameEp,
-          
-        ]); */
+    for ($i = 0; $i < $zip->numFiles; $i++) {
+        $entry = $zip->statIndex($i);
+        $filename = basename($entry['name']);
 
-    
+        if (substr($entry['name'], -1) === '/') {
+            continue; // Skip directories
+        }
+
+        if (preg_match('/\.(jpg|jpeg|png|gif|webp)$/', $filename)) {
+            $fileData = $zip->getFromIndex($i);
+            $relativePath = 'imageManga/testA2/' . $filename;
+            Storage::disk('ftp')->put($relativePath, $fileData);
+        }
     }
 
-    // Clean up: delete the temporary files
-    File::cleanDirectory($tempLocation);
-    File::deleteDirectory($tempLocation); 
-       
-  dd("asdas");
+    $zip->close();
+
+    return redirect('admin-home')->with('message', "เพิ่มสำเร็จ");
 
 
-  
-        
-   // Get the uploaded file
-      
-        
-   // Extract the zip file to a temporary location
-/*         $zip = new ZipArchive;
-        $tempLocation = storage_path('app/temp');
-        $zip->open($zipFile->getPathname());
-        $zip->extractTo($tempLocation);
-        $zip->close();
 
-        // Move the extracted files to public/img/product
-        $extractedFiles = File::allFiles($tempLocation);
-
-       
-        foreach ($extractedFiles as $file) {
-            $filenameEp = time().$file->getFilename();
-            $fileParts = explode('_', $filenameEp);
-            $filenameWithoutExtension = $fileParts[0];
-            $fileExtension = $fileParts[1];
-
-            $fileInfo = [
-                'filename' => $filenameWithoutExtension,
-                'extension' => $fileExtension
-            ];
-
-            Manga_episode::create([
-                'episodeId' => $fileInfo['extension'],
-                'episode_name' => NULL,
-                'episode_name_image' => $filenameEp,
-              
-            ]);
-    
-            $response = Http::attach(
-                'image',
-                file_get_contents($file->getRealPath()),
-                $filenameEp
-            )->post('https://img.neko-post.net/uploadedImageEpisode.php');
-
-        
-        }
-
-        // Clean up: delete the temporary files
-        File::cleanDirectory($tempLocation);
-        File::deleteDirectory($tempLocation); */
-dd('asd');
-  /* 
-        $filename = 'ep_1100_1333.webp';
-        $fileParts = explode('_', $filename);
-        $filenameWithoutExtension = $fileParts[0];
-        $fileExtension = $fileParts[1];
-
-        $fileInfo = [
-            'filename' => $filenameWithoutExtension,
-            'extension' => $fileExtension
-        ]; */
-  
-dd('asdas');
-   /*     
-    dd($zipFile->getClientOriginalName() );
-      // ย้ายไฟล์ .zip ไปยังตำแหน่งที่ต้องการ
-            $zipPath = public_path('/img/product' . $zipFile->getClientOriginalName());
-            $zipFile->move(public_path() . '/img/product', $zipFile->getClientOriginalName());
-            
-            // แตกไฟล์ .zip
-            $zip = new ZipArchive;
-            $res = $zip->open($zipPath);
-            
-            if ($res == true) {
-                $zip->extractTo($zipPath);
-                $response = Http::attach(
-                    'zip_file',
-                    file_get_contents($zipPath),
-                    $zipFile->getClientOriginalName()
-                )->post(env('FTP_URL').'uploadedImageEpisode.php');
-            
-                $zip->close();
-            }
-        dd("555"); */
-        // ลบไฟล์ .zip หลังจากแตกไฟล์เสร็จสิ้น
-       
-        
-        // โค้ดอื่น ๆ ที่คุณต้องการทำหลังจากการอัพโหลดและแตกไฟล์
-
-        dd('asdas');
-       /* 
-        $image = $request->file('image');
-        $originalFilename = $image->getClientOriginalName();
-        $filename = time() . '_' . $originalFilename;
-   
-        $response = Http::attach(
-            'image',
-            file_get_contents($image),
-            $filename
-        )->post(env('FTP_URL').'uploadedImageMangaCover.php');
-        
-        if ($response->successful()) {
-            $responseData = $response->json();
-
-
-            
-            $manga =   Manga::create([
-                'cover_photo' => $filename,
-                'manga_name' => $request['manga_name'],
-                'manga_details' => $request['manga_details'],
-                'author' => $request['author'],
-                'status' => $request['status'],
-                'views' => 0,
-                'website' => $request['website'],
-            ]);
-            //$mangaId = $manga->id;
-           
-        } else {
-            $statusCode = $response->status();
-            $errorResponse = [
-                'error' => 'An error occurred during the request.',
-                'status' => $statusCode,
-            ];
-        }
-        return redirect('admin-home')->with('message', "เพิ่ม $request->manga_name สำเร็จ"); */
-   /*      Manga_episode::create([
-            'episodeId' => $manga->id,
-            'episode_name' => NULL,
-            'episode_name_image' => $filename,
-          
-        ]); */
       //  Manga_episode    
+/*       $manga =   Manga::create([
+        'cover_photo' => $filename,
+        'manga_name' => $request['manga_name'],
+        'manga_details' => $request['manga_details'],
+        'author' => $request['author'],
+        'status' => $request['status'],
+        'views' => 0,
+        'website' => $request['website'],
+    ]); */
+    
+    //เเยกเอา ตอน
 
-        
+   /*  $filenameEp = time().$file->getFilename();
+    $fileParts = explode('_', $filenameEp);
+    $filenameWithoutExtension = $fileParts[0];
+    $fileExtension = $fileParts[1];
+
+    $fileInfo = [
+        'filename' => $filenameWithoutExtension,
+        'extension' => $fileExtension
+    ]; */
+
+    
       /*   return redirect('admin-home')->with('errorResponse', $response->getBody());
         return redirect('admin-home')->with('message', "เพิ่ม $request->manga_name สำเร็จ"); */
  
