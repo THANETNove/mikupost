@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +27,17 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
+            return response()->json([
+                'error' => 'The uploaded file size exceeds the maximum allowed size.',
+                'status' => Response::HTTP_BAD_REQUEST,
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return parent::render($request, $exception);
     }
 }

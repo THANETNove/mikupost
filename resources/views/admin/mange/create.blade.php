@@ -39,7 +39,7 @@
                                                 <div class="form-group">
                                                     <input id="cover_photo" type="file"
                                                         class="form-control  @error('cover_photo') is-invalid @enderror"
-                                                        name="image" value="{{ old('cover_photo') }}" required
+                                                        name="image" value="{{ old('cover_photo') }}"
                                                         autocomplete="cover_photo" placeholder="ภาพปกมังงะ" autofocus>
 
                                                     @error('cover_photo')

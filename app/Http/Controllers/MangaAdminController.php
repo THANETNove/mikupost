@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 use Auth;
 use DB;
 use App\Models\Manga;
@@ -62,8 +63,8 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
-dd($request->zip_file);
-       
+        
+       /* 
         $image = $request->file('image');
         $originalFilename = $image->getClientOriginalName();
         $filename = time() . '_' . $originalFilename;
@@ -97,7 +98,7 @@ dd($request->zip_file);
                 'status' => $statusCode,
             ];
         }
-        return redirect('admin-home')->with('message', "เพิ่ม $request->manga_name สำเร็จ");
+        return redirect('admin-home')->with('message', "เพิ่ม $request->manga_name สำเร็จ"); */
    /*      Manga_episode::create([
             'episodeId' => $manga->id,
             'episode_name' => NULL,
