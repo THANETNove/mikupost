@@ -70,16 +70,57 @@ class MangaAdminController extends Controller
     public function store(Request $request)
     {   
       // Retrieve the uploaded file
-      $image = $request->file('image');
+/*       $image = $request->file('image');
       $originalFilename = $image->getClientOriginalName();
       $filename = time() . '_' . $originalFilename;
     
      // Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);  // ถูกเเล้ว
-     
-     // อัพผ่าน ftp 
-     Storage::disk('ftp')->putFileAs('/domains/th-projet.com/public_html', $image, $filename);  //อัพ ผ่านเเล้ว
-      
+     /** 
+     * !  ส่วนของการอัพปกภาพ
+    */
+       /*  Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ผ่านเเล้ว
+        $manga =   Manga::create([
+            'cover_photo' => $filename,
+            'manga_name' => $request['manga_name'],
+            'manga_details' => $request['manga_details'],
+            'author' => $request['author'],
+            'status' => $request['status'],
+            'views' => 0,
+            'website' => $request['website'],
+        ]); */
+    /** 
+     * !  ส่วนของการอัพตอนงังงะ
+    */
+    $zipFile = $request->file('zip_file');
+    $zip = new ZipArchive;
+    $tempLocation = storage_path('/imageManga/episode');
+    $zip->open($zipFile->getPathname());
+    $zip->extractTo($tempLocation);
+    $zip->close();
+    $extractedFiles = File::allFiles($tempLocation);
+    foreach ($extractedFiles as $file) {
+        $filenameEp = time().$file->getFilename();
+        $fileParts = explode('_', $filenameEp);
+        $filenameWithoutExtension = $fileParts[0];
+        $fileExtension = $fileParts[1];
+        $fileInfo = [
+            'filename' => $filenameWithoutExtension,
+            'extension' => $fileExtension
+        ];
 
+     /*    Manga_episode::create([
+            'episodeId' => $fileInfo['extension'],
+            'episode_name' => NULL,
+            'episode_name_image' => $filenameEp,
+          
+        ]); */
+
+    
+    }
+
+    // Clean up: delete the temporary files
+    File::cleanDirectory($tempLocation);
+    File::deleteDirectory($tempLocation); 
        
   dd("asdas");
 
@@ -87,7 +128,7 @@ class MangaAdminController extends Controller
   
         
    // Get the uploaded file
-         $zipFile = $request->file('zip_file');
+      
         
    // Extract the zip file to a temporary location
 /*         $zip = new ZipArchive;
