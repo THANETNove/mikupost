@@ -188,4 +188,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    'timeout' => env('APP_TIMEOUT', 7200),
 ];

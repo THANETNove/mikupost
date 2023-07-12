@@ -11,6 +11,12 @@ use App\Models\Manga;
 use App\Models\Manga_episode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use ZipArchive;
+/* use Illuminate\Support\Facades\File; */
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Ftp as Adapter;
 
 
 
@@ -63,7 +69,109 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
+      // Retrieve the uploaded file
+      $image = $request->file('image');
+      $originalFilename = $image->getClientOriginalName();
+      $filename = time() . '_' . $originalFilename;
+      
+     // Storage::disk('images')->putFileAs('public/images', $image, $filename);
+      //Storage::putFileAs('images')->putFileAs('public/images', $image, $filename);
+      //$path = Storage::putFileAs('public/images', new File('public/images'));
+
+      Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);
+      // Manually specify a filename...
+      
+
+       
+  dd("asdas");
+
+
+  
         
+   // Get the uploaded file
+         $zipFile = $request->file('zip_file');
+        
+   // Extract the zip file to a temporary location
+/*         $zip = new ZipArchive;
+        $tempLocation = storage_path('app/temp');
+        $zip->open($zipFile->getPathname());
+        $zip->extractTo($tempLocation);
+        $zip->close();
+
+        // Move the extracted files to public/img/product
+        $extractedFiles = File::allFiles($tempLocation);
+
+       
+        foreach ($extractedFiles as $file) {
+            $filenameEp = time().$file->getFilename();
+            $fileParts = explode('_', $filenameEp);
+            $filenameWithoutExtension = $fileParts[0];
+            $fileExtension = $fileParts[1];
+
+            $fileInfo = [
+                'filename' => $filenameWithoutExtension,
+                'extension' => $fileExtension
+            ];
+
+            Manga_episode::create([
+                'episodeId' => $fileInfo['extension'],
+                'episode_name' => NULL,
+                'episode_name_image' => $filenameEp,
+              
+            ]);
+    
+            $response = Http::attach(
+                'image',
+                file_get_contents($file->getRealPath()),
+                $filenameEp
+            )->post('https://img.neko-post.net/uploadedImageEpisode.php');
+
+        
+        }
+
+        // Clean up: delete the temporary files
+        File::cleanDirectory($tempLocation);
+        File::deleteDirectory($tempLocation); */
+dd('asd');
+  /* 
+        $filename = 'ep_1100_1333.webp';
+        $fileParts = explode('_', $filename);
+        $filenameWithoutExtension = $fileParts[0];
+        $fileExtension = $fileParts[1];
+
+        $fileInfo = [
+            'filename' => $filenameWithoutExtension,
+            'extension' => $fileExtension
+        ]; */
+  
+dd('asdas');
+   /*     
+    dd($zipFile->getClientOriginalName() );
+      // ย้ายไฟล์ .zip ไปยังตำแหน่งที่ต้องการ
+            $zipPath = public_path('/img/product' . $zipFile->getClientOriginalName());
+            $zipFile->move(public_path() . '/img/product', $zipFile->getClientOriginalName());
+            
+            // แตกไฟล์ .zip
+            $zip = new ZipArchive;
+            $res = $zip->open($zipPath);
+            
+            if ($res == true) {
+                $zip->extractTo($zipPath);
+                $response = Http::attach(
+                    'zip_file',
+                    file_get_contents($zipPath),
+                    $zipFile->getClientOriginalName()
+                )->post(env('FTP_URL').'uploadedImageEpisode.php');
+            
+                $zip->close();
+            }
+        dd("555"); */
+        // ลบไฟล์ .zip หลังจากแตกไฟล์เสร็จสิ้น
+       
+        
+        // โค้ดอื่น ๆ ที่คุณต้องการทำหลังจากการอัพโหลดและแตกไฟล์
+
+        dd('asdas');
        /* 
         $image = $request->file('image');
         $originalFilename = $image->getClientOriginalName();
