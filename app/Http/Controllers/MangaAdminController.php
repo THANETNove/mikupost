@@ -74,8 +74,10 @@ class MangaAdminController extends Controller
       $originalFilename = $image->getClientOriginalName();
       $filename = time() . '_' . $originalFilename;
     
-      Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);  // ถูกเเล้ว
+     // Storage::disk('public')->putFileAs(path:'public/images', file:$image ,name: $filename);  // ถูกเเล้ว
      
+     // อัพผ่าน ftp 
+     Storage::disk('ftp')->putFileAs('/domains/th-projet.com/public_html', $image, $filename);  //อัพ ผ่านเเล้ว
       
 
        

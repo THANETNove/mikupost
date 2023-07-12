@@ -65,16 +65,16 @@ return [
 
         
         'ftp' => [
-            'driver' => 'ftp',
-            'host' => env('FTP_HOST'),
-            'port' => env('FTP_PORT'),
+            'driver'   => 'ftp',
+            'host'     => env('FTP_HOST'),
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
-        
-            // Optional FTP settings
-            // 'passive' => true,
-            // 'ssl' => true,
-            // 'timeout' => 30,
+            'port'     => (int) env('FTP_PORT'),
+            'root'     => env('FTP_ROOT', '/'),
+            'passive'  => true,
+            'ssl'      => false,
+            'timeout'  => 30,
+            'ignorePassiveAddress' => false,
         ],
         
   
