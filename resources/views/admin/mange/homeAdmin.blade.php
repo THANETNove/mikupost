@@ -17,6 +17,13 @@
                     <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; อัพโหลด มังงะ
                     </h6>
                 </a>
+
+                <!--  @if (isset($message))
+                <p class="text-primary">{{ $message }}</p>
+                @endif
+                @if (request()->has('errorResponse'))
+                <p class="text-danger">{{ request()->input('errorResponse') }}</p>
+                @endif -->
                 @if (session('message'))
                 <p class="text-primary">{{ session('message') }}</p>
                 @endif

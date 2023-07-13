@@ -10,7 +10,7 @@
 
 
     <div class="col-lg-12">
-        <!-- Circle Buttons -->
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <a href="" class="text-decoration-none">
@@ -18,33 +18,32 @@
                     </h6>
                 </a>
 
+
             </div>
             <div class="card-body">
-                <!-- Outer Row -->
                 <div class="row justify-content-center">
 
                     <div class="col-xl-5 col-lg-5 col-md-5">
 
                         <div class="my-5">
                             <div class="card-body p-0">
-                                <!-- Nested Row within Card Body -->
+
                                 <div class="row">
-                                    <!--  <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
                                     <div class="col-lg-12">
                                         <div>
 
-                                            <form class="user" method="POST" action="{{ url('add-manga') }}"
+                                            <form class="user" method="POST" action="{{ route('add-manga') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group">
                                                     <input id="cover_photo" type="file"
-                                                        class="form-control  @error('cover_photo') is-invalid @enderror"
-                                                        name="image" value="{{ old('cover_photo') }}"
-                                                        autocomplete="cover_photo" placeholder="ภาพปกมังงะ" autofocus>
+                                                        class="form-control  @error('image') is-invalid @enderror"
+                                                        name="image" value="{{ old('image') }}" required
+                                                        autocomplete="image" placeholder="ภาพปกมังงะ" autofocus>
 
-                                                    @error('cover_photo')
+                                                    @error('image')
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong>{{ $message }} jpg,png,jpeg,webp</strong>
                                                     </span>
                                                     @enderror
                                                 </div>
@@ -52,8 +51,8 @@
                                                     <textarea
                                                         class="form-control  @error('manga_name') is-invalid @enderror"
                                                         value="{{ old('manga_name') }}" name="manga_name"
-                                                        placeholder="ชื่อมังงะ" id="exampleFormControlTextarea1"
-                                                        rows="3"></textarea>
+                                                        id="manga_name" placeholder="ชื่อมังงะ" required
+                                                        id="exampleFormControlTextarea1" rows="3"></textarea>
                                                     @error('manga_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -112,16 +111,43 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <input id="file" type="file"
-                                                        class="form-control @error('file') is-invalid @enderror"
-                                                        name="zip_file" value="{{ old('file') }}" autocomplete="file"
-                                                        placeholder="file" autofocus>
+                                                        class="form-control @error('zip_file') is-invalid @enderror"
+                                                        name="zip_file" value="{{ old('zip_file') }}" required
+                                                        autocomplete="file" placeholder="file" autofocus>
 
-                                                    @error('file')
+                                                    @error('zip_file')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
                                                 </div>
+
+                                                <div id="progressBar" style="display: none;">
+
+                                                    <div class="spinner-grow text-primary" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-secondary" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-success" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-danger" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-warning" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-info" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <div class="spinner-grow text-dark" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <h2>Uploading</h2>
+                                                </div>
+
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                                     {{ __('บันทึก') }}
                                                 </button>
@@ -129,6 +155,7 @@
                                             </form>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -143,4 +170,28 @@
     </div>
 
 </div>
+<script>
+/* $(document).ready(function() {
+    $('#fileUploadForm').submit(function(e) {
+        e.preventDefault();
+
+        var file = $('#file').val();
+        var cover_photo = $('#cover_photo').val();
+        var manga_name = $('#manga_name').val();
+
+        if (file && cover_photo && manga_name) {
+            // File selected, proceed with form submission
+            $('#progressBar').show();
+            $(this).unbind('submit').submit();
+
+            // Disable the submit button to prevent further clicks
+            $('#submitBtn').prop('disabled', true);
+            //$('#submitBtn').hide();
+        } else {
+            // No file selected, display error message
+            //  alert('กรุณาเลือกไฟล์เเ');
+        }
+    });
+});
+</script> */
 @endsection

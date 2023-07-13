@@ -17,3 +17,9 @@
 <link href="{{URL::asset('/css/sb-admin-2.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- TEST -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>

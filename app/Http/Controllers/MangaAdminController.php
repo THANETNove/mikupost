@@ -65,19 +65,6 @@ class MangaAdminController extends Controller
     }
 
 
-    private function isImageFile($file)
-    {
-        $allowedTypes = [
-            IMAGETYPE_JPEG,
-            IMAGETYPE_PNG,
-            IMAGETYPE_GIF,
-            18, // WebP
-        ];
-
-        $fileType = exif_imagetype($file);
-
-        return in_array($fileType, $allowedTypes);
-    }
 
     
     /**
@@ -85,17 +72,25 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
-        session()->put('fileCount', "0");
+       
+        $validated = $request->validate([
+            'image' => ['required', 'image', 'image:jpg,png,jpeg,webp'],
+            'zip_file' => ['required', 'mimes:zip'],
+            /* 'image' => ['required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'], */
+        ]);
 
+        dd('adsasd');
       // Retrieve the uploaded file
- /*     $image = $request->file('image');
-      $originalFilename = $image->getClientOriginalName();
-      $filename = time() . '_' . $originalFilename; */
     
-   /*    /** 
+    
+    /** 
      * !  ส่วนของการอัพปกภาพ
     */
-      /*   Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ผ่านเเล้ว
+        $image = $request->file('image');
+        $originalFilename = $image->getClientOriginalName();
+        $filename = time() . '_' . $originalFilename;
+        
+        Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ผ่านเเล้ว
         $manga =   Manga::create([
             'cover_photo' => $filename,
             'manga_name' => $request['manga_name'],
@@ -104,7 +99,7 @@ class MangaAdminController extends Controller
             'status' => $request['status'],
             'views' => 0,
             'website' => $request['website'],
-        ]); */
+        ]);
     /** 
      * !  ส่วนของการอัพตอนงังงะ
     */
@@ -154,9 +149,11 @@ class MangaAdminController extends Controller
           
     
               Manga_episode::create([
+                'mangesId' =>  $manga->id,
                 'episodeId' => $fileInfo['extension'],
                 'episode_name' => NULL,
                 'episode_name_image' => $newFoldedName[0].'/'.$filename,
+                'foldedManges' => $newFoldedName[0],
             ]);
         }
     }
@@ -165,6 +162,8 @@ class MangaAdminController extends Controller
 
     return redirect('admin-home')->with('message', "เพิ่มสำเร็จ");
 
+
+    
     }
     /**
      * Display the specified resource.

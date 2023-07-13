@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('manga_episodes', function (Blueprint $table) {
             $table->id();
+            $table->string('mangesId')->nullable();
             $table->string('episodeId')->nullable();
             $table->string('episode_name')->nullable();
             $table->string('episode_name_image')->nullable();
+            $table->string('foldedManges')->nullable();
             $table->timestamps();
         });
     }

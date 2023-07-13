@@ -9,6 +9,7 @@ use App\Http\Controllers\MangaAdminController;
 use App\Http\Controllers\CreateAdminController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //  หน้า อ่าน Manga 
+
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
@@ -41,7 +43,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('register-admin', [CreateAdminController::class, 'create']);
     Route::post('create-admin', [CreateAdminController::class, 'store']);
     Route::get('delete-admin/{id}', [CreateAdminController::class, 'destroy']);
-    Route::get('admin-home', [MangaAdminController::class, 'index']);
+    Route::get('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
     Route::get('create-manga', [MangaAdminController::class, 'create']);
-    Route::post('add-manga', [MangaAdminController::class, 'store']);
+    Route::post('add-manga', [MangaAdminController::class, 'store'])->name('add-manga');
  });
