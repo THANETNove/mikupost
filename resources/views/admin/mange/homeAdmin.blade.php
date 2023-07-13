@@ -41,7 +41,8 @@
                                 <th scope="col">ชื่อเรื่อง</th>
                                 <th scope="col">ยอดดู</th>
                                 <th scope="col">update</th>
-                                <th scope="col">ดูเพิ่มเติม</th>
+                                <th scope="col">จำนวนตอน</th>
+                                <th scope="col">ตอนทั้งหมด</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -51,12 +52,17 @@
                             $i = 1;
                             @endphp
                             @foreach ($data as $dataMange)
+                            <?php
+                                $imagePath = env('FTP_URL_IMAGES_COVER').$dataMange->cover_photo;
+                                $imageUrl = Storage::disk('ftp')->url($imagePath);
+                                ?>
                             <tr>
                                 <th scope="row">{{$i++}}</th>
-                                <td>{{$dataMange->cover_photo}} </td>
+                                <td><img src="{{ $imageUrl }}" class="image-cover" calt="Manga Cover"></td>
                                 <td>{{$dataMange->manga_name}} </td>
                                 <td>{{$dataMange->views}} </td>
                                 <td>{{$dataMange->updated_at}} </td>
+                                <td>{{$dataMange->maxEpisodeId}}</td>
                                 <td>ดูเพิ่มเติม</td>
                                 <td>Edit</td>
                                 <td>delete</td>

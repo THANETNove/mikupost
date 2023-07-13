@@ -12627,3 +12627,10 @@ body.sidebar-toggled footer.sticky-footer {
 .text-red {
   color: red !important;
 }
+
+.image-cover {
+  width: 100%;
+  height: 100%;
+  max-width: 70px;
+  max-height: 100px;
+}

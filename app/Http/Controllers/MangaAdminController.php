@@ -42,15 +42,19 @@ class MangaAdminController extends Controller
         ->orderBy('id','DESC')
         ->paginate(50);
 
-
-
         if(Auth::user()->status == 0) {
             return redirect('home');
         }else {
 
   
-    
-    
+            $data = DB::table('mangas')
+                ->join('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+                ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
+                ->groupBy('mangas.id')
+                ->orderBy('mangas.id', 'DESC')
+                ->paginate(50);
+
+
             return view('admin.mange.homeAdmin',['data' => $data]);
         }
        
@@ -62,6 +66,16 @@ class MangaAdminController extends Controller
     {
         $fileCount = session()->get('fileCount');
         return view('admin.mange.create',compact('fileCount'));
+    }
+
+    
+    public function mangaEpisodes()
+    {
+        $data = DB::table('mangas')
+        ->orderBy('id','DESC')
+        ->get();
+
+        return response()->json(['success' => 'You have successfully uploaded ' . $successCount . ' file(s).']);
     }
 
 
