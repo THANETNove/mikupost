@@ -32,8 +32,8 @@
                                     <div class="col-lg-12">
                                         <div>
 
-                                            <form class="user" method="POST" action="{{ route('add-manga') }}"
-                                                enctype="multipart/form-data">
+                                            <form class="user" id="myForm" method="POST"
+                                                action="{{ route('add-manga') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group">
                                                     <input id="cover_photo" type="file"
@@ -145,10 +145,11 @@
                                                     <div class="spinner-grow text-dark" role="status">
                                                         <span class="visually-hidden">Loading...</span>
                                                     </div>
-                                                    <h2>Uploading</h2>
+                                                    <h2>กำลัง Uploading กรุณารอสักครู่</h2>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                <button type="submit" id="submitBtn" class=" btn btn-primary
+                                                    btn-user btn-block">
                                                     {{ __('บันทึก') }}
                                                 </button>
 
@@ -171,27 +172,54 @@
 
 </div>
 <script>
-/* $(document).ready(function() {
-    $('#fileUploadForm').submit(function(e) {
-        e.preventDefault();
+/* $('#submitBtn').submit(function() {
+    console.log("aaaa");
 
-        var file = $('#file').val();
-        var cover_photo = $('#cover_photo').val();
-        var manga_name = $('#manga_name').val();
+    var file = $('#file').val();
+    var cover_photo = $('#cover_photo').val();
+    var manga_name = $('#manga_name').val();
 
-        if (file && cover_photo && manga_name) {
-            // File selected, proceed with form submission
-            $('#progressBar').show();
-            $(this).unbind('submit').submit();
+    if (file && cover_photo && manga_name) {
+        // File selected, proceed with form submission
+        $('#progressBar').show();
+        $(this).unbind('submit').submit();
 
-            // Disable the submit button to prevent further clicks
-            $('#submitBtn').prop('disabled', true);
-            //$('#submitBtn').hide();
+        // Disable the submit button to prevent further clicks
+        $('#submitBtn').prop('disabled', true);
+        //$('#submitBtn').hide();
+    }
+});
+ */
+/* function myFunction() {
+
+    var file = $('#file').val();
+    var cover_photo = $('#cover_photo').val();
+    var manga_name = $('#manga_name').val();
+
+    if (file && cover_photo && manga_name) {
+        // File selected, proceed with form submission
+        $('#progressBar').show();
+
+        // Disable the submit button to prevent further clicks
+        $('#submitBtn').prop('disabled', true);
+        //$('#submitBtn').hide();
+    }
+} */
+
+$(document).ready(function() {
+    var formSubmitted = false; // เพิ่มตัวแปรเพื่อตรวจสอบการส่งฟอร์ม
+
+    $('#myForm').submit(function(event) {
+        if (formSubmitted) {
+            event.preventDefault(); // ยกเลิกการส่งฟอร์มเมื่อถูกส่งครั้งที่สอง
+            console.log('ฟอร์มถูกส่งไปแล้ว');
         } else {
-            // No file selected, display error message
-            //  alert('กรุณาเลือกไฟล์เเ');
+            formSubmitted = true; // ตั้งค่าตัวแปรเมื่อฟอร์มถูกส่งครั้งแรก
+            $('#progressBar').show();
+            $('#submitBtn').prop('disabled', true);
+            console.log('ส่งครั้งแรก');
         }
     });
 });
-</script> */
+</script>
 @endsection

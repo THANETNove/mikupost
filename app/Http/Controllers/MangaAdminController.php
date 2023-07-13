@@ -72,7 +72,7 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
-       dd('asd');
+
         $validated = $request->validate([
             'image' => ['required', 'image', 'image:jpg,png,jpeg,webp'],
             'zip_file' => ['required', 'mimes:zip'],
@@ -142,7 +142,7 @@ class MangaAdminController extends Controller
             $fileData = $zip->getFromIndex($i);
             $filename =  $fileInfo['extension'].time().$filename;
             // $relativePath = `imageManga/episodeMange/'.$filename; // เเบบ ไม่ สร้าง Folded  เอาเเค่ไฟล์ ถาพขึ้นไป
-            $relativePath = Storage::disk('ftp')->putFileAs('imageManga/testlode/' . $newFoldedName[0], $zipFile, $filename);
+            $relativePath = Storage::disk('ftp')->putFileAs('imageManga/episode_mange/' . $newFoldedName[0], $zipFile, $filename);
             Storage::disk('ftp')->put($relativePath, $fileData);
            
           
