@@ -99,7 +99,7 @@ class EpisodesMangaController extends Controller
     
         $zip->close();
     
-        return redirect('admin-home')->with('message', "เพิ่มสำเร็จ");
+        return redirect('view-mange/'.$request['mangesId'])->with('message', "เพิ่มสำเร็จ");
     
     }
 

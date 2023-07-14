@@ -56,14 +56,14 @@
                                                         value="{{$data[0]->foldedManges}}" placeholder="foldedManges"
                                                         autofocus>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" style="display:none">
                                                     <input id="foldedManges" type="text"
                                                         class="form-control form-control-user @error('foldedManges') is-invalid @enderror"
                                                         name="mangesId" autocomplete="foldedManges"
                                                         value="{{$data[0]->mangesId}}" placeholder="foldedManges"
                                                         autofocus>
                                                 </div>
-                                                <div class="form-group" style="display:none">
+                                                <div class="form-group">
                                                     <input id="file" type="file"
                                                         class="form-control @error('zip_file') is-invalid @enderror"
                                                         name="zip_file" value="{{ old('zip_file') }}" required
