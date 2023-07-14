@@ -244,6 +244,28 @@ class MangaAdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $affected = DB::table('manga_episodes')
+        ->where('mangesId', $id)
+        ->get();
+
+        $mangas = DB::table('mangas')
+        ->where('id', $id)
+        ->get();
+
+      
+        Storage::disk('ftp')->deleteDirectory('imageManga/episode_mange/'.$affected[0]->foldedManges); // ลบโพเดอร์
+        Storage::disk('ftp')->delete('imageManga/mangaCover/'.$mangas[0]->cover_photo); // ลบภาพ
+       // loop ลบ
+        foreach( $affected as  $episode) {
+            $member = Manga_episode::find($episode->id);
+            $member->delete();
+        }
+
+        $deleteManga = Manga::find($id);
+        $deleteManga->delete();
+       
+        return redirect('admin-home')->with('messageDelete', "ลบ สำเร็จ");
+    
     }
 }

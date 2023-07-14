@@ -77,7 +77,12 @@
                                         Edit
                                     </a>
                                 </td>
-                                <td>delete</td>
+                                <td> <a href="{{ route('delete-mange', $dataMange->id) }}"
+                                        onClick="javascript:return confirm('คุณต้องการลบ  {{ $dataMange->id}}  ข้อมูลใช่หรือไม่ ! ');"
+                                        class="view-mange text-red  text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit episode">
+                                        delete
+                                    </a></td>
                             </tr>
                             @endforeach
                         </tbody>
