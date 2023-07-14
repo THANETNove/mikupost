@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">มังงะ</h1>
+    <h1 class="h3 mb-4 text-gray-800">เเก้ไข มังงะ</h1>
 
 
 
@@ -33,13 +33,15 @@
                                         <div>
 
                                             <form class="user" id="myForm" method="POST"
-                                                action="{{ route('add-manga') }}" enctype="multipart/form-data">
+                                                action="{{ route('update-manga',$data[0]->id) }}"
+                                                enctype="multipart/form-data">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="form-group">
                                                     <input id="cover_photo" type="file"
                                                         class="form-control  @error('image') is-invalid @enderror"
-                                                        name="image" value="{{ old('image') }}" required
-                                                        autocomplete="image" placeholder="ภาพปกมังงะ" autofocus>
+                                                        name="image" value="{{ old('image') }}" autocomplete="image"
+                                                        placeholder="ภาพปกมังงะ" autofocus>
 
                                                     @error('image')
                                                     <span class="invalid-feedback" role="alert">
@@ -48,11 +50,11 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+
                                                     <textarea
                                                         class="form-control  @error('manga_name') is-invalid @enderror"
-                                                        value="{{ old('manga_name') }}" name="manga_name"
-                                                        id="manga_name" placeholder="ชื่อมังงะ" required
-                                                        rows="3"></textarea>
+                                                        name="manga_name" id="manga_name" placeholder="ชื่อมังงะ"
+                                                        required rows="3">{{$data[0]->manga_name}}</textarea>
                                                     @error('manga_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -64,7 +66,7 @@
                                                         class="form-control  @error('manga_details') is-invalid @enderror"
                                                         name="manga_details" value="{{ old('manga_details') }}"
                                                         placeholder="รายละเอียด" id="exampleFormControlTextarea1"
-                                                        rows="3"></textarea>
+                                                        rows="3">{{$data[0]->manga_details}}</textarea>
 
                                                     @error('manga_details')
                                                     <span class="invalid-feedback" role="alert">
@@ -75,8 +77,8 @@
                                                 <div class="form-group">
                                                     <input id="author" type="text"
                                                         class="form-control form-control-user @error('author') is-invalid @enderror"
-                                                        name="author" value="{{ old('author') }}" autocomplete="author"
-                                                        placeholder="ผู้เขียน" autofocus>
+                                                        name="author" value="{{ $data[0]->manga_details }}"
+                                                        autocomplete="author" placeholder="ผู้เขียน" autofocus>
 
                                                     @error('author')
                                                     <span class="invalid-feedback" role="alert">
@@ -88,8 +90,8 @@
                                                 <div class="form-group">
                                                     <input id="status" type="text"
                                                         class="form-control form-control-user @error('status') is-invalid @enderror"
-                                                        name="status" value="{{ old('status') }}" autocomplete="status"
-                                                        placeholder="สถานะ" autofocus>
+                                                        name="status" value="{{ $data[0]->status }}"
+                                                        autocomplete="status" placeholder="สถานะ" autofocus>
 
                                                     @error('status')
                                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +102,7 @@
                                                 <div class="form-group">
                                                     <input id="website" type="text"
                                                         class="form-control form-control-user @error('website') is-invalid @enderror"
-                                                        name="website" value="{{ old('website') }}"
+                                                        name="website" value="{{ $data[0]->website }}"
                                                         autocomplete="website" placeholder="url Website" autofocus>
 
                                                     @error('website')
@@ -109,7 +111,7 @@
                                                     </span>
                                                     @enderror
                                                 </div>
-                                                <div class="form-group">
+                                                <!--  <div class="form-group">
                                                     <input id="file" type="file"
                                                         class="form-control @error('zip_file') is-invalid @enderror"
                                                         name="zip_file" value="{{ old('zip_file') }}" required
@@ -120,7 +122,7 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
-                                                </div>
+                                                </div> -->
 
                                                 <div id="progressBar" style="display: none;">
 

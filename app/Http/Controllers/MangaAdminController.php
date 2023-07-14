@@ -199,7 +199,12 @@ class MangaAdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $data = DB::table('mangas')
+        ->where('id', $id)
+        ->get();
+        return view('admin.mange.edit',['data' => $data]);
+     
     }
 
     /**
@@ -207,7 +212,31 @@ class MangaAdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $image = $request->file('image');
+        $originalFilename = $image->getClientOriginalName();
+        $filename = time().$originalFilename;
+        $affected = DB::table('mangas')
+        ->where('id', $id)
+        ->get();
+        if ($request['image']) {
+            Storage::disk('ftp')->delete('imageManga/mangaCover/'.$affected[0]->cover_photo); // ลบภาพ
+            Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ภาพ
+            DB::table('mangas')->where('id',$id)
+            ->update([
+              'cover_photo' => $filename
+            ]);
+        }
+
+        DB::table('mangas')->where('id',$id)
+              ->update([
+                'manga_name' => $request['manga_name'],
+                'manga_details' => $request['manga_details'],
+                'author' => $request['author'],
+                'status' => $request['status'],
+                'website' => $request['website']
+              ]);
+        return redirect('admin-home')->with('message', "เเก้ไข สำเร็จ");
+     
     }
 
     /**

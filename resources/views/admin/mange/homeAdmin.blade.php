@@ -70,7 +70,13 @@
                                         data-original-title="Edit user" class="text-decoration-none">
                                         view
                                     </a></td>
-                                <td>Edit</td>
+                                <td>
+                                    <a href="{{ url('edit-mange', $dataMange->id) }}"
+                                        class="view-mange text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit user" class="text-decoration-none">
+                                        Edit
+                                    </a>
+                                </td>
                                 <td>delete</td>
                             </tr>
                             @endforeach
