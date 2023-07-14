@@ -43,7 +43,6 @@
                                 <th scope="col">update</th>
                                 <th scope="col">จำนวนตอน</th>
                                 <th scope="col">ตอนทั้งหมด</th>
-                                <th scope="col">เพิ่มตอน</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -71,8 +70,6 @@
                                         data-original-title="Edit user" class="text-decoration-none">
                                         view
                                     </a></td>
-
-                                <td>เพิ่มตอน</td>
                                 <td>Edit</td>
                                 <td>delete</td>
                             </tr>
