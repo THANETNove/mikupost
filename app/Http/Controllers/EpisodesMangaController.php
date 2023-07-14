@@ -116,7 +116,10 @@ class EpisodesMangaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('manga_episodes')
+        ->where('episodeId', $id)
+        ->get();
+        dd($data);
     }
 
     /**

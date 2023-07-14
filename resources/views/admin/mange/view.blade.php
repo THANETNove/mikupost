@@ -83,7 +83,6 @@
                                 <th scope="col">ชื่อตอน</th>
                                 <th scope="col">ยอดดู</th>
                                 <th scope="col">update</th>
-                                <th scope="col">จำนวนตอน</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -100,9 +99,13 @@
                                 <td>{{$data->view}} </td>
                                 <td> <?php echo \Carbon\Carbon::parse($data->updated_at)->format('d/m/Y'); ?>
                                 </td>
-                                <td></td>
-                                <td>ดูเพิ่มเติม</td>
-                                <td>Edit</td>
+                                <td>
+                                    <a href="{{ url('edit-episode', $data->episodeId) }}"
+                                        class="view-mange text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit user" class="text-decoration-none">
+                                        Edit
+                                    </a>
+                                </td>
                                 <td>delete</td>
                             </tr>
                             @endforeach
