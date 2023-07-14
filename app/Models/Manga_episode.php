@@ -14,5 +14,6 @@ class Manga_episode extends Model
         'episode_name',
         'episode_name_image',
         'foldedManges',
+        'view',
     ];
 }

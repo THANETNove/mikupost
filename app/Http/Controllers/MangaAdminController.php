@@ -39,22 +39,16 @@ class MangaAdminController extends Controller
     public function index()
     {
         $data = DB::table('mangas')
-        ->orderBy('id','DESC')
-        ->paginate(50);
+        ->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+        ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
+        ->groupBy('mangas.id')
+        ->orderBy('mangas.id', 'DESC')
+        ->paginate(100);
 
+        
         if(Auth::user()->status == 0) {
             return redirect('home');
         }else {
-
-  
-            $data = DB::table('mangas')
-                ->join('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
-                ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
-                ->groupBy('mangas.id')
-                ->orderBy('mangas.id', 'DESC')
-                ->paginate(50);
-
-
             return view('admin.mange.homeAdmin',['data' => $data]);
         }
        
@@ -69,15 +63,7 @@ class MangaAdminController extends Controller
     }
 
     
-    public function mangaEpisodes()
-    {
-        $data = DB::table('mangas')
-        ->orderBy('id','DESC')
-        ->get();
-
-        return response()->json(['success' => 'You have successfully uploaded ' . $successCount . ' file(s).']);
-    }
-
+  
 
 
     
@@ -183,7 +169,22 @@ class MangaAdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+
+        $dataViews = DB::table('mangas')
+        ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+        ->where('manga_episodes.mangesId', $id)
+        ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.author','mangas.status',
+        'mangas.views as mangas_views','mangas.website','mangas.updated_at as mangas_updated_at')
+        ->groupBy('manga_episodes.episodeId')
+        ->orderBy('manga_episodes.episodeId', 'DESC')
+        ->paginate(100);
+    
+    
+
+
+        return view('admin.mange.view',['dataViews' => $dataViews ]);
+   
     }
 
     /**

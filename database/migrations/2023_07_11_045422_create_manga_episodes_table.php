@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('episodeId')->nullable();
             $table->string('episode_name')->nullable();
             $table->string('episode_name_image')->nullable();
+            $table->string('view')->nullable();
             $table->string('foldedManges')->nullable();
             $table->timestamps();
         });

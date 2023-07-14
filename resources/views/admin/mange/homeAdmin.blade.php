@@ -43,6 +43,7 @@
                                 <th scope="col">update</th>
                                 <th scope="col">จำนวนตอน</th>
                                 <th scope="col">ตอนทั้งหมด</th>
+                                <th scope="col">เพิ่มตอน</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -55,15 +56,23 @@
                             <?php
                                 $imagePath = env('FTP_URL_IMAGES_COVER').$dataMange->cover_photo;
                                 $imageUrl = Storage::disk('ftp')->url($imagePath);
+                             
                                 ?>
                             <tr>
                                 <th scope="row">{{$i++}}</th>
                                 <td><img src="{{ $imageUrl }}" class="image-cover" calt="Manga Cover"></td>
-                                <td>{{$dataMange->manga_name}} </td>
+                                <td>{{ \Illuminate\Support\Str::limit($dataMange->manga_name, $limit = 60, $end = '...') }}
+                                </td>
                                 <td>{{$dataMange->views}} </td>
-                                <td>{{$dataMange->updated_at}} </td>
+                                <td> <?php echo \Carbon\Carbon::parse($dataMange->updated_at)->format('d/m/Y'); ?></td>
                                 <td>{{$dataMange->maxEpisodeId}}</td>
-                                <td>ดูเพิ่มเติม</td>
+                                <td> <a href="{{ url('view-mange', $dataMange->id) }}"
+                                        class="view-mange text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit user" class="text-decoration-none">
+                                        view
+                                    </a></td>
+
+                                <td>เพิ่มตอน</td>
                                 <td>Edit</td>
                                 <td>delete</td>
                             </tr>
