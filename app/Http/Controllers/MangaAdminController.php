@@ -76,7 +76,6 @@ class MangaAdminController extends Controller
         $validated = $request->validate([
             'image' => ['required', 'image', 'image:jpg,png,jpeg,webp'],
             'zip_file' => ['required', 'mimes:zip'],
-            /* 'image' => ['required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'], */
         ]);
 
       // Retrieve the uploaded file
@@ -106,15 +105,17 @@ class MangaAdminController extends Controller
     $zipFile = $request->file('zip_file');
     $foldedName = $zipFile->getClientOriginalName();
     
+    // ตั้งชื่อ  foldedใหม่ หาก มีช่องว่าง
     if (strpos($foldedName, ' ') !== false) {
         // ลบช่องว่างออกจาก $foldedName
         $foldedName = str_replace(' ', '', $foldedName);
     }
-
     $newFoldedName = explode('.', $foldedName);
 
     $zip = new ZipArchive;
     $zip->open($zipFile->getPathname());
+
+
 
     for ($i = 0; $i < $zip->numFiles; $i++) {
         $entry = $zip->statIndex($i);
@@ -141,8 +142,8 @@ class MangaAdminController extends Controller
             // เรียงภาพ
             $filenameExtension = $fileParts[2];
             $filenameParts = explode('.', $filenameExtension);
-            $fileEpisode = $filenameParts[0];
-    
+            $file_id_image = $filenameParts[0];
+/*     dd( $fileParts, $file_id_image); */
             $fileData = $zip->getFromIndex($i);
             $filename =  $fileInfo['extension'].time().$filename;
             // $relativePath = `imageManga/episodeMange/'.$filename; // เเบบ ไม่ สร้าง Folded  เอาเเค่ไฟล์ ถาพขึ้นไป
@@ -154,7 +155,7 @@ class MangaAdminController extends Controller
               Manga_episode::create([
                 'mangesId' =>  $manga->id,
                 'episodeId' => $fileInfo['extension'],
-                'id_image' => $fileEpisode,
+                'id_image' => $file_id_image,
                 'episode_name' => NULL,
                 'view' => 0,
                 'episode_name_image' => $newFoldedName[0].'/'.$filename,
