@@ -138,7 +138,11 @@ class MangaAdminController extends Controller
                 'filename' => $filenameWithoutExtension,
                 'extension' => $fileExtension
             ];
-            
+            // เรียงภาพ
+            $filenameExtension = $fileParts[2];
+            $filenameParts = explode('.', $filenameExtension);
+            $fileEpisode = $filenameParts[0];
+    
             $fileData = $zip->getFromIndex($i);
             $filename =  $fileInfo['extension'].time().$filename;
             // $relativePath = `imageManga/episodeMange/'.$filename; // เเบบ ไม่ สร้าง Folded  เอาเเค่ไฟล์ ถาพขึ้นไป
@@ -150,6 +154,7 @@ class MangaAdminController extends Controller
               Manga_episode::create([
                 'mangesId' =>  $manga->id,
                 'episodeId' => $fileInfo['extension'],
+                'id_image' => $fileEpisode,
                 'episode_name' => NULL,
                 'view' => 0,
                 'episode_name_image' => $newFoldedName[0].'/'.$filename,

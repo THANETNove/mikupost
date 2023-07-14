@@ -78,8 +78,8 @@ class EpisodesMangaController extends Controller
 
                 
                 $fileData = $zip->getFromIndex($i);
-                $filename =   $filenameExtension.time().$filename;
-                 $relativePath = 'imageManga/episodeMange/'.$request['foldedManges'].$filename; // เเบบ ไม่ สร้าง Folded  เอาเเค่ไฟล์ ถาพขึ้นไป
+                $filename =  $fileManges.time().$filename;
+                 $relativePath = 'imageManga/episode_mange/'.$request['foldedManges'].'/'.$filename; // เเบบ ไม่ สร้าง Folded  เอาเเค่ไฟล์ ถาพขึ้นไป
                // $relativePath = Storage::disk('ftp')->putFileAs('imageManga/episode_mange/' .$request['foldedManges'], $zipFile, $filename);
                 Storage::disk('ftp')->put($relativePath, $fileData);
                

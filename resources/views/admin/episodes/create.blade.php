@@ -49,7 +49,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="form-group" style="display:none">
+                                                <div class="form-group">
                                                     <input id="foldedManges" type="text"
                                                         class="form-control form-control-user @error('foldedManges') is-invalid @enderror"
                                                         name="foldedManges" autocomplete="foldedManges"
