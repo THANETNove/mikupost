@@ -10,6 +10,7 @@ class Manga_episode extends Model
     use HasFactory;
     protected $fillable = [
         'mangesId',
+        'id_image',
         'episodeId',
         'episode_name',
         'episode_name_image',

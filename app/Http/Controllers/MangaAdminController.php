@@ -151,6 +151,7 @@ class MangaAdminController extends Controller
                 'mangesId' =>  $manga->id,
                 'episodeId' => $fileInfo['extension'],
                 'episode_name' => NULL,
+                'view' => 0,
                 'episode_name_image' => $newFoldedName[0].'/'.$filename,
                 'foldedManges' => $newFoldedName[0],
             ]);

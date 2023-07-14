@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">มังงะ</h1>
+    <h1 class="h3 mb-4 text-gray-800">เพิ่ม ตอนมังงะ</h1>
 
 
 
@@ -14,7 +14,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <a href="" class="text-decoration-none">
-                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fas fa-laugh-wink"></i> &nbsp; มังงะ
+                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-arrow-left"></i> &nbsp; กลับ
                     </h6>
                 </a>
 
@@ -33,25 +33,14 @@
                                         <div>
 
                                             <form class="user" id="myForm" method="POST"
-                                                action="{{ route('add-manga') }}" enctype="multipart/form-data">
+                                                action="{{ route('add-episodes') }}" enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="form-group">
-                                                    <input id="cover_photo" type="file"
-                                                        class="form-control  @error('image') is-invalid @enderror"
-                                                        name="image" value="{{ old('image') }}" required
-                                                        autocomplete="image" placeholder="ภาพปกมังงะ" autofocus>
-
-                                                    @error('image')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }} jpg,png,jpeg,webp</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
                                                 <div class="form-group">
                                                     <textarea
                                                         class="form-control  @error('manga_name') is-invalid @enderror"
                                                         value="{{ old('manga_name') }}" name="manga_name"
-                                                        id="manga_name" placeholder="ชื่อมังงะ" required
+                                                        id="manga_name"
+                                                        placeholder="ชื่อตอนมังงะ    (* ถ้า ไม่มี ไม่ต้องใส่)"
                                                         id="exampleFormControlTextarea1" rows="3"></textarea>
                                                     @error('manga_name')
                                                     <span class="invalid-feedback" role="alert">
@@ -59,57 +48,22 @@
                                                     </span>
                                                     @enderror
                                                 </div>
-                                                <div class="form-group">
-                                                    <textarea
-                                                        class="form-control  @error('manga_details') is-invalid @enderror"
-                                                        name="manga_details" value="{{ old('manga_details') }}"
-                                                        placeholder="รายละเอียด" id="exampleFormControlTextarea1"
-                                                        rows="3"></textarea>
 
-                                                    @error('manga_details')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
+                                                <div class="form-group" style="display:none">
+                                                    <input id="foldedManges" type="text"
+                                                        class="form-control form-control-user @error('foldedManges') is-invalid @enderror"
+                                                        name="foldedManges" autocomplete="foldedManges"
+                                                        value="{{$data[0]->foldedManges}}" placeholder="foldedManges"
+                                                        autofocus>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input id="author" type="text"
-                                                        class="form-control form-control-user @error('author') is-invalid @enderror"
-                                                        name="author" value="{{ old('author') }}" autocomplete="author"
-                                                        placeholder="ผู้เขียน" autofocus>
-
-                                                    @error('author')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
+                                                    <input id="foldedManges" type="text"
+                                                        class="form-control form-control-user @error('foldedManges') is-invalid @enderror"
+                                                        name="mangesId" autocomplete="foldedManges"
+                                                        value="{{$data[0]->mangesId}}" placeholder="foldedManges"
+                                                        autofocus>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <input id="status" type="text"
-                                                        class="form-control form-control-user @error('status') is-invalid @enderror"
-                                                        name="status" value="{{ old('status') }}" autocomplete="status"
-                                                        placeholder="สถานะ" autofocus>
-
-                                                    @error('status')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <input id="website" type="text"
-                                                        class="form-control form-control-user @error('website') is-invalid @enderror"
-                                                        name="website" value="{{ old('website') }}"
-                                                        autocomplete="website" placeholder="url Website" autofocus>
-
-                                                    @error('website')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
+                                                <div class="form-group" style="display:none">
                                                     <input id="file" type="file"
                                                         class="form-control @error('zip_file') is-invalid @enderror"
                                                         name="zip_file" value="{{ old('zip_file') }}" required

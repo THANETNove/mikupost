@@ -13,8 +13,8 @@
         <!-- Circle Buttons -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="{{url('/create-manga')}}" class="text-decoration-none">
-                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> เพิ่ม ตอน
+                <a href="{{url('/create-episodes',$dataViews[0]->id)}}" class="text-decoration-none">
+                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; เพิ่ม ตอน
                     </h6>
                 </a>
 
@@ -63,7 +63,8 @@
                                 </div>
                                 <div class="col-8 d-flex justify-content-between">
                                     <p class="font-weight-bolder">website</p>
-                                    <p>{{$dataViews[0]->website}}</p>
+                                    <p><a href="{{$dataViews[0]->website}}" target="_blank" class="text-decoration-none"
+                                            rel="noopener noreferrer">{{$dataViews[0]->website}}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">ตอน</th>
-                                <th scope="col">ชื่อเรื่อง</th>
+                                <th scope="col">ชื่อตอน</th>
                                 <th scope="col">ยอดดู</th>
                                 <th scope="col">update</th>
                                 <th scope="col">จำนวนตอน</th>
