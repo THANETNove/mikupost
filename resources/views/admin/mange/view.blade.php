@@ -15,9 +15,16 @@
             <div class="card-header py-3">
                 <a href="{{url('/create-episodes',$dataViews[0]->id)}}" class="text-decoration-none">
                     <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; เพิ่ม ตอน
+
                     </h6>
                 </a>
 
+                @if (session('message'))
+                <p class="text-primary">{{ session('message') }}</p>
+                @endif
+                @if (session('messageDelete'))
+                <p class="text-red">{{ session('messageDelete') }}</p>
+                @endif
 
             </div>
             <div class="card-body">
@@ -100,13 +107,20 @@
                                 <td> <?php echo \Carbon\Carbon::parse($data->updated_at)->format('d/m/Y'); ?>
                                 </td>
                                 <td>
-                                    <a href="{{ url('edit-episode', $data->episodeId) }}"
+                                    <a href="{{ route('edit-episode', [$dataViews[0]->mangesId, $data->episodeId]) }}"
                                         class="view-mange text-decoration-none" data-toggle="tooltip"
-                                        data-original-title="Edit user" class="text-decoration-none">
+                                        data-original-title="Edit episode">
                                         Edit
                                     </a>
                                 </td>
-                                <td>delete</td>
+                                <td>
+                                    <a href="{{ route('delete-episode', [$dataViews[0]->mangesId, $data->episodeId]) }}"
+                                        onClick="javascript:return confirm('คุณต้องการลบ  ตอน {{$data->episodeId}}  ข้อมูลใช่หรือไม่ ! ');"
+                                        class="view-mange text-red  text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit episode">
+                                        delete
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

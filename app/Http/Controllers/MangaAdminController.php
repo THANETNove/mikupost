@@ -184,7 +184,7 @@ class MangaAdminController extends Controller
         ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.author','mangas.status',
         'mangas.views as mangas_views','mangas.website','mangas.updated_at as mangas_updated_at')
         ->groupBy('manga_episodes.episodeId')
-        ->orderBy('manga_episodes.episodeId', 'DESC')
+        ->orderBy('manga_episodes.id', 'DESC')
         ->paginate(100);
     
     

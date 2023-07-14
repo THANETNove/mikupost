@@ -37,19 +37,19 @@
                                                 @csrf
                                                 <div class="form-group">
                                                     <textarea
-                                                        class="form-control  @error('manga_name') is-invalid @enderror"
-                                                        value="{{ old('manga_name') }}" name="manga_name"
-                                                        id="manga_name"
+                                                        class="form-control  @error('episode_name') is-invalid @enderror"
+                                                        value="{{ old('episode_name') }}" name="episode_name"
+                                                        id="episode_name"
                                                         placeholder="ชื่อตอนมังงะ    (* ถ้า ไม่มี ไม่ต้องใส่)"
                                                         id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                    @error('manga_name')
+                                                    @error('episode_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div class="form-group" style="display:none">
                                                     <input id="foldedManges" type="text"
                                                         class="form-control form-control-user @error('foldedManges') is-invalid @enderror"
                                                         name="foldedManges" autocomplete="foldedManges"

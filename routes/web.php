@@ -50,5 +50,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('view-mange/{id}', [MangaAdminController::class, 'show'])->name('view-mange');
     Route::get('create-episodes/{id}', [EpisodesMangaController::class, 'create'])->name('view-mange');
     Route::post('add-episodes', [EpisodesMangaController::class, 'store'])->name('add-episodes');
-    Route::get('edit-episode/{id}', [EpisodesMangaController::class, 'edit'])->name('edit-episodes');
+    Route::get('edit-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'edit'])->name('edit-episode');
+    Route::put('update-episodes/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'update'])->name('update-episodes');
+    Route::get('delete-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'destroy'])->name('delete-episode');
  });
