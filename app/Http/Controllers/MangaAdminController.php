@@ -218,7 +218,10 @@ class MangaAdminController extends Controller
         $affected = DB::table('mangas')
         ->where('id', $id)
         ->get();
-        if ($request['image']) {
+        if ($request['image']) { //exists
+            if (Storage::disk('ftp')->exists('imageManga/mangaCover/'.$affected[0]->cover_photo)) {  // เช็คว่ามีภาพใหม
+                Storage::disk('ftp')->delete('imageManga/mangaCover/'.$affected[0]->cover_photo); // ลบภาพ
+            }
             Storage::disk('ftp')->delete('imageManga/mangaCover/'.$affected[0]->cover_photo); // ลบภาพ
             Storage::disk('ftp')->putFileAs('/imageManga/mangaCover', $image, $filename);  //อัพ ภาพ
             DB::table('mangas')->where('id',$id)
@@ -253,9 +256,14 @@ class MangaAdminController extends Controller
         ->where('id', $id)
         ->get();
 
+        if (Storage::disk('ftp')->exists('imageManga/episode_mange/'.$affected[0]->foldedManges)) {
+            Storage::disk('ftp')->deleteDirectory('imageManga/episode_mange/'.$affected[0]->foldedManges); // ลบโพเดอร์
+        }
       
-        Storage::disk('ftp')->deleteDirectory('imageManga/episode_mange/'.$affected[0]->foldedManges); // ลบโพเดอร์
-        Storage::disk('ftp')->delete('imageManga/mangaCover/'.$mangas[0]->cover_photo); // ลบภาพ
+        if (Storage::disk('ftp')->exists('imageManga/mangaCover/'.$mangas[0]->cover_photo)) {
+            Storage::disk('ftp')->delete('imageManga/mangaCover/'.$mangas[0]->cover_photo);
+        }
+        // ลบภาพ
        // loop ลบ
         foreach( $affected as  $episode) {
             $member = Manga_episode::find($episode->id);

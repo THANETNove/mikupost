@@ -143,9 +143,11 @@ class EpisodesMangaController extends Controller
 
        // loop ลบ
         foreach( $affected as  $episode) {
-            $fileParts = explode('/', $episode->episode_name_image);
-              Storage::disk('ftp')->delete('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1]);
-             
+            $fileParts = explode('/', $episode->episode_name_image);  //exists
+            if ( Storage::disk('ftp')->exists('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1])) {
+                Storage::disk('ftp')->delete('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1]);
+            }
+
             $member = Manga_episode::find($episode->id);
             $member->delete();
         }
@@ -229,8 +231,11 @@ class EpisodesMangaController extends Controller
 
        // loop ลบ
         foreach( $affected as  $episode) {
-            $fileParts = explode('/', $episode->episode_name_image);
-              Storage::disk('ftp')->delete('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1]);
+            $fileParts = explode('/', $episode->episode_name_image); //exists
+            if (Storage::disk('ftp')->exists('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1])) { // เช็คว่ามีภาพใหม
+                Storage::disk('ftp')->delete('imageManga/episode_mange/'.$fileParts[0].'/'.$fileParts[1]);
+            }
+            
              
             $member = Manga_episode::find($episode->id);
             $member->delete();
