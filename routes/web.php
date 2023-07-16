@@ -35,7 +35,7 @@ Auth::routes();
 //  หน้า อ่าน Manga 
 
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/get-manga-all/{id}', [GetMangaAllController::class, 'getMangaAll']);
+Route::get('/get-manga-all/{id}/{numberPc}', [GetMangaAllController::class, 'getMangaAll']);
 Route::get('/get-manga-random/{id}', [GetMangaAllController::class, 'getMangaRandom']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);

@@ -11858,6 +11858,7 @@ a.text-dark:hover {
     text-align: center;
     background-color: var(--dark2);
     color: var(--white);
+    cursor: pointer;
     border-radius: 6px;
 }
 

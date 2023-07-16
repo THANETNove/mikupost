@@ -26,7 +26,7 @@
                     <div class=" row container-manga-body" id="categories-{{$data_cate->id}}-image">
                     </div>
 
-                    <div class="more-increase">More</div>
+                    <div class="more-increase" onclick="getExpandData({{$data_cate->id}})">More</div>
                 </div>
 
                 <div class="col-lg-3 order-lg-2 js-custom-dots">
