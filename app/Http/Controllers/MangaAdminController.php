@@ -69,8 +69,9 @@ class MangaAdminController extends Controller
      */
     public function create()
     {
-        $fileCount = session()->get('fileCount');
-        return view('admin.mange.create',compact('fileCount'));
+        $data = DB::table('categories')
+        ->get();
+        return view('admin.mange.create',['data' => $data]);
     }
 
     
@@ -83,12 +84,14 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
+    
 
         $validated = $request->validate([
             'image' => ['required', 'image', 'image:jpg,png,jpeg,webp'],
             'zip_file' => ['required', 'mimes:zip'],
+            'categories_id' => ['required'],
         ]);
-
+    
       // Retrieve the uploaded file
     
     
@@ -106,6 +109,7 @@ class MangaAdminController extends Controller
             'manga_details' => $request['manga_details'],
             'author' => $request['author'],
             'status' => $request['status'],
+            'categories_id' => $request['categories_id'],
             'views' => 0,
             'website' => $request['website'],
         ]);
@@ -214,7 +218,10 @@ class MangaAdminController extends Controller
         $data = DB::table('mangas')
         ->where('id', $id)
         ->get();
-        return view('admin.mange.edit',['data' => $data]);
+
+        $data_cat = DB::table('categories')
+        ->get();
+        return view('admin.mange.edit',['data' => $data,'data_cat'=> $data_cat]);
      
     }
 
@@ -223,13 +230,18 @@ class MangaAdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+
         $image = $request->file('image');
-        $originalFilename = $image->getClientOriginalName();
-        $filename = time().$originalFilename;
+        if ($image) {
+            $originalFilename = $image->getClientOriginalName();
+            $filename = time().$originalFilename;
+        }
+     
         $affected = DB::table('mangas')
         ->where('id', $id)
         ->get();
-        if ($request['image']) { //exists
+        if ($image) { //exists
             if (Storage::disk('ftp')->exists('imageManga/mangaCover/'.$affected[0]->cover_photo)) {  // เช็คว่ามีภาพใหม
                 Storage::disk('ftp')->delete('imageManga/mangaCover/'.$affected[0]->cover_photo); // ลบภาพ
             }
@@ -247,6 +259,7 @@ class MangaAdminController extends Controller
                 'manga_details' => $request['manga_details'],
                 'author' => $request['author'],
                 'status' => $request['status'],
+                'categories_id' => $request['categories_id'],
                 'website' => $request['website']
               ]);
         return redirect('admin-home')->with('message', "เเก้ไข สำเร็จ");

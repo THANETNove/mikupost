@@ -98,6 +98,24 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <select
+                                                        class="form-control   @error('categories_id') is-invalid @enderror"
+                                                        id="categories_id" name="categories_id"
+                                                        aria-label="Default select example" required>
+                                                        <option selected disabled>หมวดหมู่</option>
+                                                        @foreach ($data as $data_ca)
+                                                        <option value="{{$data_ca->id}}">{{$data_ca->categories_name}}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    @error('categories_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
                                                     <input id="website" type="text"
                                                         class="form-control form-control-user @error('website') is-invalid @enderror"
                                                         name="website" value="{{ old('website') }}"

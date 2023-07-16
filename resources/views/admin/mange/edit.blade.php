@@ -100,6 +100,32 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <select
+                                                        class="form-control   @error('categories_id') is-invalid @enderror"
+                                                        id="categories_id" name="categories_id"
+                                                        aria-label="Default select example">
+
+                                                        @foreach ($data_cat as $data_ca)
+                                                        @if ($data_ca->id == $data[0]->categories_id )
+                                                        <option selected value="{{$data_ca->id}}">
+                                                            {{$data_ca->categories_name}}
+                                                        </option>
+                                                        @else
+                                                        <option value="{{$data_ca->id}}">
+                                                            {{$data_ca->categories_name}}
+                                                        </option>
+                                                        @endif
+                                                        @endforeach
+                                                    </select>
+
+                                                    @error('categories_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group">
                                                     <input id="website" type="text"
                                                         class="form-control form-control-user @error('website') is-invalid @enderror"
                                                         name="website" value="{{ $data[0]->website }}"

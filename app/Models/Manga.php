@@ -14,6 +14,7 @@ class Manga extends Model
         'manga_details',
         'author',
         'status',
+        'categories_id',
         'views',
         'website',
     ];
