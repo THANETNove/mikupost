@@ -149,11 +149,31 @@ window.onload = function() {
             success: function(res) {
                 // ดำเนินการกับข้อมูลที่ได้รับ
                 res.forEach(function(item) {
+                    var text = item.manga_name;
+                    var maxLength = 16; // จำนวนอักขระสูงสุดที่ต้องการแสดง
+                    var truncatedText = text.length > maxLength ? text.substring(0,
+                        maxLength) + "..." : text;
                     var container = document.getElementById("categories-" + numberId +
                         "-image");
 
+
+                    var currentDateTime = new Date(); // วันที่และเวลาปัจจุบัน
+
+                    var targetDateTime = new Date(
+                        item.updated_at); // วันที่และเวลาเป้าหมาย
+
+                    var timeDifference = targetDateTime -
+                        currentDateTime; // คำนวณความแตกต่างของเวลา
+                    var daysPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                        60 * 60 * 24)); // จำนวนวันที่ผ่านไป
+                    var hoursPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                        60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
+
+
+
+
                     var link = document.createElement("a");
-                    link.href = "{{ url('manga-cover-show/120') }}";
+                    link.href = "{{ url('manga-cover-show') }}/" + item.id;
                     container.appendChild(link);
 
                     var div = document.createElement("div");
@@ -176,22 +196,28 @@ window.onload = function() {
 
                     var mangaTitle = document.createElement("p");
                     mangaTitle.className = "manga-title";
-                    mangaTitle.textContent = "Mechanical Buddy";
+                    mangaTitle.textContent = truncatedText;
                     serviceContents.appendChild(mangaTitle);
 
                     var mangaChapter = document.createElement("p");
                     mangaChapter.className = "manga-ch";
-                    mangaChapter.textContent = "Ch.17 - ตอนที่ 17";
+                    mangaChapter.textContent = "Ch." + item.maxEpisodeId +
+                        "-  ตอนที่-" + item.maxEpisodeId;
                     serviceContents.appendChild(mangaChapter);
 
                     var translatorsName1 = document.createElement("p");
                     translatorsName1.className = "translators-name";
-                    translatorsName1.textContent = "ผู้แปลที่- วิตสโลวไลฟ์";
+                    translatorsName1.textContent = "ผู้แปลที่-" + (item.author ? item
+                        .author : "");
                     serviceContents.appendChild(translatorsName1);
 
                     var translatorsName2 = document.createElement("p");
                     translatorsName2.className = "translators-name";
-                    translatorsName2.textContent = "Update- 15 hours";
+                    translatorsName2.textContent = (daysPassed > 0) ? ("Update- " +
+                        daysPassed +
+                        " วัน   " + hoursPassed + " ชั่วโมง") : ("Update- " +
+                        hoursPassed +
+                        " ชั่วโมง");
                     serviceContents.appendChild(translatorsName2);
                 });
 
