@@ -18,6 +18,11 @@
             <span>รายชื่อมังงะ</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{url('/category')}}">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>หมวดหมู๋</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{url('/admin')}}">
             <i class="fa-solid fa-users"></i>
             <span>สมัครสมาชิก admin</span></a>

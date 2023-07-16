@@ -3,34 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use App\Models\User;
+use App\Models\Category;
 use DB;
-use Illuminate\Support\Facades\Hash;
 
 
-class CreateAdminController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    
     public function index()
     {
-        $data = DB::table('users')
-        ->where('status',1)
-        ->whereNotNull('pass_admin')
+        $data = DB::table('categories')
         ->orderBy('id','DESC')
         ->paginate(50);
-
-
-        return view('admin.auth.index',['data'=> $data]);
+        return view('admin.category.index' ,['data'=> $data]);
     }
 
     /**
@@ -38,7 +25,7 @@ class CreateAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.auth.register');
+        return view('admin.category.create');
     }
 
     /**
@@ -46,15 +33,11 @@ class CreateAdminController extends Controller
      */
     public function store(Request $request)
     {
-         User::create([
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'status' => $request['status'],
-            'pass_admin' => $request['password'],
-            'password' => Hash::make($request['password']),
+        Category::create([
+            'categories_name' =>  $request['category'], //mangesId
         ]);
-         return redirect('admin')->with('message', "สร้าง Admin สำเร็จ" );
 
+        return redirect('category')->with('message', "เพิ่มสำเร็จ");
     }
 
     /**
@@ -70,7 +53,10 @@ class CreateAdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('categories')
+        ->where('id',$id)
+        ->get();
+        return view('admin.category.edit' ,['data'=> $data]);
     }
 
     /**
@@ -78,7 +64,14 @@ class CreateAdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        DB::table('categories')->where('id',$id)
+        ->update([
+          'categories_name' => $request['category']
+        ]);
+
+
+        return redirect('category')->with('message', "เเก้ไข สำเร็จ");
     }
 
     /**
@@ -86,9 +79,9 @@ class CreateAdminController extends Controller
      */
     public function destroy(string $id)
     {
-        $flight = User::find($id);
+        $member = Category::find($id);
+        $member->delete();
 
-        $flight->delete();
-        return redirect('admin')->with('messageDelete', "ลบสำเร็จ" );
+        return redirect('category')->with('messageDelete', "ลบ สำเร็จ");
     }
 }

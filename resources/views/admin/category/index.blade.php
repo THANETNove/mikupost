@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">รายชื่อมังงะ</h1>
+    <h1 class="h3 mb-4 text-gray-800">หมวดหมู่</h1>
 
 
 
@@ -13,8 +13,9 @@
         <!-- Circle Buttons -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="{{url('/create-manga')}}" class="text-decoration-none">
-                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; อัพโหลด มังงะ
+                <a href="{{url('/create-category')}}" class="text-decoration-none">
+                    <h6 class="m-0 font-weight-bold text-primary"> <i class="fa-solid fa-plus"></i> &nbsp; เพิ่มหมวดหมู่
+                        มังงะ
                     </h6>
                 </a>
 
@@ -37,12 +38,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">ภาพปกมังงะ</th>
-                                <th scope="col">ชื่อเรื่อง</th>
-                                <th scope="col">ยอดดู</th>
-                                <th scope="col">update</th>
-                                <th scope="col">จำนวนตอน</th>
-                                <th scope="col">ตอนทั้งหมด</th>
+                                <th scope="col">หมวดหมู่</th>
+
                                 <th scope="col">Edit</th>
                                 <th scope="col">delete</th>
                             </tr>
@@ -51,34 +48,21 @@
                             @php
                             $i = 1;
                             @endphp
-                            @foreach ($data as $dataMange)
-                            <?php
-                                $imagePath = env('FTP_URL_IMAGES_COVER').$dataMange->cover_photo;
-                                $imageUrl = Storage::disk('ftp')->url($imagePath);
-                             
-                                ?>
+                            @foreach ($data as $dataCategory)
+
                             <tr>
                                 <th scope="row">{{$i++}}</th>
-                                <td><img src="{{ $imageUrl }}" class="image-cover" calt="Manga Cover"></td>
-                                <td>{{ \Illuminate\Support\Str::limit($dataMange->manga_name, $limit = 60, $end = '...') }}
-                                </td>
-                                <td>{{$dataMange->views}} </td>
-                                <td> <?php echo \Carbon\Carbon::parse($dataMange->updated_at)->format('d/m/Y'); ?></td>
-                                <td>{{$dataMange->maxEpisodeId}}</td>
-                                <td> <a href="{{ url('view-mange', $dataMange->id) }}"
-                                        class="view-mange text-decoration-none" data-toggle="tooltip"
-                                        data-original-title="Edit user" class="text-decoration-none">
-                                        view
-                                    </a></td>
+                                <td>{{$dataCategory->categories_name}}</td>
+
                                 <td>
-                                    <a href="{{ url('edit-mange', $dataMange->id) }}"
+                                    <a href="{{ url('edit-category', $dataCategory->id) }}"
                                         class="view-mange text-decoration-none" data-toggle="tooltip"
                                         data-original-title="Edit user" class="text-decoration-none">
                                         Edit
                                     </a>
                                 </td>
-                                <td> <a href="{{ route('delete-mange', $dataMange->id) }}"
-                                        onClick="javascript:return confirm('คุณต้องการลบ  {{ $dataMange->id}}  ข้อมูลใช่หรือไม่ ! ');"
+                                <td> <a href="{{ route('delete-category', $dataCategory->id) }}"
+                                        onClick="javascript:return confirm('คุณต้องการลบ  {{$dataCategory->categories_name}} ข้อมูลใช่หรือไม่ ! ');"
                                         class="view-mange text-red  text-decoration-none" data-toggle="tooltip"
                                         data-original-title="Edit episode">
                                         delete
@@ -90,8 +74,8 @@
                 </div>
             </div>
             <div style="margin-left: 1%">
-
-                {!! $data->links() !!}
+                <!-- 
+                {!! $data->links() !!} -->
 
             </div>
         </div>

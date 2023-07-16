@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MangaAdminController;
 use App\Http\Controllers\CreateAdminController;
 use App\Http\Controllers\EpisodesMangaController;
+use App\Http\Controllers\CategoryController;
 
 
 
@@ -57,4 +58,10 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('edit-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'edit'])->name('edit-episode');
     Route::put('update-episodes/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'update'])->name('update-episodes');
     Route::get('delete-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'destroy'])->name('delete-episode');
+    Route::get('create-category', [CategoryController::class, 'create'])->name('create-category');
+    Route::get('category', [CategoryController::class, 'index'])->name('category');
+    Route::post('add-category', [CategoryController::class, 'store'])->name('add-category');
+    Route::get('edit-category/{id}', [CategoryController::class, 'edit'])->name('edit-category');
+    Route::put('update-category/{id}', [CategoryController::class, 'update'])->name('update-category');
+    Route::get('delete-category/{id}', [CategoryController::class, 'destroy'])->name('delete-category');
  });

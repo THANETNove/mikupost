@@ -23,6 +23,9 @@
                 @if (session('message'))
                 <p class="text-primary">{{ session('message') }}</p>
                 @endif
+                @if (session('messageDelete'))
+                <p class="text-red">{{ session('messageDelete') }}</p>
+                @endif
                 <p class="message-all" id="copy-message"></p>
             </div>
             <div class="card-body">
