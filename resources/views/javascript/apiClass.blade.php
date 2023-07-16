@@ -107,7 +107,7 @@ function getRandomData(idsAndClasses, randomId) {
                         container.appendChild(row);
 
                         var link = document.createElement("a");
-                        link.href = "{{ url('manga-cover-show/120') }}";
+                        link.href = "{{ url('manga-cover-show') }}/" + item.id;
                         row.appendChild(link);
 
                         var div = document.createElement("div");
@@ -156,7 +156,7 @@ function getRandomData(idsAndClasses, randomId) {
                         container.appendChild(row);
 
                         var link = document.createElement("a");
-                        link.href = "{{ url('manga-cover-show/120') }}";
+                        link.href = "{{ url('manga-cover-show') }}/" + item.id;
                         row.appendChild(link);
 
                         var div = document.createElement("div");
