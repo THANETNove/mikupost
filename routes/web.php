@@ -9,6 +9,7 @@ use App\Http\Controllers\MangaAdminController;
 use App\Http\Controllers\CreateAdminController;
 use App\Http\Controllers\EpisodesMangaController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GetMangaAllController;
 
 
 
@@ -24,7 +25,9 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = DB::table('categories')
+    ->get();
+    return view('welcome' ,['data' => $data]);
 });
 
 Auth::routes();
@@ -32,6 +35,7 @@ Auth::routes();
 //  หน้า อ่าน Manga 
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/get-manga-all/{id}', [GetMangaAllController::class, 'getMangaAll']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
 Route::get('/manga-chapter/{id}', [MangaCoverController::class, 'showMangaChapter']);
