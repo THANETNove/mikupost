@@ -11871,6 +11871,7 @@ a.text-dark:hover {
     margin-top: 10px;
     border-radius: 3px;
     width: 100%;
+    cursor: pointer;
     color: var(--white);
     height: 40px;
     background-color: #007bff;

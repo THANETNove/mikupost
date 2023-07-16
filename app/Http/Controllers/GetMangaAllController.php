@@ -20,4 +20,13 @@ class GetMangaAllController extends Controller
         return response()->json($data);
 
     }
+    
+    public function getMangaRandom(string $id)
+    {
+        $data = DB::table('mangas')
+        ->inRandomOrder()
+        ->paginate(5);
+        return response()->json($data);
+
+    }
 }
