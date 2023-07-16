@@ -45,6 +45,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::post('create-admin', [CreateAdminController::class, 'store']);
     Route::get('delete-admin/{id}', [CreateAdminController::class, 'destroy']);
     Route::get('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
+    Route::post('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
     Route::get('create-manga', [MangaAdminController::class, 'create']);
     Route::post('add-manga', [MangaAdminController::class, 'store'])->name('add-manga');
     Route::get('view-mange/{id}', [MangaAdminController::class, 'show'])->name('view-mange');

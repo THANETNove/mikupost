@@ -36,20 +36,31 @@ class MangaAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+      
         $data = DB::table('mangas')
         ->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
-        ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
-        ->groupBy('mangas.id')
-        ->orderBy('mangas.id', 'DESC')
-        ->paginate(100);
-
+        ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'));
+        
         
         if(Auth::user()->status == 0) {
             return redirect('home');
         }else {
+
+            if ($request->search) {
+                $data = $data->where('mangas.manga_name', 'like', "$request->search%")
+                            ->groupBy('mangas.id')
+                            ->orderBy('mangas.id', 'DESC')
+                            ->paginate(100);
+            }else{
+                $data = $data->groupBy('mangas.id')
+                ->orderBy('mangas.id', 'DESC')
+                ->paginate(100);
+            }
+
             return view('admin.mange.homeAdmin',['data' => $data]);
+         
         }
        
     }
