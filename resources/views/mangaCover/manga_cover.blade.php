@@ -90,21 +90,22 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="manga-category-cover">
-                            Adventure
-                        </div>
-                        <div class="manga-category-cover">
-                            Gender Blender
-                        </div>
-                        <div class="manga-category-cover">
-                            Comedy
-                        </div>
-                        <div class="manga-category-cover">
-                            Second Life
-                        </div>
-                        <div class="manga-category-cover">
-                            One Shot
-                        </div>
+                        <?php
+                  $data = DB::table('categories')
+                  ->orderBy('categories_name','ASC')
+                  ->get();
+                  ?>
+                        @if(isset($data))
+                        @foreach ($data as $data_cat)
+                        <a href="{{url('search-categories',$data_cat->id)}}" class="nav-link">
+                            <div class="manga-category-cover">
+                                {{$data_cat->categories_name}}
+                            </div>
+                        </a>
+
+                        @endforeach
+                        @endif
+
                     </div>
 
                     <div class="show-cover-tables">

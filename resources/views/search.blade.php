@@ -43,7 +43,7 @@
                             <div class=" row container-manga-body">
                                 @if(isset($data))
                                 @foreach ($data as $dataMange)
-                                <a href="https://th-projet.com/mikupost/public/manga-cover-show/120">
+                                <a href="{{ url('manga-cover-show',$dataMange->id) }}">
                                     <div class="keyClass-service service-body-cover">
                                         <div class="cover-image-page">
                                             <?php
