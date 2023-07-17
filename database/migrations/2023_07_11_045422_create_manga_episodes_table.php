@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('manga_episodes', function (Blueprint $table) {
             $table->id();
             $table->string('mangesId')->nullable();
-            $table->string('id_image')->nullable();
+            $table->integer('id_image')->nullable();
             $table->string('episodeId')->nullable();
             $table->string('episode_name')->nullable();
             $table->string('episode_name_image')->nullable();

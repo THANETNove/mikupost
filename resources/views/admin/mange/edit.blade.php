@@ -90,7 +90,7 @@
                                                     <input id="artist" type="text"
                                                         class="form-control form-control-user @error('artist') is-invalid @enderror"
                                                         name="artist" value="{{ $data[0]->artist }}"
-                                                        autocomplete="artist" placeholder="ผู้เขียน" autofocus>
+                                                        autocomplete="artist" placeholder="ศิลปิน" autofocus>
 
                                                     @error('artist')
                                                     <span class="invalid-feedback" role="alert">
