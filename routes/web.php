@@ -10,6 +10,7 @@ use App\Http\Controllers\CreateAdminController;
 use App\Http\Controllers\EpisodesMangaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GetMangaAllController;
+use App\Http\Controllers\CommentMangasController;
 
 
 
@@ -41,6 +42,9 @@ Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
 Route::get('/manga-chapter/{id}/{episodeId}', [MangaCoverController::class, 'showMangaChapter']);
 Route::get('/episodes-all/{id}', [MangaCoverController::class, 'episodesAll']);
+Route::post('/add-comment', [CommentMangasController::class, 'store'])->name('add-comment');
+Route::post('/add-comment-episode', [CommentMangasController::class, 'storeEpisode'])->name('add-comment-episode');
+Route::post('/add-image-profile', [HomeController::class, 'store'])->name('add-image-profile');
 
 
 

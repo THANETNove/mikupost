@@ -105,82 +105,68 @@
     <div class="box-contributor-ch " id="scroll-bottom-ch">
         <div class="mt-5 box-contributor-rules">
             <p class="comment-rules">Comment</p>
-            <div class="mb-3">
-                <textarea class="form-control form-control-com" id="exampleFormControlTextarea1"
-                    placeholder="Your Comment  here..." rows="4"></textarea>
-            </div>
-            @guest
-            <a href="{{ route('login') }}">
-                <div class="sing-comment">
-                    Sing in
+            <form class="user" id="myForm" method="POST" action="{{ route('add-comment-episode') }}"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3" style="display: none;">
+                    <input id="author" type="text"
+                        class="form-control form-control-user @error('id_comment') is-invalid @enderror"
+                        name="id_comment_manges" value="{{ $dataViews[0]->mangesId}}" autocomplete="author"
+                        placeholder="id_comment" autofocus>
                 </div>
-            </a>
-            @else
-            <a href="">
-                <div class="sing-comment">
-                    Comment
+                <div class="mb-3" style="display: none;">
+                    <input id="author" type="text"
+                        class="form-control form-control-user @error('id_comment') is-invalid @enderror"
+                        name="id_comment_episode" value="{{ $dataViews[0]->episodeId}}" autocomplete="author"
+                        placeholder="id_comment" autofocus>
                 </div>
-            </a>
-            @endguest
+                <div class="mb-3">
+                    <textarea class="form-control form-control-com" id="exampleFormControlTextarea1"
+                        placeholder="Your Comment  here..." rows="4" name="comment" required></textarea>
+                </div>
+                @guest
+                <a href="{{ route('login') }}">
+                    <div class="sing-comment">
+                        Sing in
+                    </div>
+                </a>
+                @else
+                <a href="">
+                    <button type="submit" class="sing-comment">
+                        {{ __(' Comment') }}
+                    </button>
+                </a>
+                @endguest
+
+            </form>
 
             <div class="ml-3 mt-4 ">
+                @foreach ($commentData as $commentAll)
                 <div>
                     <div class="row">
                         <div class="service-image-icon">
-                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment" alt="">
+
+                            <?php 
+                                            if ($commentAll->image_user) {
+                                                # code... FTP_URL_IMAGES_PROFILE
+                                                $imagePath = env('FTP_URL_IMAGES_PROFILE').$commentAll->image_user;
+                                                $image = Storage::disk('ftp')->url($imagePath);
+                                            }else {
+                                                $image = URL::asset('assets/icon/avatar_81874.jpeg');
+                                            }
+                                            ?>
+                            <img src="{{$image}}" class="icon-comment" alt="">
                         </div>
-                        <p class="comment-user-name">P-][ne Hua Fu</p>
+                        <p class="comment-user-name">{{$commentAll->username}}</p>
                     </div>
                     <div class="comments-all">
-                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
+                        <p class="comment-time"> {{$commentAll->created_at}}</p>
                         <p class="comment-user ">
-                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                        </p>
-                        <p class="reply-comment">Reply</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="service-image-icon">
-                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment" alt="">
-                        </div>
-                        <p class="comment-user-name">P-][ne Hua Fu</p>
-                    </div>
-                    <div class="comments-all">
-                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                        <p class="comment-user ">
-                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
+                            {{$commentAll->comment}}
                         </p>
                     </div>
                 </div>
-                <div>
-                    <div class="row">
-                        <div class="service-image-icon">
-                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment" alt="">
-                        </div>
-                        <p class="comment-user-name">P-][ne Hua Fu</p>
-                    </div>
-                    <div class="comments-all">
-                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                        <p class="comment-user ">
-                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                        </p>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="service-image-icon">
-                            <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="icon-comment" alt="">
-                        </div>
-                        <p class="comment-user-name">P-][ne Hua Fu</p>
-                    </div>
-                    <div class="comments-all">
-                        <p class="comment-time">6/30/2023 at 10:21 AM</p>
-                        <p class="comment-user ">
-                            เหมาะจะทำเป็นเวอร์ชั่นอนิเมะมาก เป็นแนวสโลไลฟ์แบบแปลกใหม่
-                        </p>
-                    </div>
-                </div>
+                @endforeach
 
 
             </div>

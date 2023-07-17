@@ -17,7 +17,7 @@ class MangaCoverController extends Controller
 
         $dataViews = DB::table('mangas')
         ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
-        ->where('manga_episodes.mangesId', 4)
+        ->where('manga_episodes.mangesId',  $id)
         ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.author','mangas.artist','mangas.status',
         'mangas.views as mangas_views','mangas.website','mangas.updated_at as mangas_updated_at')
         ->groupBy('manga_episodes.episodeId')
@@ -25,7 +25,17 @@ class MangaCoverController extends Controller
         ->paginate(100);
 
         
-        return view('mangaCover.manga_cover',['dataViews'=> $dataViews]);
+        $commentData = DB::table('comment_mangas')
+        ->leftJoin('users', 'comment_mangas.id_user', '=', 'users.id')
+        ->leftJoin('image_profiles', 'users.id', '=', 'image_profiles.id_user_image')
+        ->select('comment_mangas.*', 'users.username','image_profiles.image_user')
+        ->where('id_comment', $id)
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+          
+        
+        return view('mangaCover.manga_cover',['dataViews'=> $dataViews,'commentData'=>$commentData]);
     }
 
     public function showMangaChapter(string $id,$episodeId)
@@ -57,10 +67,22 @@ class MangaCoverController extends Controller
            ->groupBy('mangas.id')
            ->inRandomOrder()
            ->paginate(10);
+
+// คแมเม้น
+           $commentData = DB::table('comment_mangas_episodes')
+           ->leftJoin('users', 'comment_mangas_episodes.id_user', '=', 'users.id')
+           ->leftJoin('image_profiles', 'users.id', '=', 'image_profiles.id_user_image')
+           ->select('comment_mangas_episodes.*', 'users.username','image_profiles.image_user')
+           ->where('id_comment_manges', $id)
+           ->where('id_comment_episode', $episodeId)
+               ->orderBy('id', 'DESC')
+               ->paginate(10);
           
-        return view('mangaCover.manga_chapter',['dataViews' =>$dataViews,'dataRan'=>$dataRan,'maxEpisodeId'=> $maxEpisodeId]);
+        return view('mangaCover.manga_chapter',['dataViews' =>$dataViews,'dataRan'=>$dataRan,'maxEpisodeId'=> $maxEpisodeId ,'commentData'=>$commentData ]);
     }
 
+
+    
     public function episodesAll(string $id)  {
 
         $episodeIds = DB::table('mangas')
