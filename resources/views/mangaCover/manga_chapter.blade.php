@@ -2,9 +2,12 @@
 @section('content')
 <div class="box-top2" id="scroll-top-ch">
     <div class="ch-image">
-        <p class="ch-image-name">คู่รักวัยดึกหวนคืนสู่วัยหวาน</p>
-        <p class="ch-image-time">Ch.67 - ขาวโบ๊ะ!</p>
-        <p class="ch-image-my">By Marty SUN</p>
+        <p class="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 40)}}</p>
+
+        <p class="ch-image-time">Ch. {{$dataViews[0]->episodeId}} -
+            {{ $dataViews[0]->episode_name ? (substr($dataViews[0]->episode_name, 0, 30)) : (substr($dataViews[0]->manga_name, 0, 30)) }}
+        </p>
+        <p class="ch-image-my">{{$dataViews[0]->author}}</p>
     </div>
     <div class="image-chapter">
 

@@ -35,7 +35,7 @@ class MangaCoverController extends Controller
         ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
         ->where('manga_episodes.mangesId',  $id)
         ->where('manga_episodes.episodeId', $episodeId)
-        ->select('manga_episodes.*','mangas.manga_name')
+        ->select('manga_episodes.*','mangas.manga_name','mangas.author')
         ->orderBy('manga_episodes.id_image', 'ASC')
         ->get();
 
