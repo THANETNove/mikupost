@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('manga_name')->nullable();
             $table->string('manga_details')->nullable();
             $table->string('author')->nullable();
+            $table->string('artist')->nullable();
             $table->string('status')->nullable();
             $table->string('categories_id')->nullable();
             $table->string('views')->nullable();

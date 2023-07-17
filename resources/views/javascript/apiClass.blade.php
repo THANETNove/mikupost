@@ -349,7 +349,7 @@ function getDataAll(idsAndClasses, idExpand) {
                             60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
 
                         var link = document.createElement("a");
-                        link.href = "{{ url('manga-cover-show') }}/" + item.id + null;
+                        link.href = "{{ url('manga-cover-show') }}/" + item.id;
                         container.appendChild(link);
 
                         var div = document.createElement("div");

@@ -108,6 +108,7 @@ class MangaAdminController extends Controller
             'manga_name' => $request['manga_name'],
             'manga_details' => $request['manga_details'],
             'author' => $request['author'],
+            'artist' => $request['artist'],
             'status' => $request['status'],
             'categories_id' => $request['categories_id'],
             'views' => 0,
@@ -258,6 +259,7 @@ class MangaAdminController extends Controller
                 'manga_name' => $request['manga_name'],
                 'manga_details' => $request['manga_details'],
                 'author' => $request['author'],
+                'artist' => $request['artist'],
                 'status' => $request['status'],
                 'categories_id' => $request['categories_id'],
                 'website' => $request['website']

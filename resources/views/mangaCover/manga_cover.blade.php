@@ -6,29 +6,33 @@
             <div class="row  mt-5">
                 <div class="col-md-3 col-lg-2">
                     <div class="show-cover-page">
-
-                        <img src=" {{URL::asset('assets/icon/12928_cover.jpeg')}}" class="show-cover-image" alt="">
+                        <?php
+                                $imagePath = env('FTP_URL_IMAGES_COVER').$dataViews[0]->cover_photo;
+                                $imageUrl = Storage::disk('ftp')->url($imagePath);
+                             
+                                ?>
+                        <img src=" {{$imageUrl}}" class="show-cover-image" alt="">
                     </div>
                 </div>
                 <div class="col-md-6  col-lg-6 mb-4">
                     <div class="show-cover-tables">
                         <p class="title-detail">
-                            【หง่ำหง่ำค่ะ】สกิล『ยิ่งกินมอนสเตอร์เท่าไหร่ก็ยิ่งแข็งแกร่งขึ้น』ของคุณหนูผู้ถูกขับไล่เป็นสกิลที่แข็งแกร่งที่สุดในประวัติศาสตร์เลเวลอัพ1ทุกการกิน1ครั้งกลายเป็นมนุษย์ที่แข็งแกร่งที่สุดใน3วันไปซะแล้วค่ะ~!
-                            【パクパクですわ】追放されたお嬢様の『モンスターを食べるほど強くなる』スキルは、１食で１レベルアップする前代未聞の最強スキルでした。３日で人類最強になりましたわ～！</p>
-
+                            {{ $dataViews[0]->manga_name}}
                         <div class="row">
                             <hr>
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Author</p>
-                                    <p class="caption-cover-p">音速炒飯</p>
+                                    <p class="caption-cover-p">{{$dataViews[0]->author}}</p>
                                 </div>
                             </div>
 
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">First Release</p>
-                                    <p class="caption-cover-p">22-5-2023</p>
+                                    <p class="caption-cover-p">
+                                        <?php echo \Carbon\Carbon::parse($dataViews[0]->created_at)->format('d-m-Y'); ?>
+                                    </p>
                                 </div>
                             </div>
 
@@ -38,13 +42,15 @@
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Artist</p>
-                                    <p class="caption-cover-p">島知宏,有都あらゆる</p>
+                                    <p class="caption-cover-p">{{$dataViews[0]->artist}}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Latest Update</p>
-                                    <p class="caption-cover-p">22-5-2023</p>
+                                    <p class="caption-cover-p">
+                                        <?php echo \Carbon\Carbon::parse($dataViews[0]->updated_at)->format('d-m-Y'); ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -53,13 +59,16 @@
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Status </p>
-                                    <p class="caption-cover-p">On Going</p>
+                                    <p class="caption-cover-p">{{$dataViews[0]->status}}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Views</p>
-                                    <p class="caption-cover-p">84,306</p>
+                                    <p class="caption-cover-p">
+                                        <?php $formattedAmount = number_format($dataViews[0]->mangas_views,0,'', ','); ?>
+                                        {{ $formattedAmount}}
+                                    </p>
                                 </div>
                             </div>
 
@@ -69,18 +78,15 @@
                             <div class="col-12">
                                 <div class="row detail-box">
                                     <p class="title-cover-p">Website</p>
-                                    <a class="caption-cover-a"
-                                        href="https://sp.seiga.nicovideo.jp/comic/63420">https://sp.seiga.nicovideo.jp/comic/63420</a>
+                                    <a class="caption-cover-a" target="_blank"
+                                        href="{{$dataViews[0]->website}}">{{$dataViews[0]->website}}</a>
+
                                 </div>
                             </div>
                         </div>
 
                         <div class="description-box">
-                            <p>ชาร์ลอตต์คุณหนูตระกูลมาร์ควิสได้รับ“กิฟต์”ที่เรียกว่า[มอนสเตอร์อีตเตอร์]
-                                สิ่งนี้ทำให้สามารถกินมอนสเตอร์ได้อย่างเอร็ดอร่อยและยิ่งกินเท่าไหร่ก็ยิ่งแข็งแกร่งขึ้น
-                                ชาร์ลอตต์ที่ถูกขับไล่ออกจากบ้านเพราะถูกบอกว่า[การกินมอนสเตอร์มันต่ำทราม!]ได้ออกผจญภัยโดยไม่ได้ตั้งใจแต่ทว่าเมื่อชาร์ลอตต์รับรู้ว่ามอนสเตอร์ที่ล้มไปสามารถเปลี่ยนเป็นอาหารได้นั้น[อร่อย!
-                                หง่ำหง่ำค่ะ!]กินหมดในไม่กี่วิและเลเวลอัพอย่างที่เห็น!
-                                ในระหว่างนั้นพอรู้ตัวอีกทีก็กลายเป็นนักผจญภัยที่แข็งแกร่งที่สุดไปซะแล้ว……!?</p>
+                            <p>{{$dataViews[0]->manga_details}}</p>
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -113,62 +119,20 @@
                             </div>
                         </div>
                         <div class="row chapter-change mt-4">
+                            @foreach ($dataViews as $data)
                             <a href="{{url('manga-chapter/122')}}">
                                 <div class="change-box">
-                                    <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
-                                        ได้รับโกลด์การ์ดค่ะ!③
-                                    </p>
-                                    <div class="row chapter-p-by">
-                                        <p><span class="chapter-by">By</span> ขอเราแปลนะ</p>
-                                        <p><span class="chapter-by">on</span> 2 days ago</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="change-box">
-                                    <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
-                                        ได้รับโกลด์การ์ดค่ะ!③
-                                    </p>
-                                    <div class="row chapter-p-by">
-                                        <p><span class="chapter-by">By</span> ขอเราแปลนะ</p>
-                                        <p><span class="chapter-by">on</span> 2 days ago</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="change-box">
-                                    <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
-                                        ได้รับโกลด์การ์ดค่ะ!③
-                                    </p>
-                                    <div class="row chapter-p-by">
-                                        <p><span class="chapter-by">By</span> ขอเราแปลนะ</p>
-                                        <p><span class="chapter-by">on</span> 2 days ago</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="change-box">
-                                    <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
-                                        ได้รับโกลด์การ์ดค่ะ!③
-                                    </p>
-                                    <div class="row chapter-p-by">
-                                        <p><span class="chapter-by">By</span> ขอเราแปลนะ</p>
-                                        <p><span class="chapter-by">on</span> 2 days ago</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="change-box">
-                                    <p class="chapter-span"><span class="chapter-p">Ch.4.3 </span>-
-                                        ได้รับโกลด์การ์ดค่ะ!③
-                                    </p>
-                                    <div class="row chapter-p-by">
-                                        <p><span class="chapter-by">By</span> ขอเราแปลนะ</p>
-                                        <p><span class="chapter-by">on</span> 2 days ago</p>
-                                    </div>
-                                </div>
-                            </a>
+                                    <p class="chapter-span"><span class="chapter-p">Ch.{{$data->episodeId}} </span>-
 
+                                        {{ $data->episode_name ? (substr($data->episode_name, 0, 30)) : (substr($data->manga_name, 0, 30)) }}
+                                    </p>
+                                    <div class="row chapter-p-by">
+                                        <p><span class="chapter-by">By</span> {{$data->author}}</p>
+                                        <p><span class="chapter-by">on</span> 2 days ago</p>
+                                    </div>
+                                </div>
+                            </a>
+                            @endforeach
 
 
                         </div>

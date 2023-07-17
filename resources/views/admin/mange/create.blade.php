@@ -84,6 +84,18 @@
                                                     </span>
                                                     @enderror
                                                 </div>
+                                                <div class="form-group">
+                                                    <input id="artist" type="text"
+                                                        class="form-control form-control-user @error('artist') is-invalid @enderror"
+                                                        name="artist" value="{{ old('artist') }}" autocomplete="artist"
+                                                        placeholder="ผู้เขียน" autofocus>
+
+                                                    @error('artist')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
 
                                                 <div class="form-group">
                                                     <input id="status" type="text"

@@ -77,10 +77,22 @@
                                                 <div class="form-group">
                                                     <input id="author" type="text"
                                                         class="form-control form-control-user @error('author') is-invalid @enderror"
-                                                        name="author" value="{{ $data[0]->manga_details }}"
+                                                        name="author" value="{{ $data[0]->author }}"
                                                         autocomplete="author" placeholder="ผู้เขียน" autofocus>
 
                                                     @error('author')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="artist" type="text"
+                                                        class="form-control form-control-user @error('artist') is-invalid @enderror"
+                                                        name="artist" value="{{ $data[0]->artist }}"
+                                                        autocomplete="artist" placeholder="ผู้เขียน" autofocus>
+
+                                                    @error('artist')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
