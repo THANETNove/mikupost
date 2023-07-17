@@ -7,6 +7,9 @@
         <p class="ch-image-time">Ch. {{$dataViews[0]->episodeId}} -
             {{ $dataViews[0]->episode_name ? (substr($dataViews[0]->episode_name, 0, 30)) : (substr($dataViews[0]->manga_name, 0, 30)) }}
         </p>
+        <p id="id-ch" style="display: none;">{{$dataViews[0]->episodeId}}</p>
+        <p id="id-man" style="display: none;">{{$dataViews[0]->mangesId}}</p>
+        <p id="id-maxEpisodeId" style="display: none;">{{$maxEpisodeId}}</p>
         <p class="ch-image-my">{{$dataViews[0]->author}}</p>
     </div>
     <div class="image-chapter">
@@ -246,6 +249,46 @@ function changeOrigin(newValue) {
 // เลือกตอนมังงะ
 
 function changeNextBackChapter(newValue) {
+
+}
+
+/* function changeBackChapter(params) {
+    console.log("444");
+    let backChapterMan = document.getElementById("id-man").textContent;
+    let backChapterCh = document.getElementById("id-ch").textContent;
+
+    console.log("backChapter", backChapterCh, backChapterMan);
+} */
+
+function changeBackChapter(params) {
+    console.log("aa");
+    let backChapterMan = document.getElementById("id-man").textContent;
+    let backChapter = document.getElementById("id-ch").textContent;
+    let backChapterCh = backChapter - 1;
+
+    console.log(backChapterMan, backChapterCh);
+
+    if (backChapterCh > 0) {
+        var newURL = "{{url('manga-chapter')}}" + '/' + encodeURIComponent(backChapterMan) + '/' +
+            encodeURIComponent(backChapterCh);
+        window.location.href = newURL;
+    }
+
+
+}
+
+
+function changeNextChapter(params) {
+    let backChapterMan = document.getElementById("id-man").textContent;
+    let backChapter = document.getElementById("id-ch").textContent;
+    let maxEpisodeId = document.getElementById("id-maxEpisodeId").textContent;
+    let backChapterCh = parseInt(backChapter) + 1;
+    if (backChapterCh <= maxEpisodeId) {
+        var newURL = "{{url('manga-chapter')}}" + '/' + encodeURIComponent(backChapterMan) + '/' +
+            encodeURIComponent(backChapterCh);
+        window.location.href = newURL;
+    }
+
 
 }
 </script>

@@ -39,12 +39,17 @@ class MangaCoverController extends Controller
         ->orderBy('manga_episodes.id_image', 'ASC')
         ->get();
 
-   /*      $dataRan = DB::table('mangas')
-        ->inRandomOrder()
-        ->paginate(10);
-       */
-
-     
+        $maxEpisodeId = DB::table('mangas')
+        ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+        ->where('manga_episodes.mangesId', $id)
+        ->groupBy('manga_episodes.episodeId')
+        ->orderBy('manga_episodes.episodeId', 'desc')
+        ->first()
+        ->episodeId;
+    /* 
+    echo $maxEpisodeId;
+    
+     dd($maxEpisodeId); */
 
        // ต่อเพิ่มเงื่อนไขคิวรีตามที่คุณต้องการ
        $dataRan =    DB::table('mangas')->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
@@ -53,7 +58,7 @@ class MangaCoverController extends Controller
            ->inRandomOrder()
            ->paginate(10);
           
-        return view('mangaCover.manga_chapter',['dataViews' =>$dataViews,'dataRan'=>$dataRan]);
+        return view('mangaCover.manga_chapter',['dataViews' =>$dataViews,'dataRan'=>$dataRan,'maxEpisodeId'=> $maxEpisodeId]);
     }
 
    

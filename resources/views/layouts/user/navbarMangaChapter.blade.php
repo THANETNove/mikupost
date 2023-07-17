@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="row ml-5 on-change-chapter">
-                    <div class="next-back-chapter" onclick="changeNextBackChapter(1)">
+                    <div class="next-back-chapter" onclick="changeBackChapter(1)">
                         <i class="fa-solid fa-caret-left"></i>
                     </div>
                     <select class="form-control col-6 col-md-8" aria-label="Default select example"
@@ -39,7 +39,7 @@
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <div class="next-back-chapter" onclick="changeNextBackChapter(1)">
+                    <div class="next-back-chapter" onclick="changeNextChapter(1)">
                         <i class="fa-solid fa-caret-right"></i>
                     </div>
                 </div>
