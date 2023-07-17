@@ -2,7 +2,7 @@
 @section('content')
 <div class="box-top2" id="scroll-top-ch">
     <div class="ch-image">
-        <p class="ch-image-name" id="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 40)}}</p>
+        <p class="ch-image-name" id="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 80)}}</p>
 
         <p class="ch-image-time">Ch. {{$dataViews[0]->episodeId}} -
             {{ $dataViews[0]->episode_name ? (substr($dataViews[0]->episode_name, 0, 30)) : (substr($dataViews[0]->manga_name, 0, 30)) }}
@@ -10,6 +10,9 @@
         <p id="id-ch" style="display: none;">{{$dataViews[0]->episodeId}}</p>
         <p id="id-man" style="display: none;">{{$dataViews[0]->mangesId}}</p>
         <p id="id-maxEpisodeId" style="display: none;">{{$maxEpisodeId}}</p>
+        <p id="id-name-man" style="display: none;">{{substr($dataViews[0]->manga_name, 0, 120)}}</p>
+
+
         <p class="ch-image-my">{{$dataViews[0]->author}}</p>
     </div>
     <div class="image-chapter">
@@ -295,6 +298,9 @@ function changeNextChapter(params) {
 document.addEventListener("DOMContentLoaded", function() {
     let backChapterMan = document.getElementById("id-man").textContent;
     let backChapter = document.getElementById("id-ch").textContent;
+    let nameMan = document.getElementById("id-name-man").textContent;
+    document.getElementById('name-manga-chapter').innerHTML = nameMan;
+    console.log("nameMan", nameMan);
     var select = `<option value="0" disabled> Ch. All</option>`;
 
     $.ajax({
@@ -317,6 +323,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error(error);
         }
     });
+
+
 
 
 

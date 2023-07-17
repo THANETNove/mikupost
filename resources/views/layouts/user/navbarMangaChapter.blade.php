@@ -5,7 +5,7 @@
                 <a href="{{url('/') }}" class="logo m-0 float-left">Landing<span class="text-primary">.</span></a>
 
                 <a href="#home-section" id="name-manga-chapter" class="name-manga-chapter">
-                    【หง่ำหง่ำค่ะ】สกิล『ยิ่งกินมอนสเตอร์เท่าไหร่ก็ยิ่ง』</a>
+                </a>
             </div>
             <div class="row col-lg-7">
                 <div class="settings-background mb-4" onclick="changeSettingsBackground(1)">
@@ -28,7 +28,7 @@
                         <p class="origin-p">100%</p>
                     </div>
                 </div>
-                <div class="row ml-5 on-change-chapter" style="width: 40%">
+                <div class="row ml-5 on-change-chapter  col-md-6 col-lg-6">
                     <div class="next-back-chapter" onclick="changeBackChapter(1)">
                         <i class="fa-solid fa-caret-left"></i>
                     </div>
