@@ -61,5 +61,23 @@ class MangaCoverController extends Controller
         return view('mangaCover.manga_chapter',['dataViews' =>$dataViews,'dataRan'=>$dataRan,'maxEpisodeId'=> $maxEpisodeId]);
     }
 
+    public function episodesAll(string $id)  {
+
+        $episodeIds = DB::table('mangas')
+            ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+            ->where('manga_episodes.mangesId', $id)
+            ->groupBy('manga_episodes.episodeId')
+            ->orderBy('manga_episodes.episodeId', 'asc')
+            ->pluck('manga_episodes.episodeId')
+            ->toArray();
+
+
+            return response()->json($episodeIds);
+
+    
+
+        
+    }
+
    
 }

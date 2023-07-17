@@ -248,25 +248,22 @@ function changeOrigin(newValue) {
 
 // เลือกตอนมังงะ
 
-function changeNextBackChapter(newValue) {
+function changeNextBackChapter() {
+    var selectElement = document.getElementById('select-example');
+    var selectedValue = selectElement.value;
+
+    let backChapterMan = document.getElementById("id-man").textContent;
+    var newURL = "{{url('manga-chapter')}}" + '/' + encodeURIComponent(backChapterMan) + '/' +
+        encodeURIComponent(selectedValue);
+    window.location.href = newURL;
 
 }
-
-/* function changeBackChapter(params) {
-    console.log("444");
-    let backChapterMan = document.getElementById("id-man").textContent;
-    let backChapterCh = document.getElementById("id-ch").textContent;
-
-    console.log("backChapter", backChapterCh, backChapterMan);
-} */
+// ย้อนกลับตอนก่อนหน้า
 
 function changeBackChapter(params) {
-    console.log("aa");
     let backChapterMan = document.getElementById("id-man").textContent;
     let backChapter = document.getElementById("id-ch").textContent;
     let backChapterCh = backChapter - 1;
-
-    console.log(backChapterMan, backChapterCh);
 
     if (backChapterCh > 0) {
         var newURL = "{{url('manga-chapter')}}" + '/' + encodeURIComponent(backChapterMan) + '/' +
@@ -277,7 +274,7 @@ function changeBackChapter(params) {
 
 }
 
-
+// ไปตอนหน้า
 function changeNextChapter(params) {
     let backChapterMan = document.getElementById("id-man").textContent;
     let backChapter = document.getElementById("id-ch").textContent;
@@ -290,7 +287,40 @@ function changeNextChapter(params) {
     }
 
 
+
 }
+
+// Select  เเสดงตอนต้องหมด
+
+document.addEventListener("DOMContentLoaded", function() {
+    let backChapterMan = document.getElementById("id-man").textContent;
+    let backChapter = document.getElementById("id-ch").textContent;
+    var select = `<option value="0" disabled> Ch. All</option>`;
+
+    $.ajax({
+        url: '{{ url("episodes-all") }}/' + backChapterMan,
+        type: 'GET',
+        success: function(res) {
+            res.forEach(function(item, index) {
+                if (backChapter === item) {
+                    select += `<option value="${item}" selected>Ch.${item}</option>`;
+                } else {
+                    select += `<option value="${item}">Ch.${item}</option>`;
+                }
+            });
+
+            document.getElementById('select-example').innerHTML = select;
+            document.getElementById('select-example').value =
+                backChapter; // เลือกตัวเลือกที่มีค่าตรงกับ backChapter
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+
+
+
+});
 </script>
 
 @endsection

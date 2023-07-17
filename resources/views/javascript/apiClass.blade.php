@@ -1,7 +1,7 @@
 <script>
 var changeGitBody = document.getElementById("change-git-body");
 changeGitBody.addEventListener("mousedown", function() {
-    changeGitBody.classList.add("active2");
+    changeGitBody.classList.add("active2"); //ch-name //ch-image-name
     changeGitBodyTow.classList.remove("active2");
 });
 
@@ -10,6 +10,7 @@ changeGitBodyTow.addEventListener("mousedown", function() {
     changeGitBodyTow.classList.add("active2");
     changeGitBody.classList.remove("active2");
 });
+
 
 function changeRetVal(newValue) {
     $.ajax({
