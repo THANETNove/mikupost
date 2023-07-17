@@ -2,7 +2,7 @@
 @section('content')
 <div class="box-top2" id="scroll-top-ch">
     <div class="ch-image">
-        <p class="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 40)}}</p>
+        <p class="ch-image-name" id="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 40)}}</p>
 
         <p class="ch-image-time">Ch. {{$dataViews[0]->episodeId}} -
             {{ $dataViews[0]->episode_name ? (substr($dataViews[0]->episode_name, 0, 30)) : (substr($dataViews[0]->manga_name, 0, 30)) }}
@@ -191,13 +191,16 @@ function changeSettingsBackground(newValue) {
     console.log("newValue", newValue);
     const element = document.getElementById('body-dark');
     const classNames = element.classList;
-    console.log("classNames", classNames);
+    const chName = document.getElementById('ch-image-name');
+
 
     if (classNames.value == 'body-dark') {
         element.classList.add("body-white");
+        chName.classList.add("ch-name");
         element.classList.remove("body-dark");
     } else {
         element.classList.add("body-dark");
+        chName.classList.remove("ch-name");
         element.classList.remove("body-white");
     }
 

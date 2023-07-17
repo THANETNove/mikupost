@@ -90,8 +90,8 @@ body {
 .body-white {
     background-color: var(--white) !important;
     height: 100% !important;
-    margin: 0;
-    padding: 0;
+    margin: -50px 0px 0px 0px !important;
+    padding: 10px 0px 0px 0px !important;
     min-height: 110vh;
 }
 
@@ -12362,6 +12362,11 @@ hr {
     font-size: 24px;
     color: var(--white);
 }
+
+.ch-name {
+    color: #000 !important;
+}
+
 
 .ch-image-time {
     margin-top: -10px;
