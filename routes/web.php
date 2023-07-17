@@ -45,6 +45,9 @@ Route::get('/episodes-all/{id}', [MangaCoverController::class, 'episodesAll']);
 Route::post('/add-comment', [CommentMangasController::class, 'store'])->name('add-comment');
 Route::post('/add-comment-episode', [CommentMangasController::class, 'storeEpisode'])->name('add-comment-episode');
 Route::post('/add-image-profile', [HomeController::class, 'store'])->name('add-image-profile');
+Route::get('/search-manges', [HomeController::class, 'searchManges'])->name('search-manges');
+Route::post('/search-manges', [HomeController::class, 'searchManges'])->name('search-manges');
+Route::get('/search-categories/{id}', [HomeController::class, 'searchCategories'])->name('search-categories');
 
 
 
