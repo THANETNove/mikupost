@@ -120,11 +120,11 @@
                         </div>
                         <div class="row chapter-change mt-4">
                             @foreach ($dataViews as $data)
-                            <a href="{{url('manga-chapter/122')}}">
+                            <a href="{{url('manga-chapter',[$data->mangesId, $data->episodeId])}}">
                                 <div class="change-box">
                                     <p class="chapter-span"><span class="chapter-p">Ch.{{$data->episodeId}} </span>-
 
-                                        {{ $data->episode_name ? (substr($data->episode_name, 0, 30)) : (substr($data->manga_name, 0, 30)) }}
+                                        {{ $data->episode_name ? (substr($data->episode_name, 0, 40)) : (substr($data->manga_name, 0, 40)) }}
                                     </p>
                                     <div class="row chapter-p-by">
                                         <p><span class="chapter-by">By</span> {{$data->author}}</p>

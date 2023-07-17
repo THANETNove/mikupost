@@ -39,7 +39,7 @@ Route::get('/get-manga-all/{id}/{numberPc}', [GetMangaAllController::class, 'get
 Route::get('/get-manga-random/{id}', [GetMangaAllController::class, 'getMangaRandom']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
-Route::get('/manga-chapter/{id}', [MangaCoverController::class, 'showMangaChapter']);
+Route::get('/manga-chapter/{id}/{episodeId}', [MangaCoverController::class, 'showMangaChapter']);
 
 
 

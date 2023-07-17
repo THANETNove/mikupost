@@ -20,8 +20,16 @@
                 </div>
             </a>
         </div>
-        <img src=" {{URL::asset('assets/image/1.webp')}}" class="chapter-width image-chapter-width-50" alt="">
-        <img src=" {{URL::asset('assets/image/2.webp')}}" class="chapter-width image-chapter-width-50" alt="">
+        <!--    <img src=" {{URL::asset('assets/image/1.webp')}}" class="chapter-width image-chapter-width-50" alt="">
+        <img src=" {{URL::asset('assets/image/2.webp')}}" class="chapter-width image-chapter-width-50" alt=""> -->
+        @foreach ($dataViews as $data)
+        <?php
+            $imagePath = env('FTP_URL_IMAGES_EPISODE').$data->episode_name_image;
+            $imageUrl = Storage::disk('ftp')->url($imagePath);
+        ?>
+        <img src=" {{$imageUrl}}" class="chapter-width image-chapter-width-50" alt="">
+        @endforeach
+
     </div>
 
 
@@ -37,176 +45,49 @@
                         </div>
                     </div>
                     <div class=" row container-manga-body">
+                        @foreach ($dataRan as $dataRa)
+                        <?php
+                            $imagePath = env('FTP_URL_IMAGES_COVER').$dataRa->cover_photo;
+                            $imageUrl = Storage::disk('ftp')->url($imagePath);
+                        ?>
                         <a href="{{url('manga-cover-show/120')}}">
                             <div class="keyClass-service service-body-cover">
                                 <div class="cover-image-page">
-                                    <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                        class="keyClass-cover cover-page" alt="">
+                                    <img src="{{$imageUrl}}" class="keyClass-cover cover-page" alt="">
                                 </div>
                                 <div class="service-contents">
-                                    <p class="manga-title"> Mechanical Buddy</p>
-                                    <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                    <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                    <p class="translators-name">Update- 15 hours</p>
+                                    <p class="manga-title"> {{substr($dataRa->manga_name, 0, 40)}}</p>
+                                    <p class="manga-ch">Ch.{{$dataRa->maxEpisodeId}} - ตอนที่ {{$dataRa->maxEpisodeId}}
+                                    </p>
+                                    <p class="translators-name"> ผู้แปลที่-
+                                        <!--  {{substr($dataRa->author, 0, 30)}} -->
+                                    </p>
+                                    <?php
+                                        $currentDateTime = new DateTime(); // วันที่และเวลาปัจจุบัน
+
+                                        $targetDateTime = new DateTime($dataRa->updated_at); // วันที่และเวลาเป้าหมาย
+
+                                        $timeDifference = $targetDateTime->diff($currentDateTime); // คำนวณความแตกต่างของเวลา
+                                        $daysPassed = $timeDifference->format('%a'); // จำนวนวันที่ผ่านไป
+                                        $hoursPassed = $timeDifference->format('%h'); // จำนวนชั่วโมงที่ผ่านไป
+                                        ?>
+                                    <p class="translators-name">
+                                        <?php
+                                            if ($daysPassed > 0) {
+                                                echo "Update- " . $daysPassed . " วัน " . $hoursPassed . " ชั่วโมง";
+                                            } else {
+                                                echo "Update- " . $hoursPassed . " ชั่วโมง";
+                                            }
+                                            ?>
+                                    </p>
                                 </div>
                             </div>
                         </a>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
-                        <div class="keyClass-service service-body-cover">
-                            <div class="cover-image-page">
-                                <img src="{{URL::asset('assets/icon/12928_cover.jpeg')}}"
-                                    class="keyClass-cover cover-page" alt="">
-                            </div>
-                            <div class="service-contents">
-                                <p class="manga-title"> Mechanical Buddy</p>
-                                <p class="manga-ch">Ch.17 - ตอนที่ 17</p>
-                                <p class="translators-name"> ผู้แปลที่- วิตสโลวไลฟ์</p>
-                                <p class="translators-name">Update- 15 hours</p>
-                            </div>
-                        </div>
+                        @endforeach
+
+
+
+
                     </div>
                 </div>
             </div>
