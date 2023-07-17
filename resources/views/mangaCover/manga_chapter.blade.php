@@ -235,6 +235,8 @@ function changeOrigin(newValue) {
 }
 
 
+
+var ChapterRes = []
 // เลือกตอนมังงะ
 
 function changeNextBackChapter() {
@@ -250,9 +252,22 @@ function changeNextBackChapter() {
 // ย้อนกลับตอนก่อนหน้า
 
 function changeBackChapter(params) {
+    ChapterRes.sort(function(a, b) {
+        return parseInt(a) - parseInt(b);
+    });
+    console.log("ChapterRes", ChapterRes);
     let backChapterMan = document.getElementById("id-man").textContent;
     let backChapter = document.getElementById("id-ch").textContent;
     let backChapterCh = backChapter - 1;
+    /*     let valueAtIndex0 = ChapterRes[backChapterCh];
+
+        while (valueAtIndex0 === undefined && backChapterCh > 0) {
+            backChapterCh--;
+            valueAtIndex0 = ChapterRes[backChapterCh];
+        }
+
+        console.log("valueAtIndex0", valueAtIndex0);
+     */
 
     if (backChapterCh > 0) {
         var newURL = "{{url('manga-chapter')}}" + '/' + encodeURIComponent(backChapterMan) + '/' +
@@ -293,6 +308,7 @@ document.addEventListener("DOMContentLoaded", function() {
         url: '{{ url("episodes-all") }}/' + backChapterMan,
         type: 'GET',
         success: function(res) {
+            ChapterRes = res;
             res.forEach(function(item, index) {
                 if (backChapter === item) {
                     select += `<option value="${item}" selected>Ch.${item}</option>`;

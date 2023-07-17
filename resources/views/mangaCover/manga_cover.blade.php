@@ -17,7 +17,8 @@
                 <div class="col-md-6  col-lg-6 mb-4">
                     <div class="show-cover-tables">
                         <p class="title-detail">
-                            {{ $dataViews[0]->manga_name}}
+                            {{substr($dataViews[0]->manga_name, 0, 70)}}
+
                         <div class="row">
                             <hr>
                             <div class="col-6">

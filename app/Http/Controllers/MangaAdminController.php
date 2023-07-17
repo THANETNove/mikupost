@@ -281,21 +281,26 @@ class MangaAdminController extends Controller
         $mangas = DB::table('mangas')
         ->where('id', $id)
         ->get();
-
-        if (Storage::disk('ftp')->exists('imageManga/episode_mange/'.$affected[0]->foldedManges)) {
-            Storage::disk('ftp')->deleteDirectory('imageManga/episode_mange/'.$affected[0]->foldedManges); // ลบโพเดอร์
+    
+        if (count($affected) > 0) {
+            if (Storage::disk('ftp')->exists('imageManga/episode_mange/'.$affected[0]->foldedManges)) {
+                Storage::disk('ftp')->deleteDirectory('imageManga/episode_mange/'.$affected[0]->foldedManges); // ลบโพเดอร์
+            }
+    
+            foreach( $affected as  $episode) {
+                $member = Manga_episode::find($episode->id);
+                $member->delete();
+            }
         }
+     
+
       
         if (Storage::disk('ftp')->exists('imageManga/mangaCover/'.$mangas[0]->cover_photo)) {
             Storage::disk('ftp')->delete('imageManga/mangaCover/'.$mangas[0]->cover_photo);
         }
         // ลบภาพ
        // loop ลบ
-        foreach( $affected as  $episode) {
-            $member = Manga_episode::find($episode->id);
-            $member->delete();
-        }
-
+     
         $deleteManga = Manga::find($id);
         $deleteManga->delete();
        
