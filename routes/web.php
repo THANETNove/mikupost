@@ -11,6 +11,7 @@ use App\Http\Controllers\EpisodesMangaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GetMangaAllController;
 use App\Http\Controllers\CommentMangasController;
+use App\Http\Controllers\SitemapController;
 
 
 
@@ -48,6 +49,9 @@ Route::post('/add-image-profile', [HomeController::class, 'store'])->name('add-i
 Route::get('/search-manges', [MangaCoverController::class, 'searchManges'])->name('search-manges');
 Route::post('/search-manges', [MangaCoverController::class, 'searchManges'])->name('search-manges');
 Route::get('/search-categories/{id}', [MangaCoverController::class, 'searchCategories'])->name('search-categories');
+
+
+Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('search-categories');
 
 
 
