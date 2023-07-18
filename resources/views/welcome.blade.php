@@ -1,12 +1,14 @@
 @extends('layouts.user.appWelcome')
 @section('content')
 <div class="box-top">
+
     @foreach ($data as $data_cate)
     <div class="untree_co-section" id="home-section">
         <div class="containerNav-body">
             <div class="row  mt-5">
                 <div class="col-lg-9 ">
                     <div class="row container-manga-body changeGitHead">
+
                         <div>
                             <h3 id="categories-{{$data_cate->id}}" class="categories_name heading">
                                 {{ $data_cate->categories_name}}</h3>
@@ -15,15 +17,17 @@
                                 Category</p>
                         </div>
                         <div class="row changeGitHead">
-                            <div class="change-git-body active2" id="change-git-body" onclick="changeRetVal('noList')">
+                            <div class="change-git-body active2" id="change-git-body-{{$data_cate->id}}"
+                                onclick="changeGitBody('noList',{{$data_cate->id}})">
                                 <i class="fa-solid fa-grip-vertical "></i>
                             </div>
-                            <div class="change-git-body-tow" id="change-git-body-tow" onclick="changeRetVal('List')">
+                            <div class="change-git-body-tow" id="change-git-body-tow-{{$data_cate->id}}"
+                                onclick="changeGitBodyTow('List',{{$data_cate->id}})">
                                 <i class=" fa-solid fa-list "></i>
                             </div>
                         </div>
                     </div>
-                    <div class=" row container-manga-body" id="categories-{{$data_cate->id}}-image">
+                    <div class=" row container-manga-body " id="categories-{{$data_cate->id}}-image">
                     </div>
 
                     <div class="more-increase" onclick="getExpandData({{$data_cate->id}})">More</div>

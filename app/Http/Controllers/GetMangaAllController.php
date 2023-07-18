@@ -17,7 +17,7 @@ class GetMangaAllController extends Controller
         // ต่อเพิ่มเงื่อนไขคิวรีตามที่คุณต้องการ
         $query->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
             ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
-            ->where('mangas.categories_id', $id)
+            ->whereRaw('JSON_CONTAINS(mangas.categories_id, \'["' . $id . '"]\')')
             ->groupBy('mangas.id')
             ->orderBy('mangas.id', 'DESC')
             ->paginate($numberPc);
