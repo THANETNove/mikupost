@@ -109,7 +109,7 @@
 
                     </div>
 
-                    <div class="show-cover-tables">
+                    <!--     <div class="show-cover-tables">
                         <div class="row chapter-manga">
                             <p>
                                 <i class="fa-solid fa-list-ol"></i>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="row chapter-change mt-4">
-                            @foreach ($dataViews as $data)
+                            @foreach ($dataViews->sortBy('episodeId') as $data)
                             <a href="{{url('manga-chapter',[$data->mangesId, $data->episodeId])}}">
                                 <div class="change-box">
                                     <p class="chapter-span"><span class="chapter-p">Ch.{{$data->episodeId}} </span>-
@@ -137,6 +137,42 @@
                             @endforeach
 
 
+
+                        </div>
+                    </div> -->
+
+                    <div class="show-cover-tables">
+                        <div class="row chapter-manga">
+                            <p>
+                                <i class="fa-solid fa-list-ol"></i>
+                                Chapter List
+                            </p>
+
+                            <div class="change-git-cover" id="sort-icon-id">
+                                <i id="sort-icon" class="fa-solid fa-bars-staggered"></i>
+                            </div>
+                        </div>
+                        <div class="row chapter-change mt-4">
+                            <!-- เพิ่ม id เพื่อระบุตำแหน่งของแต่ละรายการ -->
+                            @php
+                            $sortedDataViews = $dataViews->sortBy('episodeId');
+                            $ascending = true;
+                            @endphp
+
+                            @foreach ($sortedDataViews as $data)
+                            <a href="{{url('manga-chapter',[$data->mangesId, $data->episodeId])}}">
+                                <div class="change-box" id="episode-{{$data->episodeId}}">
+                                    <p class="chapter-span">
+                                        <span class="chapter-p">Ch.{{$data->episodeId}} </span>-
+                                        {{ $data->episode_name ? (substr($data->episode_name, 0, 40)) : (substr($data->manga_name, 0, 40)) }}
+                                    </p>
+                                    <div class="row chapter-p-by">
+                                        <p><span class="chapter-by">By</span> {{$data->author}}</p>
+                                        <p><span class="chapter-by">on</span> 2 days ago</p>
+                                    </div>
+                                </div>
+                            </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -162,7 +198,8 @@
                                 &nbsp;&nbsp;- Spoiled ด้วยวิธีการด้านล่างเท่านั้น <br>
                                 หากพบเห็นการ Comment ที่ไม่เหมาะสม ทางแอดมินจะทำการแบนผู้ใช้งานระดับ Account ตลอดกาล
                                 ขั้นตอนการ Spoil ที่ถูกต้อง
-                                กดปุ่ม Copy to clipboard แล้ววาง (Paste) ในช่อง Chatbox ได้เลยครับ แก้ไข Wording จาก ...
+                                กดปุ่ม Copy to clipboard แล้ววาง (Paste) ในช่อง Chatbox ได้เลยครับ แก้ไข Wording จาก
+                                ...
                                 เป็นข้อความที่ต้องการได้เลย (แอดลองไล่ Code ของตัว Comment แล้วถ้า Custom button
                                 ประเมินแล้วน่าจะใช้เวลามากพอควร รบกวนใช้วิธีนี้ไปก่อนนะครับ) ตัวอย่างจากแอดนีโอ
                             </span>
@@ -236,4 +273,50 @@
         </div>
     </div>
 </div>
+
+
+<style>
+.chapter-change.ascending .change-box {
+    order: 1;
+}
+
+.chapter-change.descending .change-box {
+    order: -1;
+}
+</style>
+
+<script>
+var sortIcon = document.getElementById('sort-icon-id');
+var chapterChange = document.querySelector('.chapter-change');
+
+sortIcon.addEventListener('click', function() {
+    var episodes = Array.from(chapterChange.querySelectorAll('.change-box'));
+
+    if (chapterChange.classList.contains('ascending')) {
+        chapterChange.classList.remove('ascending');
+        chapterChange.classList.add('descending');
+        episodes.sort(function(a, b) {
+            return b.compareDocumentPosition(a) & Node.DOCUMENT_POSITION_PRECEDING ? -1 : 1;
+        });
+    } else {
+        chapterChange.classList.remove('descending');
+        chapterChange.classList.add('ascending');
+        episodes.sort(function(a, b) {
+            return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_PRECEDING ? -1 : 1;
+        });
+    }
+
+    episodes.forEach(function(episode) {
+        chapterChange.appendChild(episode.parentNode);
+    });
+});
+</script>
+
+
+
+
+
+
+
+
 @endsection

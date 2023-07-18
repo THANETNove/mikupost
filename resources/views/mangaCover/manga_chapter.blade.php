@@ -56,10 +56,11 @@
                     <div class=" row container-manga-body">
                         @foreach ($dataRan as $dataRa)
                         <?php
+                   
                             $imagePath = env('FTP_URL_IMAGES_COVER').$dataRa->cover_photo;
                             $imageUrl = Storage::disk('ftp')->url($imagePath);
                         ?>
-                        <a href="{{url('manga-cover-show/120')}}">
+                        <a href="{{url('manga-cover-show',$dataRa->mangesId)}}">
                             <div class="keyClass-service service-body-cover">
                                 <div class="cover-image-page">
                                     <img src="{{$imageUrl}}" class="keyClass-cover cover-page" alt="">
