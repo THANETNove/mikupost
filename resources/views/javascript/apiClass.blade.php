@@ -34,7 +34,7 @@ function changeRetVal(newValue, id) {
                     elements[i].classList.remove("row", "service-body-cover-list");
                 }
 
-                var elementsCover = document.querySelectorAll("class-cover-id-" + id);
+                var elementsCover = document.querySelectorAll(".class-cover-id-" + id);
                 for (var k = 0; k < elementsCover.length; k++) {
                     elementsCover[k].classList.add(res[1]);
                     elementsCover[k].classList.remove("cover-page-list");
@@ -48,7 +48,7 @@ function changeRetVal(newValue, id) {
                     elements[i].classList.remove("service-body-cover");
                 }
 
-                var elementsCover = document.querySelectorAll("class-cover-id-" + id);
+                var elementsCover = document.querySelectorAll(".class-cover-id-" + id);
                 for (var k = 0; k < elementsCover.length; k++) {
                     elementsCover[k].classList.add(res[1]);
                     elementsCover[k].classList.remove("cover-page");
