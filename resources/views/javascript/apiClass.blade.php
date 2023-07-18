@@ -59,6 +59,8 @@ function changeRetVal(newValue, id) {
     });
 }
 
+
+
 function randomData(randomId) {
     var elements = document.querySelectorAll('.categories_name');
     var idsAndClasses = [];
@@ -218,207 +220,218 @@ function getRandomData(idsAndClasses, randomId) {
 }
 
 
-var numberPc = 10;
+var numberPc = 5;
+var startNumberPc = 10;
+var idPc = null;
 
 function getExpandData(idExpand) {
-    numberPc = numberPc + 5;
 
-    var elements = document.querySelectorAll('.categories_name');
-    var idsAndClasses = [];
+    if (idPc === idExpand) {
+        numberPc = numberPc + 5;
+    } else {
+        numberPc = 10;
 
-    elements.forEach(function(element) {
-        var id = element.id;
-        var classes = element.classList.toString();
-        idsAndClasses.push({
-            id: id,
-            classes: classes
-        });
-    });
+    }
+    idPc = idExpand;
 
-    this.getDataAll(idsAndClasses, idExpand)
+    this.getDataAllClick(idExpand);
+
 }
 
-function getDataAll(idsAndClasses, idExpand) {
+
+//  เวลา กด ปุ่ม More
+function getDataAllClick(numberId) {
+
+    var imagePath = "https://img.neko-post.net/imageManga/mangaCover/";
+    var urlPc = (numberPc == 10) ? startNumberPc : numberPc;
+    // ส่วนของ เนื่องหา
+    /*  url: '{{ url("get-manga-all") }}/' + numberId + '/' + numberPc, */
+    $.ajax({
+        url: '{{ url("get-manga-all") }}/' +
+            numberId + '/' + urlPc,
+        type: 'GET',
+        success: function(res) {
+            // ตัวแปรเก็บจำนวนรอบที่เพิ่มเข้าไป
+
+            var container = document.getElementById("categories-" +
+                numberId +
+                "-image");
+            container.innerHTML = '';
+            if (res.data.length > 0) {
+                res.data.forEach(function(item, index) {
+                    let text = item.manga_name;
+                    let maxLength = 16; // จำนวนอักขระสูงสุดที่ต้องการแสดง
+                    let truncatedText = text.length > maxLength ? text.substring(0,
+                        maxLength) + "..." : text;
+                    var container = document.getElementById("categories-" +
+                        numberId +
+                        "-image");
+                    var currentDateTime = new Date(); // วันที่และเวลาปัจจุบัน
+
+                    var targetDateTime = new Date(
+                        item.updated_at); // วันที่และเวลาเป้าหมาย
+
+                    var timeDifference = targetDateTime -
+                        currentDateTime; // คำนวณความแตกต่างของเวลา
+                    var daysPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                        60 * 60 * 24)); // จำนวนวันที่ผ่านไป
+                    var hoursPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                        60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
+
+                    var link = document.createElement("a");
+                    link.href = "{{ url('manga-cover-show') }}/" + item.id;
+                    container.appendChild(link);
+
+                    var div = document.createElement("div");
+                    div.className = "keyClass-service service-body-cover  " +
+                        "class-service-id-" + numberId;
+                    link.appendChild(div);
+
+                    var coverImage = document.createElement("div");
+                    coverImage.className = "cover-image-page";
+                    div.appendChild(coverImage);
+
+                    var image = document.createElement("img");
+                    image.src = imagePath + item.cover_photo;
+                    image.className = "keyClass-cover cover-page class-cover-id-" +
+                        numberId;
+                    image.alt = "";
+                    coverImage.appendChild(image);
+
+                    var serviceContents = document.createElement("div");
+                    serviceContents.className = "service-contents";
+                    div.appendChild(serviceContents);
+
+                    var mangaTitle = document.createElement("p");
+                    mangaTitle.className = "manga-title";
+                    mangaTitle.textContent = truncatedText;
+                    serviceContents.appendChild(mangaTitle);
+
+                    var mangaChapter = document.createElement("p");
+                    mangaChapter.className = "manga-ch";
+                    mangaChapter.textContent = "Ch." + item.maxEpisodeId +
+                        "-  ตอนที่-" + item.maxEpisodeId;
+                    serviceContents.appendChild(mangaChapter);
+
+                    var translatorsName1 = document.createElement("p");
+                    translatorsName1.className = "translators-name";
+                    translatorsName1.textContent = "ผู้แปลที่-" + (item.author ?
+                        item
+                        .author : "");
+                    serviceContents.appendChild(translatorsName1);
+
+                    var translatorsName2 = document.createElement("p");
+                    translatorsName2.className = "translators-name";
+                    translatorsName2.textContent = (daysPassed > 0) ? ("Update- " +
+                        daysPassed +
+                        " วัน   " + hoursPassed + " ชั่วโมง") : ("Update- " +
+                        hoursPassed +
+                        " ชั่วโมง");
+                    serviceContents.appendChild(translatorsName2);
+
+
+                });
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+
+// โหลดหน้า ครั้งเเรก
+function getDataAll(idsAndClasses) {
     idsAndClasses.forEach(function(item) {
         var idString = item.id;
         var parts = idString.split('-');
         var numberId = parts[1];
         console.log("numberPc", numberPc);
         var imagePath = "https://img.neko-post.net/imageManga/mangaCover/";
-        console.log("idExpand", idExpand);
+        var urlPc = (numberPc == 10) ? startNumberPc : numberPc;
         // ส่วนของ เนื่องหา
         $.ajax({
-            url: '{{ url("get-manga-all") }}/' + numberId + '/' + numberPc,
+            url: '{{ url("get-manga-all") }}/' + numberId + '/' + urlPc,
             type: 'GET',
             success: function(res) {
                 // ตัวแปรเก็บจำนวนรอบที่เพิ่มเข้าไป
 
 
                 if (res.data.length > 0) {
-
                     res.data.forEach(function(item, index) {
+                        let text = item.manga_name;
+                        let maxLength = 16; // จำนวนอักขระสูงสุดที่ต้องการแสดง
+                        let truncatedText = text.length > maxLength ? text.substring(0,
+                            maxLength) + "..." : text;
+                        var container = document.getElementById("categories-" +
+                            numberId +
+                            "-image");
+                        var currentDateTime = new Date(); // วันที่และเวลาปัจจุบัน
 
-                        if (idExpand) {
-                            if (index == 0) {
-                                var container = document.getElementById("categories-" +
-                                    idExpand +
-                                    "-image");
-                                container.innerHTML = '';
+                        var targetDateTime = new Date(
+                            item.updated_at); // วันที่และเวลาเป้าหมาย
 
-                            }
+                        var timeDifference = targetDateTime -
+                            currentDateTime; // คำนวณความแตกต่างของเวลา
+                        var daysPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                            60 * 60 * 24)); // จำนวนวันที่ผ่านไป
+                        var hoursPassed = Math.floor(Math.abs(timeDifference) / (1000 *
+                            60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
 
-                            let text = item.manga_name;
-                            let maxLength = 16; // จำนวนอักขระสูงสุดที่ต้องการแสดง
-                            let truncatedText = text.length > maxLength ? text
-                                .substring(0,
-                                    maxLength) + "..." : text;
-                            var container = document.getElementById("categories-" +
-                                idExpand +
-                                "-image");
-                            var currentDateTime = new Date(); // วันที่และเวลาปัจจุบัน
+                        var link = document.createElement("a");
+                        link.href = "{{ url('manga-cover-show') }}/" + item.id;
+                        container.appendChild(link);
 
-                            var targetDateTime = new Date(
-                                item.updated_at); // วันที่และเวลาเป้าหมาย
+                        var div = document.createElement("div");
+                        div.className = "keyClass-service service-body-cover  " +
+                            "class-service-id-" + numberId;
+                        link.appendChild(div);
 
-                            var timeDifference = targetDateTime -
-                                currentDateTime; // คำนวณความแตกต่างของเวลา
-                            var daysPassed = Math.floor(Math.abs(timeDifference) / (
-                                1000 *
-                                60 * 60 * 24)); // จำนวนวันที่ผ่านไป
-                            var hoursPassed = Math.floor(Math.abs(timeDifference) / (
-                                1000 *
-                                60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
+                        var coverImage = document.createElement("div");
+                        coverImage.className = "cover-image-page";
+                        div.appendChild(coverImage);
 
-                            var link = document.createElement("a");
-                            link.href = "{{ url('manga-cover-show') }}/" + item.id;
-                            container.appendChild(link);
+                        var image = document.createElement("img");
+                        image.src = imagePath + item.cover_photo;
+                        image.className = "keyClass-cover cover-page class-cover-id-" +
+                            numberId;
+                        image.alt = "";
+                        coverImage.appendChild(image);
 
-                            var div = document.createElement("div");
-                            div.className =
-                                "keyClass-service service-body-cover  " +
-                                "class-service-id-" + idExpand;
-                            link.appendChild(div);
+                        var serviceContents = document.createElement("div");
+                        serviceContents.className = "service-contents";
+                        div.appendChild(serviceContents);
 
-                            var coverImage = document.createElement("div");
-                            coverImage.className = "cover-image-page";
-                            div.appendChild(coverImage);
+                        var mangaTitle = document.createElement("p");
+                        mangaTitle.className = "manga-title";
+                        mangaTitle.textContent = truncatedText;
+                        serviceContents.appendChild(mangaTitle);
 
-                            var image = document.createElement("img");
-                            image.src = imagePath + item.cover_photo;
-                            image.className = "keyClass-cover cover-page  class-cover-id-" +
-                                idExpand;
-                            image.alt = "";
-                            coverImage.appendChild(image);
+                        var mangaChapter = document.createElement("p");
+                        mangaChapter.className = "manga-ch";
+                        mangaChapter.textContent = "Ch." + item.maxEpisodeId +
+                            "-  ตอนที่-" + item.maxEpisodeId;
+                        serviceContents.appendChild(mangaChapter);
 
-                            var serviceContents = document.createElement("div");
-                            serviceContents.className = "service-contents";
-                            div.appendChild(serviceContents);
+                        var translatorsName1 = document.createElement("p");
+                        translatorsName1.className = "translators-name";
+                        translatorsName1.textContent = "ผู้แปลที่-" + (item.author ?
+                            item
+                            .author : "");
+                        serviceContents.appendChild(translatorsName1);
 
-                            var mangaTitle = document.createElement("p");
-                            mangaTitle.className = "manga-title";
-                            mangaTitle.textContent = truncatedText;
-                            serviceContents.appendChild(mangaTitle);
+                        var translatorsName2 = document.createElement("p");
+                        translatorsName2.className = "translators-name";
+                        translatorsName2.textContent = (daysPassed > 0) ? ("Update- " +
+                            daysPassed +
+                            " วัน   " + hoursPassed + " ชั่วโมง") : ("Update- " +
+                            hoursPassed +
+                            " ชั่วโมง");
+                        serviceContents.appendChild(translatorsName2);
 
-                            var mangaChapter = document.createElement("p");
-                            mangaChapter.className = "manga-ch";
-                            mangaChapter.textContent = "Ch." + item.maxEpisodeId +
-                                "-  ตอนที่-" + item.maxEpisodeId;
-                            serviceContents.appendChild(mangaChapter);
-
-                            var translatorsName1 = document.createElement("p");
-                            translatorsName1.className = "translators-name";
-                            translatorsName1.textContent = "ผู้แปลที่-" + (item.author ?
-                                item
-                                .author : "");
-                            serviceContents.appendChild(translatorsName1);
-
-                            var translatorsName2 = document.createElement("p");
-                            translatorsName2.className = "translators-name";
-                            translatorsName2.textContent = (daysPassed > 0) ? (
-                                "Update- " +
-                                daysPassed +
-                                " วัน   " + hoursPassed + " ชั่วโมง") : (
-                                "Update- " +
-                                hoursPassed +
-                                " ชั่วโมง");
-                            serviceContents.appendChild(translatorsName2);
-
-                        } else {
-                            let text = item.manga_name;
-                            let maxLength = 16; // จำนวนอักขระสูงสุดที่ต้องการแสดง
-                            let truncatedText = text.length > maxLength ? text.substring(0,
-                                maxLength) + "..." : text;
-                            var container = document.getElementById("categories-" +
-                                numberId +
-                                "-image");
-                            var currentDateTime = new Date(); // วันที่และเวลาปัจจุบัน
-
-                            var targetDateTime = new Date(
-                                item.updated_at); // วันที่และเวลาเป้าหมาย
-
-                            var timeDifference = targetDateTime -
-                                currentDateTime; // คำนวณความแตกต่างของเวลา
-                            var daysPassed = Math.floor(Math.abs(timeDifference) / (1000 *
-                                60 * 60 * 24)); // จำนวนวันที่ผ่านไป
-                            var hoursPassed = Math.floor(Math.abs(timeDifference) / (1000 *
-                                60 * 60)) % 24; // จำนวนชั่วโมงที่ผ่านไป
-
-                            var link = document.createElement("a");
-                            link.href = "{{ url('manga-cover-show') }}/" + item.id;
-                            container.appendChild(link);
-
-                            var div = document.createElement("div");
-                            div.className = "keyClass-service service-body-cover  " +
-                                "class-service-id-" + numberId;
-                            link.appendChild(div);
-
-                            var coverImage = document.createElement("div");
-                            coverImage.className = "cover-image-page";
-                            div.appendChild(coverImage);
-
-                            var image = document.createElement("img");
-                            image.src = imagePath + item.cover_photo;
-                            image.className = "keyClass-cover cover-page class-cover-id-" +
-                                numberId;
-                            image.alt = "";
-                            coverImage.appendChild(image);
-
-                            var serviceContents = document.createElement("div");
-                            serviceContents.className = "service-contents";
-                            div.appendChild(serviceContents);
-
-                            var mangaTitle = document.createElement("p");
-                            mangaTitle.className = "manga-title";
-                            mangaTitle.textContent = truncatedText;
-                            serviceContents.appendChild(mangaTitle);
-
-                            var mangaChapter = document.createElement("p");
-                            mangaChapter.className = "manga-ch";
-                            mangaChapter.textContent = "Ch." + item.maxEpisodeId +
-                                "-  ตอนที่-" + item.maxEpisodeId;
-                            serviceContents.appendChild(mangaChapter);
-
-                            var translatorsName1 = document.createElement("p");
-                            translatorsName1.className = "translators-name";
-                            translatorsName1.textContent = "ผู้แปลที่-" + (item.author ?
-                                item
-                                .author : "");
-                            serviceContents.appendChild(translatorsName1);
-
-                            var translatorsName2 = document.createElement("p");
-                            translatorsName2.className = "translators-name";
-                            translatorsName2.textContent = (daysPassed > 0) ? ("Update- " +
-                                daysPassed +
-                                " วัน   " + hoursPassed + " ชั่วโมง") : ("Update- " +
-                                hoursPassed +
-                                " ชั่วโมง");
-                            serviceContents.appendChild(translatorsName2);
-                        }
 
                     });
-                } else {
-
-
                 }
 
             },
@@ -451,7 +464,7 @@ window.onload = function() {
     });
 
 
-    this.getDataAll(idsAndClasses, null);
+    this.getDataAll(idsAndClasses);
     this.getRandomData(idsAndClasses, null);
 };
 </script>
