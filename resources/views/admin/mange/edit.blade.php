@@ -111,24 +111,26 @@
                                                     </span>
                                                     @enderror
                                                 </div>
+
                                                 <div class="form-group">
                                                     <select
-                                                        class="form-control   @error('categories_id') is-invalid @enderror"
-                                                        id="categories_id" name="categories_id"
-                                                        aria-label="Default select example">
-
+                                                        class="form-control @error('categories_id') is-invalid @enderror"
+                                                        id="categories_id" name="categories_id[]" size="10"
+                                                        aria-label="size 10 select example" multiple>
                                                         @foreach ($data_cat as $data_ca)
-                                                        @if ($data_ca->id == $data[0]->categories_id )
-                                                        <option selected value="{{$data_ca->id}}">
-                                                            {{$data_ca->categories_name}}
+                                                        @php
+                                                        $selectedOptions = json_decode($data[0]->categories_id);
+                                                        $isSelected = in_array($data_ca->id, $selectedOptions);
+                                                        @endphp
+
+                                                        <option value="{{ $data_ca->id }}"
+                                                            {{ $isSelected ? 'selected' : '' }}>
+                                                            {{ $data_ca->categories_name }}
                                                         </option>
-                                                        @else
-                                                        <option value="{{$data_ca->id}}">
-                                                            {{$data_ca->categories_name}}
-                                                        </option>
-                                                        @endif
                                                         @endforeach
                                                     </select>
+
+
 
                                                     @error('categories_id')
                                                     <span class="invalid-feedback" role="alert">
@@ -149,18 +151,7 @@
                                                     </span>
                                                     @enderror
                                                 </div>
-                                                <!--  <div class="form-group">
-                                                    <input id="file" type="file"
-                                                        class="form-control @error('zip_file') is-invalid @enderror"
-                                                        name="zip_file" value="{{ old('zip_file') }}" required
-                                                        autocomplete="file" placeholder="file" autofocus>
 
-                                                    @error('zip_file')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div> -->
 
                                                 <div id="progressBar" style="display: none;">
 
@@ -211,6 +202,12 @@
     </div>
 
 </div>
+<style>
+select option[selected="selected"] {
+    background-color: red;
+    color: white;
+}
+</style>
 <script>
 $(document).ready(function() {
     var formSubmitted = false; // เพิ่มตัวแปรเพื่อตรวจสอบการส่งฟอร์ม

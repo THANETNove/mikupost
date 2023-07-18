@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->string('artist')->nullable();
             $table->string('status')->nullable();
-            $table->string('categories_id')->nullable();
+            $table->json('categories_id')->nullable();
             $table->string('views')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();

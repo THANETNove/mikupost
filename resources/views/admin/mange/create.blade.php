@@ -112,8 +112,8 @@
                                                 <div class="form-group">
                                                     <select
                                                         class="form-control   @error('categories_id') is-invalid @enderror"
-                                                        id="categories_id" name="categories_id"
-                                                        aria-label="Default select example" required>
+                                                        id="categories_id" name="categories_id[]" size="10"
+                                                        aria-label="size 10 select example" multiple required>
                                                         <option selected disabled>หมวดหมู่</option>
                                                         @foreach ($data as $data_ca)
                                                         <option value="{{$data_ca->id}}">{{$data_ca->categories_name}}

@@ -19,6 +19,7 @@ class GetMangaAllController extends Controller
             ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
             ->where('mangas.categories_id', $id)
             ->groupBy('mangas.id')
+            ->orderBy('mangas.id', 'DESC')
             ->paginate($numberPc);
         
         // ดำเนินการคิวรีด้วย $query

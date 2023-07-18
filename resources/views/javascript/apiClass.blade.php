@@ -236,7 +236,7 @@ function getDataAll(idsAndClasses, idExpand) {
         var idString = item.id;
         var parts = idString.split('-');
         var numberId = parts[1];
-
+        console.log("numberPc", numberPc);
         var imagePath = "https://img.neko-post.net/imageManga/mangaCover/";
 
         // ส่วนของ เนื่องหา
@@ -247,7 +247,7 @@ function getDataAll(idsAndClasses, idExpand) {
                 // ตัวแปรเก็บจำนวนรอบที่เพิ่มเข้าไป
 
                 res.data.forEach(function(item, index) {
-                    console.log(res.data);
+
                     if (idExpand) {
                         if (index == 0) {
                             var container = document.getElementById("categories-" +

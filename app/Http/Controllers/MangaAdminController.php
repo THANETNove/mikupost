@@ -84,7 +84,7 @@ class MangaAdminController extends Controller
      */
     public function store(Request $request)
     {   
-    
+       
 
         $validated = $request->validate([
             'image' => ['required', 'image', 'image:jpg,png,jpeg,webp'],
@@ -110,7 +110,7 @@ class MangaAdminController extends Controller
             'author' => $request['author'],
             'artist' => $request['artist'],
             'status' => $request['status'],
-            'categories_id' => $request['categories_id'],
+            'categories_id' => json_encode($request['categories_id']) ,
             'views' => 0,
             'website' => $request['website'],
         ]);
@@ -261,7 +261,7 @@ class MangaAdminController extends Controller
                 'author' => $request['author'],
                 'artist' => $request['artist'],
                 'status' => $request['status'],
-                'categories_id' => $request['categories_id'],
+                'categories_id' => json_encode($request['categories_id']),
                 'website' => $request['website']
               ]);
         return redirect('admin-home')->with('message', "เเก้ไข สำเร็จ");
