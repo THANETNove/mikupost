@@ -42,6 +42,11 @@
             <i class="fa-solid fa-users"></i>
             <span>สมัครสมาชิก admin</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('/user-uploads')}}">
+            <i class="fa-solid fa-users-viewfinder"></i>
+            <span>สิทธิ uploads</span></a>
+    </li>
     @endif
 
 

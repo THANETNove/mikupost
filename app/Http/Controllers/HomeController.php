@@ -94,6 +94,23 @@ class HomeController extends Controller
 
     }
 
+
+    function userUploads() {
+
+        $data = DB::table('users')->paginate(100);
+        return view('admin.userUploads.index', ['data'=>$data]);
+    }
+
+    function userUploadsStatus(Request $request) {
+
+
+            DB::table('users')->where('id',$request->id)
+            ->update([
+              'statusUploads' => $request['statusUploads'],
+            ]);
+            return response()->json("สำเร็จ");
+    }
+
     
 
     
