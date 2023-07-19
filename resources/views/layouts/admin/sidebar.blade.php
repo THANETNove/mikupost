@@ -16,7 +16,7 @@
     @if (Auth::user()->status == 0)
     <li class="nav-item">
         <a class="nav-link" href="{{url('/profile')}}">
-            <i class="fa-solid fa-layer-group"></i>
+            <i class="fa-solid fa-user"></i>
             <span>profile</span></a>
     </li>
 
