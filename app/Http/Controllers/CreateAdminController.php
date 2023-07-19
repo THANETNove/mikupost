@@ -50,6 +50,7 @@ class CreateAdminController extends Controller
             'username' => $request['username'],
             'email' => $request['email'],
             'status' => $request['status'],
+            'statusUploads'=> 0,
             'pass_admin' => $request['password'],
             'password' => Hash::make($request['password']),
         ]);

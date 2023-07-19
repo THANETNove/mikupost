@@ -45,22 +45,12 @@ class MangaAdminController extends Controller
         
         
         if(Auth::user()->status == 0) {
-            if ($request->search) {
-                $data = $data->where('mangas.manga_name', 'like', "$request->search%")
-                            ->where('mangas.id_user',  Auth::user()->id)
-                            ->groupBy('mangas.id')
-                            ->orderBy('mangas.id', 'DESC')
-                            ->paginate(100);
-            }else{
-                $data = $data->groupBy('mangas.id')
-                ->where('mangas.id_user',  Auth::user()->id)
-                ->orderBy('mangas.id', 'DESC')
-                ->paginate(100);
-            }
-
-
+           
+         
             
             return redirect('home');
+
+            
         }else {
 
             if ($request->search) {

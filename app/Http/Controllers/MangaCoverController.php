@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+
+
 
 class MangaCoverController extends Controller
 {
@@ -128,6 +131,9 @@ class MangaCoverController extends Controller
         return view('search',['data'=>$data]);
        
     }
+
+
+
     public function searchMangesId(string $id) {
         $data =  DB::table('mangas')->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
                 ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
@@ -136,6 +142,18 @@ class MangaCoverController extends Controller
                 ->get();
 
         return view('search',['data'=>$data,'id_ep'=>$id]);
+       
+    }
+
+
+    public function profile() {
+
+        $affected = DB::table('image_profiles')
+        ->where('id_user_image', Auth::user()->id)
+        ->get();
+
+
+        return view('profile',['affected'=>$affected]);
        
     }
    

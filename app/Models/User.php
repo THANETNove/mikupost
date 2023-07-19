@@ -23,6 +23,7 @@ class User extends Authenticatable
         'pass_admin',
         'password',
         'status',
+        'statusUploads',
     ];
 
     /**

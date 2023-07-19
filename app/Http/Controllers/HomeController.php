@@ -30,14 +30,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $affected = DB::table('image_profiles')
-        ->where('id_user_image', Auth::user()->id)
-        ->get();
+       
       
         if(Auth::user()->status == 1) {
             return redirect('admin-home');
         }else {
-
             $data = DB::table('mangas')
             ->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
             ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'));
@@ -55,7 +52,7 @@ class HomeController extends Controller
                 ->paginate(100);
             }
 
-            return view('home',['affected'=> $affected,'data'=>$data ]);
+            return view('home',['data'=>$data ]);
         }
   
        
@@ -93,7 +90,7 @@ class HomeController extends Controller
             ]);
             
         }
-        return redirect('home')->with('message', "เพิ่มสำเร็จ");
+        return redirect('profile')->with('message', "เพิ่มสำเร็จ");
 
     }
 

@@ -12,6 +12,21 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
+
+    @if (Auth::user()->status == 0)
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('/profile')}}">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>profile</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('/admin-home')}}">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>รายชื่อมังงะ</span></a>
+    </li>
+
+    @else
     <li class="nav-item">
         <a class="nav-link" href="{{url('/admin-home')}}">
             <i class="fa-solid fa-pen-to-square"></i>
@@ -27,6 +42,8 @@
             <i class="fa-solid fa-users"></i>
             <span>สมัครสมาชิก admin</span></a>
     </li>
+    @endif
+
 
 
 

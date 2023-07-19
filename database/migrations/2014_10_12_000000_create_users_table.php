@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('pass_admin')->nullable();
             $table->string('status')->nullable();
+            $table->string('statusUploads')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -32,15 +32,19 @@ Route::get('/', function () {
     return view('welcome' ,['data' => $data]);
 });
 
+
+
 Auth::routes();
 
 //  หน้า อ่าน Manga 
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/get-manga-all/{id}/{numberPc}', [GetMangaAllController::class, 'getMangaAll']);
 Route::get('/get-manga-random/{id}', [GetMangaAllController::class, 'getMangaRandom']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);
 Route::get('/manga-cover-show/{id}', [MangaCoverController::class, 'show']);
+Route::get('/profile', [MangaCoverController::class, 'profile']);
 Route::get('/manga-chapter/{id}/{episodeId}', [MangaCoverController::class, 'showMangaChapter']);
 Route::get('/episodes-all/{id}', [MangaCoverController::class, 'episodesAll']);
 Route::post('/add-comment', [CommentMangasController::class, 'store'])->name('add-comment');
