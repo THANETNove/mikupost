@@ -2,11 +2,13 @@
 @section('content')
 <div class="box-top2" id="scroll-top-ch">
     <div class="ch-image">
-        <p class="ch-image-name" id="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 80)}}</p>
-
+        <a href="{{ url('manga-cover-show',$dataViews[0]->mangesId) }}">
+            <p class="ch-image-name" id="ch-image-name">{{substr($dataViews[0]->manga_name, 0, 80)}}</p>
+        </a>
         <p class="ch-image-time">Ch. {{$dataViews[0]->episodeId}} -
             {{ $dataViews[0]->episode_name ? (substr($dataViews[0]->episode_name, 0, 30)) : (substr($dataViews[0]->manga_name, 0, 30)) }}
         </p>
+
         <p id="id-ch" style="display: none;">{{$dataViews[0]->episodeId}}</p>
         <p id="id-man" style="display: none;">{{$dataViews[0]->mangesId}}</p>
         <p id="id-maxEpisodeId" style="display: none;">{{$maxEpisodeId}}</p>
@@ -301,8 +303,21 @@ document.addEventListener("DOMContentLoaded", function() {
     let backChapterMan = document.getElementById("id-man").textContent;
     let backChapter = document.getElementById("id-ch").textContent;
     let nameMan = document.getElementById("id-name-man").textContent;
-    document.getElementById('name-manga-chapter').innerHTML = nameMan;
-    console.log("nameMan", nameMan);
+
+    var url = "{{ url('manga-cover-show') }}/" + backChapterMan; // สร้าง URL ด้วยค่า id
+
+    var linkElement = document.createElement('a'); // สร้างแท็ก <a> ใหม่
+    linkElement.href = url; // กำหนด href ของแท็ก <a> เป็น URL
+    linkElement.textContent = nameMan; // กำหนดข้อความภายในแท็ก <a> เป็นชื่อมังงะ
+
+    var containerElement = document.getElementById(
+        'name-manga-chapter'); // หาตัวแทนขององค์ประกอบที่ต้องการแทนที่
+    containerElement.innerHTML = ''; // เคลียร์เนื้อหาภายในตัวแทน
+
+    containerElement.appendChild(linkElement); // แนบแท็ก <a> เข้ากับตัวแทน
+
+
+
     var select = `<option value="0" disabled> Ch. All</option>`;
 
     $.ajax({

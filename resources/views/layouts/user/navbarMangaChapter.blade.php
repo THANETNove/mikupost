@@ -2,9 +2,9 @@
     <div class="containerNav-body">
         <div class="row container-manga-body">
             <div class="row col-lg-5 mb-3">
-                <a href="{{url('/') }}" class="logo m-0 float-left">mikupost<span class="text-primary">.</span></a>
+                <a href="{{url('/') }}" class="logo m-0 float-left mr-2">mikupost<span class="text-primary">.</span></a>
 
-                <a href="#home-section" id="name-manga-chapter" class="name-manga-chapter">
+                <a href="#home-section" id="name-manga-chapter" class="name-manga-chapter ">
                 </a>
             </div>
             <div class="row col-lg-7">
