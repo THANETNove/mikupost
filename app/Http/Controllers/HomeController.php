@@ -28,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $affected = DB::table('image_profiles')
         ->where('id_user_image', Auth::user()->id)
@@ -37,7 +37,25 @@ class HomeController extends Controller
         if(Auth::user()->status == 1) {
             return redirect('admin-home');
         }else {
-            return view('home',['affected'=> $affected]);
+
+            $data = DB::table('mangas')
+            ->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+            ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'));
+
+            if ($request->search) {
+                $data = $data->where('mangas.manga_name', 'like', "$request->search%")
+                            ->where('mangas.id_user',  Auth::user()->id)
+                            ->groupBy('mangas.id')
+                            ->orderBy('mangas.id', 'DESC')
+                            ->paginate(100);
+            }else{
+                $data = $data->groupBy('mangas.id')
+                ->where('mangas.id_user',  Auth::user()->id)
+                ->orderBy('mangas.id', 'DESC')
+                ->paginate(100);
+            }
+
+            return view('home',['affected'=> $affected,'data'=>$data ]);
         }
   
        

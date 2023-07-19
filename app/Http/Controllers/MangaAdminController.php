@@ -45,6 +45,21 @@ class MangaAdminController extends Controller
         
         
         if(Auth::user()->status == 0) {
+            if ($request->search) {
+                $data = $data->where('mangas.manga_name', 'like', "$request->search%")
+                            ->where('mangas.id_user',  Auth::user()->id)
+                            ->groupBy('mangas.id')
+                            ->orderBy('mangas.id', 'DESC')
+                            ->paginate(100);
+            }else{
+                $data = $data->groupBy('mangas.id')
+                ->where('mangas.id_user',  Auth::user()->id)
+                ->orderBy('mangas.id', 'DESC')
+                ->paginate(100);
+            }
+
+
+            
             return redirect('home');
         }else {
 
@@ -182,9 +197,12 @@ class MangaAdminController extends Controller
     }
 
     $zip->close();
-
-    return redirect('admin-home')->with('message', "เพิ่มสำเร็จ");
-
+    
+        if (Auth::user()->status == 0) {
+            return redirect('home')->with('message', "เพิ่มสำเร็จ");
+        }else {
+            return redirect('admin-home')->with('message', "เพิ่มสำเร็จ");
+        }
 
     
     }
@@ -265,7 +283,13 @@ class MangaAdminController extends Controller
                 'categories_id' => json_encode($request['categories_id']),
                 'website' => $request['website']
               ]);
-        return redirect('admin-home')->with('message', "เเก้ไข สำเร็จ");
+
+            if (Auth::user()->status == 0) {
+                return redirect('home')->with('message', "เเก้ไข สำเร็จ");
+            }else {
+                return redirect('admin-home')->with('message', "เเก้ไข สำเร็จ");
+            }
+
      
     }
 
@@ -304,8 +328,12 @@ class MangaAdminController extends Controller
      
         $deleteManga = Manga::find($id);
         $deleteManga->delete();
+        if (Auth::user()->status == 0) {
+            return redirect('home')->with('message', "ลบ สำเร็จ");
+        }else {
+            return redirect('admin-home')->with('message', "ลบ สำเร็จ");
+        }
        
-        return redirect('admin-home')->with('messageDelete', "ลบ สำเร็จ");
-    
+       
     }
 }

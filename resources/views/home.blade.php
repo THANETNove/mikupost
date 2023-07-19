@@ -51,14 +51,47 @@
                             @php
                             $i = 1;
                             @endphp
-
+                            @foreach ($data as $dataMange)
+                            <?php
+                                $imagePath = env('FTP_URL_IMAGES_COVER').$dataMange->cover_photo;
+                                $imageUrl = Storage::disk('ftp')->url($imagePath);
+                             
+                                ?>
+                            <tr>
+                                <th scope="row">{{$i++}}</th>
+                                <td><img src="{{ $imageUrl }}" class="image-cover" calt="Manga Cover"></td>
+                                <td>{{ \Illuminate\Support\Str::limit($dataMange->manga_name, $limit = 60, $end = '...') }}
+                                </td>
+                                <td>{{$dataMange->views}} </td>
+                                <td> <?php echo \Carbon\Carbon::parse($dataMange->updated_at)->format('d-m-Y'); ?></td>
+                                <td>{{$dataMange->maxEpisodeId}}</td>
+                                <td> <a href="{{ url('view-mange', $dataMange->id) }}"
+                                        class="view-mange text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit user" class="text-decoration-none">
+                                        view
+                                    </a></td>
+                                <td>
+                                    <a href="{{ url('edit-mange', $dataMange->id) }}"
+                                        class="view-mange text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit user" class="text-decoration-none">
+                                        Edit
+                                    </a>
+                                </td>
+                                <td> <a href="{{ route('delete-mange', $dataMange->id) }}"
+                                        onClick="javascript:return confirm('คุณต้องการลบ  {{ $dataMange->id}}  ข้อมูลใช่หรือไม่ ! ');"
+                                        class="view-mange text-red  text-decoration-none" data-toggle="tooltip"
+                                        data-original-title="Edit episode">
+                                        delete
+                                    </a></td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
             <div style="margin-left: 1%">
 
-
+                {!! $data->links() !!}
 
             </div>
         </div>
