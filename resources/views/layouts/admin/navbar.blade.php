@@ -5,13 +5,24 @@
         <i class="fa fa-bars"></i>
     </button>
 
-
+    <?php
+        $pathname = $_SERVER['REQUEST_URI'];
+        $ex = explode('/', $pathname);
+        
+        $desiredPart = $ex[4];
+        
+        ?>
     <!-- Topbar Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
         @if(Auth::user()->status == "0")
         action=" {{ route('home') }}"
         @else
+        @if($desiredPart == "user-uploads")
+        action=" {{ route('user-uploads') }}"
+        @else
         action=" {{ route('admin-home') }}"
+        @endif
+
         @endif
         method="POST">
 

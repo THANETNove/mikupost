@@ -45,6 +45,7 @@ Route::post('/update-user-status', [HomeController::class, 'userUploadsStatus'])
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/user-uploads', [HomeController::class, 'userUploads'])->name('user-uploads');
+Route::post('/user-uploads', [HomeController::class, 'userUploads'])->name('user-uploads');
 Route::get('/get-manga-all/{id}/{numberPc}', [GetMangaAllController::class, 'getMangaAll']);
 Route::get('/get-manga-random/{id}', [GetMangaAllController::class, 'getMangaRandom']);
 Route::get('/update-retral/{name}', [ServeApiClassController::class, 'update']);

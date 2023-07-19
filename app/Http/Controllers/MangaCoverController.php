@@ -21,11 +21,20 @@ class MangaCoverController extends Controller
         $dataViews = DB::table('mangas')
         ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
         ->where('manga_episodes.mangesId',  $id)
-        ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.categories_id','mangas.author','mangas.artist','mangas.status',
+        ->select('manga_episodes.*', 'mangas.cover_photo','mangas.id_user','mangas.manga_name','mangas.manga_details','mangas.categories_id','mangas.author','mangas.artist','mangas.status',
         'mangas.views as mangas_views','mangas.website','mangas.updated_at as mangas_updated_at')
         ->groupBy('manga_episodes.episodeId')
         ->orderBy('manga_episodes.episodeId', 'DESC')
         ->paginate(100);
+
+
+
+        $userImage = DB::table('image_profiles')
+        ->leftJoin('users', 'image_profiles.id_user_image', '=', 'users.id')
+        ->select('image_profiles.*', 'users.username')
+        ->where('id_user_image', $dataViews[0]->id_user)
+        ->get();
+
 
   
         $commentData = DB::table('comment_mangas')
@@ -41,8 +50,9 @@ class MangaCoverController extends Controller
                 'views' => $dataViews[0]->mangas_views+1,
               ]);
           
-        
-        return view('mangaCover.manga_cover',['dataViews'=> $dataViews,'commentData'=>$commentData]);
+
+              
+        return view('mangaCover.manga_cover',['dataViews'=> $dataViews,'commentData'=>$commentData ,'userImage' => $userImage]);
     }
 
     public function showMangaChapter(string $id,$episodeId)

@@ -95,9 +95,15 @@ class HomeController extends Controller
     }
 
 
-    function userUploads() {
-
-        $data = DB::table('users')->paginate(100);
+    function userUploads(Request $request) {
+        $data = DB::table('users');
+        if ($request->search) {
+            $data = $data->where('users.username', 'like', "$request->search%")
+            ->paginate(100);
+        }else {
+            $data =  $data->paginate(100);
+        }
+       
         return view('admin.userUploads.index', ['data'=>$data]);
     }
 

@@ -5,17 +5,7 @@
 
             <ul class="js-clone-nav d-none d-lg-inline-block site-menu float-left">
 
-                <?php
-                  $data = DB::table('categories')
-                  ->orderBy('categories_name','ASC')
-                  ->get();
-                  ?>
-                @if(isset($data))
-                @foreach ($data as $data_cat)
-                <li class="active"><a href="{{url('search-categories',$data_cat->id)}}"
-                        class="nav-link">{{$data_cat->categories_name}}</a></li>
-                @endforeach
-                @endif
+
 
                 <!-- <li class=" has-children">
                         <a href="#" class="nav-link">Dropdown</a>

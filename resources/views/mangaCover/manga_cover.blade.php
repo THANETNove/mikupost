@@ -181,14 +181,36 @@
                 <div class="col-md-3 col-lg-3 order-lg-2 js-custom-dots">
                     <div class="box-contributor">
                         <p class="contributor-p"> Contributor</p>
+
+                        @if($userImage->count() > 0)
+                        <div class="row ml-3">
+                            <div class="service-image-icon">
+                                <?php 
+                                   $imagePath = env('FTP_URL_IMAGES_PROFILE').$userImage[0]->image_user;
+                                    $image = Storage::disk('ftp')->url($imagePath);
+                                ?>
+                                <img src="{{$image}}" class="image-icon" alt="">
+                            </div>
+                            <p class="contributor-name">
+                                {{$userImage[0]->username }}
+                            </p>
+                        </div>
+                        @else
                         <div class="row ml-3">
                             <div class="service-image-icon">
                                 <img src="{{URL::asset('assets/icon/avatar_81874.jpeg')}}" class="image-icon" alt="">
                             </div>
-                            <p class="contributor-name ">
-                                ขอเราแปลนะ
+                            <p class="contributor-name">
+                                mikupost
                             </p>
                         </div>
+                        @endif
+
+
+
+
+
+                        <!-- $userImage  -->
                     </div>
                     <div class="mt-3 box-contributor-rules">
                         <p class="comment-rules">Comment Rules
