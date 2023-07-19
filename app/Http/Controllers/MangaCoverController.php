@@ -27,7 +27,7 @@ class MangaCoverController extends Controller
         ->orderBy('manga_episodes.episodeId', 'DESC')
         ->paginate(100);
 
-        
+  
         $commentData = DB::table('comment_mangas')
         ->leftJoin('users', 'comment_mangas.id_user', '=', 'users.id')
         ->leftJoin('image_profiles', 'users.id', '=', 'image_profiles.id_user_image')
@@ -36,6 +36,10 @@ class MangaCoverController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(10);
 
+            DB::table('mangas')->where('id',$id)
+              ->update([
+                'views' => $dataViews[0]->mangas_views+1,
+              ]);
           
         
         return view('mangaCover.manga_cover',['dataViews'=> $dataViews,'commentData'=>$commentData]);
@@ -51,6 +55,13 @@ class MangaCoverController extends Controller
         ->select('manga_episodes.*','mangas.manga_name','mangas.author')
         ->orderBy('manga_episodes.id_image', 'ASC')
         ->get();
+
+
+        DB::table('manga_episodes')->where('mangesId',$id)
+        ->where('episodeId',$episodeId)
+        ->update([
+          'view' => $dataViews[0]->view + 1,
+        ]);
 
         $maxEpisodeId = DB::table('mangas')
         ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')

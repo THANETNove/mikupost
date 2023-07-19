@@ -62,7 +62,9 @@
                                 <td><img src="{{ $imageUrl }}" class="image-cover" calt="Manga Cover"></td>
                                 <td>{{ \Illuminate\Support\Str::limit($dataMange->manga_name, $limit = 60, $end = '...') }}
                                 </td>
-                                <td>{{$dataMange->views}} </td>
+                                <td>
+
+                                    {{ number_format($dataMange->views,0,'', ',');}} </td>
                                 <td> <?php echo \Carbon\Carbon::parse($dataMange->updated_at)->format('d-m-Y'); ?></td>
                                 <td>{{$dataMange->maxEpisodeId}}</td>
                                 <td> <a href="{{ url('view-mange', $dataMange->id) }}"
