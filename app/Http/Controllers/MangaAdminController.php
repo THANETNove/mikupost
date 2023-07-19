@@ -319,9 +319,9 @@ class MangaAdminController extends Controller
         $deleteManga = Manga::find($id);
         $deleteManga->delete();
         if (Auth::user()->status == 0) {
-            return redirect('home')->with('message', "ลบ สำเร็จ");
+            return redirect('home')->with('messageDelete', "ลบ สำเร็จ");
         }else {
-            return redirect('admin-home')->with('message', "ลบ สำเร็จ");
+            return redirect('admin-home')->with('messageDelete', "ลบ สำเร็จ");
         }
        
        
