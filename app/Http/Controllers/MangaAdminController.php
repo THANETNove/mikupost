@@ -113,6 +113,7 @@ class MangaAdminController extends Controller
             'categories_id' => json_encode($request['categories_id']) ,
             'views' => 0,
             'website' => $request['website'],
+            'id_user' =>  Auth::user()->id,
         ]);
     /** 
      * !  ส่วนของการอัพตอนงังงะ

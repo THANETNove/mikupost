@@ -18,5 +18,6 @@ class Manga extends Model
         'categories_id',
         'views',
         'website',
+        'id_user',
     ];
 }

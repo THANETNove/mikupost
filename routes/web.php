@@ -55,7 +55,19 @@ Route::get('/search-categories/{id}', [MangaCoverController::class, 'searchCateg
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap_xml');
 
 
-
+Route::get('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
+Route::post('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
+Route::get('create-manga', [MangaAdminController::class, 'create']);
+Route::post('add-manga', [MangaAdminController::class, 'store'])->name('add-manga');
+Route::get('view-mange/{id}', [MangaAdminController::class, 'show'])->name('view-mange');
+Route::get('edit-mange/{id}', [MangaAdminController::class, 'edit'])->name('edit-mange');
+Route::put('update-manga/{id}', [MangaAdminController::class, 'update'])->name('update-manga');
+Route::get('delete-mange/{id}', [MangaAdminController::class, 'destroy'])->name('delete-mange');
+Route::get('create-episodes/{id}', [EpisodesMangaController::class, 'create'])->name('view-mange');
+Route::post('add-episodes', [EpisodesMangaController::class, 'store'])->name('add-episodes');
+Route::get('edit-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'edit'])->name('edit-episode');
+Route::put('update-episodes/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'update'])->name('update-episodes');
+Route::get('delete-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'destroy'])->name('delete-episode');
 
 // admin
 Route::group(['middleware' => ['is_admin']], function () {
@@ -63,19 +75,8 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('register-admin', [CreateAdminController::class, 'create']);
     Route::post('create-admin', [CreateAdminController::class, 'store']);
     Route::get('delete-admin/{id}', [CreateAdminController::class, 'destroy']);
-    Route::get('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
-    Route::post('admin-home', [MangaAdminController::class, 'index'])->name('admin-home');
-    Route::get('create-manga', [MangaAdminController::class, 'create']);
-    Route::post('add-manga', [MangaAdminController::class, 'store'])->name('add-manga');
-    Route::get('view-mange/{id}', [MangaAdminController::class, 'show'])->name('view-mange');
-    Route::get('edit-mange/{id}', [MangaAdminController::class, 'edit'])->name('edit-mange');
-    Route::put('update-manga/{id}', [MangaAdminController::class, 'update'])->name('update-manga');
-    Route::get('delete-mange/{id}', [MangaAdminController::class, 'destroy'])->name('delete-mange');
-    Route::get('create-episodes/{id}', [EpisodesMangaController::class, 'create'])->name('view-mange');
-    Route::post('add-episodes', [EpisodesMangaController::class, 'store'])->name('add-episodes');
-    Route::get('edit-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'edit'])->name('edit-episode');
-    Route::put('update-episodes/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'update'])->name('update-episodes');
-    Route::get('delete-episode/{mangesId}/{episodeId}', [EpisodesMangaController::class, 'destroy'])->name('delete-episode');
+   
+
     Route::get('create-category', [CategoryController::class, 'create'])->name('create-category');
     Route::get('category', [CategoryController::class, 'index'])->name('category');
     Route::post('add-category', [CategoryController::class, 'store'])->name('add-category');

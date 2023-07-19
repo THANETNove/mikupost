@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('categories_id')->nullable();
             $table->string('views')->nullable();
             $table->string('website')->nullable();
+            $table->string('id_user')->nullable();
             $table->timestamps();
         });
     }
