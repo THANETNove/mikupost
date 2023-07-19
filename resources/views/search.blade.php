@@ -55,12 +55,24 @@
                             </form>
                         </div>
                         <?php
-         $dataCategories = DB::table('categories')
-                ->orderBy('id', 'ASC')
-                ->get();
-        ?>
+                            $dataCategories = DB::table('categories')
+                                    ->orderBy('id', 'ASC')
+                                    ->get();
+                            ?>
                         <div class="row ml-2 mt-3 col-12">
                             @foreach ($dataCategories as $categories)
+
+
+                            @if(isset($id_ep))
+                            <div class="form-check col-3">
+                                <input class="form-check-input" type="radio" name="categories_id" id="radio-categories"
+                                    value="{{$categories->id}}"
+                                    <?php echo $id_ep == $categories->id ? 'checked' : ''; ?> id="flexRadioDefault1">
+                                <label class="form-check-label white-text" for="flexRadioDefault1">
+                                    {{$categories->categories_name}}
+                                </label>
+                            </div>
+                            @else
                             <div class="form-check col-3">
                                 <input class="form-check-input" type="radio" name="categories_id" id="radio-categories"
                                     value="{{$categories->id}}" id="flexRadioDefault1">
@@ -68,6 +80,9 @@
                                     {{$categories->categories_name}}
                                 </label>
                             </div>
+                            @endif
+
+
                             @endforeach
                         </div>
                     </div>

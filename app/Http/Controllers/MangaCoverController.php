@@ -135,7 +135,7 @@ class MangaCoverController extends Controller
                 ->groupBy('mangas.id')
                 ->get();
 
-        return view('search',['data'=>$data]);
+        return view('search',['data'=>$data,'id_ep'=>$id]);
        
     }
    
