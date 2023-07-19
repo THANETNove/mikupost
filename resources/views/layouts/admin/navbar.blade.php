@@ -9,7 +9,7 @@
         $pathname = $_SERVER['REQUEST_URI'];
         $ex = explode('/', $pathname);
         
-        $desiredPart = $ex[4];
+        $desiredPart = $ex[3];
         
         ?>
     <!-- Topbar Search -->
