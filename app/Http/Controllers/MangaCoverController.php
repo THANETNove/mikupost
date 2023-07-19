@@ -18,7 +18,7 @@ class MangaCoverController extends Controller
         $dataViews = DB::table('mangas')
         ->rightJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
         ->where('manga_episodes.mangesId',  $id)
-        ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.author','mangas.artist','mangas.status',
+        ->select('manga_episodes.*', 'mangas.cover_photo','mangas.manga_name','mangas.manga_details','mangas.categories_id','mangas.author','mangas.artist','mangas.status',
         'mangas.views as mangas_views','mangas.website','mangas.updated_at as mangas_updated_at')
         ->groupBy('manga_episodes.episodeId')
         ->orderBy('manga_episodes.episodeId', 'DESC')
@@ -118,11 +118,20 @@ class MangaCoverController extends Controller
        
     }
 
-
     public function searchCategories(string $id) {
         $data =  DB::table('mangas')->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
                 ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
-                ->where('mangas.categories_id', $id)
+                ->whereRaw('JSON_CONTAINS(mangas.categories_id, \'["' . $id . '"]\')')
+                ->groupBy('mangas.id')
+                ->get();
+
+        return view('search',['data'=>$data]);
+       
+    }
+    public function searchMangesId(string $id) {
+        $data =  DB::table('mangas')->leftJoin('manga_episodes', 'mangas.id', '=', 'manga_episodes.mangesId')
+                ->select('mangas.*', 'manga_episodes.mangesId', DB::raw('MAX(manga_episodes.episodeId) as maxEpisodeId'))
+                ->whereRaw('JSON_CONTAINS(mangas.categories_id, \'["' . $id . '"]\')')
                 ->groupBy('mangas.id')
                 ->get();
 

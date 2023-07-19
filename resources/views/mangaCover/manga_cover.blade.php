@@ -92,13 +92,14 @@
                     </div>
                     <div class="row mb-4">
                         <?php
-                  $data = DB::table('categories')
-                  ->orderBy('categories_name','ASC')
-                  ->get();
-                  ?>
+                            $data = DB::table('categories')
+                            ->whereIn('id', json_decode($dataViews[0]->categories_id))
+                            ->orderBy('id', 'ASC')
+                            ->get();
+                        ?>
                         @if(isset($data))
                         @foreach ($data as $data_cat)
-                        <a href="{{url('search-categories',$data_cat->id)}}" class="nav-link">
+                        <a href="{{url('search-categories',$data_cat->id)}}" class="">
                             <div class="manga-category-cover">
                                 {{$data_cat->categories_name}}
                             </div>

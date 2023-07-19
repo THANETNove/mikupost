@@ -12423,6 +12423,10 @@ hr {
     font-size: 25px;
 }
 
+.white-text {
+    color: var(--white) !important;
+}
+
 .fa-comments {
     margin-top: 12px;
     color: var(--white);

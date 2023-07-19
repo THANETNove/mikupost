@@ -47,11 +47,12 @@ Route::post('/add-comment', [CommentMangasController::class, 'store'])->name('ad
 Route::post('/add-comment-episode', [CommentMangasController::class, 'storeEpisode'])->name('add-comment-episode');
 Route::post('/add-image-profile', [HomeController::class, 'store'])->name('add-image-profile');
 Route::get('/search-manges', [MangaCoverController::class, 'searchManges'])->name('search-manges');
+Route::get('/search-manges/{id}', [MangaCoverController::class, 'searchMangesId'])->name('search-manges');
 Route::post('/search-manges', [MangaCoverController::class, 'searchManges'])->name('search-manges');
 Route::get('/search-categories/{id}', [MangaCoverController::class, 'searchCategories'])->name('search-categories');
 
 
-Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('search-categories');
+Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap_xml');
 
 
 
